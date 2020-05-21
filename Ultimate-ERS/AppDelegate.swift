@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Ultimate-ERS
 //
-//  Created by Kudo on 5/20/20.
+//  Created by kudoichika on 5/20/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        createUserDefaults()
+        initUserDefaults()
         return true
     }
 

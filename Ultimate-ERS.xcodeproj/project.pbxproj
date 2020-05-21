@@ -15,10 +15,18 @@
 		839F3DDC2475F34D009C129E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839F3DDA2475F34D009C129E /* Main.storyboard */; };
 		839F3DDE2475F35A009C129E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 839F3DDD2475F35A009C129E /* Assets.xcassets */; };
 		839F3DE12475F35A009C129E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 839F3DDF2475F35A009C129E /* LaunchScreen.storyboard */; };
+		839F3DEE2475F543009C129E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DED2475F543009C129E /* MainViewController.swift */; };
+		839F3DF02475F6C7009C129E /* CustomizeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DEF2475F6C7009C129E /* CustomizeViewController.swift */; };
+		839F3DF22475F6EF009C129E /* Customization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF12475F6EF009C129E /* Customization.swift */; };
+		839F3DF42475F738009C129E /* GameComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF32475F738009C129E /* GameComponents.swift */; };
+		839F3DF62475F755009C129E /* UtilityComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF52475F755009C129E /* UtilityComponents.swift */; };
+		839F3DF82475F7A9009C129E /* PracticeGamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF72475F7A9009C129E /* PracticeGamePlay.swift */; };
+		839F3DFA2475F7D0009C129E /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF92475F7D0009C129E /* PracticeViewController.swift */; };
+		839F3DFC2475F80C009C129E /* PracticeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DFB2475F80C009C129E /* PracticeScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		839F3DCD2475F34D009C129E /* Ultimate-ERS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ultimate-ERS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		839F3DCD2475F34D009C129E /* Ultimate ERS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ultimate ERS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		839F3DD02475F34D009C129E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839F3DD22475F34D009C129E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		839F3DD42475F34D009C129E /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -28,6 +36,14 @@
 		839F3DDD2475F35A009C129E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		839F3DE02475F35A009C129E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		839F3DE22475F35A009C129E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		839F3DED2475F543009C129E /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		839F3DEF2475F6C7009C129E /* CustomizeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeViewController.swift; sourceTree = "<group>"; };
+		839F3DF12475F6EF009C129E /* Customization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customization.swift; sourceTree = "<group>"; };
+		839F3DF32475F738009C129E /* GameComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameComponents.swift; sourceTree = "<group>"; };
+		839F3DF52475F755009C129E /* UtilityComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityComponents.swift; sourceTree = "<group>"; };
+		839F3DF72475F7A9009C129E /* PracticeGamePlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGamePlay.swift; sourceTree = "<group>"; };
+		839F3DF92475F7D0009C129E /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
+		839F3DFB2475F80C009C129E /* PracticeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +68,7 @@
 		839F3DCE2475F34D009C129E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				839F3DCD2475F34D009C129E /* Ultimate-ERS.app */,
+				839F3DCD2475F34D009C129E /* Ultimate ERS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,16 +77,72 @@
 			isa = PBXGroup;
 			children = (
 				839F3DD02475F34D009C129E /* AppDelegate.swift */,
-				839F3DD22475F34D009C129E /* GameScene.sks */,
-				839F3DD42475F34D009C129E /* Actions.sks */,
-				839F3DD62475F34D009C129E /* GameScene.swift */,
-				839F3DD82475F34D009C129E /* GameViewController.swift */,
+				839F3DE82475F3C4009C129E /* References */,
+				839F3DE92475F3E0009C129E /* MainViews */,
+				839F3DEA2475F3EA009C129E /* GameCode */,
+				839F3DEB2475F3F7009C129E /* MultiGame */,
+				839F3DEC2475F406009C129E /* PracticeGame */,
+				839F3DFE2475F843009C129E /* Assets */,
 				839F3DDA2475F34D009C129E /* Main.storyboard */,
 				839F3DDD2475F35A009C129E /* Assets.xcassets */,
 				839F3DDF2475F35A009C129E /* LaunchScreen.storyboard */,
 				839F3DE22475F35A009C129E /* Info.plist */,
 			);
 			path = "Ultimate-ERS";
+			sourceTree = "<group>";
+		};
+		839F3DE82475F3C4009C129E /* References */ = {
+			isa = PBXGroup;
+			children = (
+				839F3DD82475F34D009C129E /* GameViewController.swift */,
+				839F3DD22475F34D009C129E /* GameScene.sks */,
+				839F3DD42475F34D009C129E /* Actions.sks */,
+				839F3DD62475F34D009C129E /* GameScene.swift */,
+			);
+			path = References;
+			sourceTree = "<group>";
+		};
+		839F3DE92475F3E0009C129E /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				839F3DED2475F543009C129E /* MainViewController.swift */,
+				839F3DEF2475F6C7009C129E /* CustomizeViewController.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		839F3DEA2475F3EA009C129E /* GameCode */ = {
+			isa = PBXGroup;
+			children = (
+				839F3DF12475F6EF009C129E /* Customization.swift */,
+				839F3DF32475F738009C129E /* GameComponents.swift */,
+				839F3DF52475F755009C129E /* UtilityComponents.swift */,
+			);
+			path = GameCode;
+			sourceTree = "<group>";
+		};
+		839F3DEB2475F3F7009C129E /* MultiGame */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MultiGame;
+			sourceTree = "<group>";
+		};
+		839F3DEC2475F406009C129E /* PracticeGame */ = {
+			isa = PBXGroup;
+			children = (
+				839F3DF72475F7A9009C129E /* PracticeGamePlay.swift */,
+				839F3DF92475F7D0009C129E /* PracticeViewController.swift */,
+				839F3DFB2475F80C009C129E /* PracticeScene.swift */,
+			);
+			path = PracticeGame;
+			sourceTree = "<group>";
+		};
+		839F3DFE2475F843009C129E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -90,7 +162,7 @@
 			);
 			name = "Ultimate-ERS";
 			productName = "Ultimate-ERS";
-			productReference = 839F3DCD2475F34D009C129E /* Ultimate-ERS.app */;
+			productReference = 839F3DCD2475F34D009C129E /* Ultimate ERS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -147,8 +219,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				839F3DD72475F34D009C129E /* GameScene.swift in Sources */,
+				839F3DF82475F7A9009C129E /* PracticeGamePlay.swift in Sources */,
 				839F3DD92475F34D009C129E /* GameViewController.swift in Sources */,
+				839F3DFA2475F7D0009C129E /* PracticeViewController.swift in Sources */,
 				839F3DD12475F34D009C129E /* AppDelegate.swift in Sources */,
+				839F3DF02475F6C7009C129E /* CustomizeViewController.swift in Sources */,
+				839F3DF62475F755009C129E /* UtilityComponents.swift in Sources */,
+				839F3DEE2475F543009C129E /* MainViewController.swift in Sources */,
+				839F3DF22475F6EF009C129E /* Customization.swift in Sources */,
+				839F3DF42475F738009C129E /* GameComponents.swift in Sources */,
+				839F3DFC2475F80C009C129E /* PracticeScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,13 +373,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5CQMR8VM2P;
 				INFOPLIST_FILE = "Ultimate-ERS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kudoichika.Ultimate-ERS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ultimate ERS";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -310,13 +391,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5CQMR8VM2P;
 				INFOPLIST_FILE = "Ultimate-ERS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.kudoichika.Ultimate-ERS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ultimate ERS";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
