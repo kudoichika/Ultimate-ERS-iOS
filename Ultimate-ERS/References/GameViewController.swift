@@ -2,7 +2,7 @@
 //  GameViewController.swift
 //  Ultimate-ERS
 //
-//  Created by Kudo on 5/20/20.
+//  Created by kudoichika on 5/20/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
