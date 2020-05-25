@@ -1,19 +1,19 @@
-//Server.js
-
-//Load environment variables
-require('dotenv').config()
-
-//Required Packages
 const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server)
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+require('./utils/config')
 
-//Choose Server Port
-const SERVER_PORT = process.env.ERS_PORT || 6000
+const SERVER_PORT = process.env.ERS_PORT || 3000
 
-//Load SocketIO Logic Module
-require('./socket')(io)
+app.use('/', bodyParser.urlencoded({extended: true}))
+app.use('/', bodyParser.json())
 
-//Listen on Server
+require('./utils/database')(mongoose)
+require('./utils/socket')(io)
+
+app.use('api/user', require('./api/users'))
+
 server.listen(SERVER_PORT)
