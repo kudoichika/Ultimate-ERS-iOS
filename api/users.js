@@ -1,12 +1,16 @@
 const express = require('express')
-const userControl = require('../controllers/userControl')
+const control = require('../controllers/userControl')
+const auth = require('../utils/auth')
+const passport = require('passport')
 const router = express.Router()
 
-router.use('/create', userControl.createUser)
-router.use('/get', userControl.getAllUsers)
-router.use('/get/:handle', userControl.getUserByHandle)
-router.use('/get/:email', userControl.getUserByEmail)
-router.use('/update/:id', userControl.updateUser)
-router.use('/delete/:id', userControl.deleteUser)
+router.post('/register', auth.checkNotAuth, control.createUser)
+router.post('/login', auth.checkNotAuth, control.loginUser)
+router.post('/logout', auth.checkAuth, control.logoutUser)
+router.get('/', control.getAllUsers)
+router.get('/h/:handle', control.getUserByHandle)
+router.get('/e/:email', control.getUserByEmail)
+router.put('/:id', control.updateUser)
+router.delete('/:id', control.deleteUser)
 
 module.exports = router;
