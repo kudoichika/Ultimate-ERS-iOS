@@ -23,6 +23,7 @@
 		839F3DF82475F7A9009C129E /* PracticeGamePlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF72475F7A9009C129E /* PracticeGamePlay.swift */; };
 		839F3DFA2475F7D0009C129E /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF92475F7D0009C129E /* PracticeViewController.swift */; };
 		839F3DFC2475F80C009C129E /* PracticeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DFB2475F80C009C129E /* PracticeScene.swift */; };
+		83B98C4C247C940600D7BF01 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B98C4B247C940600D7BF01 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		839F3DF72475F7A9009C129E /* PracticeGamePlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGamePlay.swift; sourceTree = "<group>"; };
 		839F3DF92475F7D0009C129E /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
 		839F3DFB2475F80C009C129E /* PracticeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeScene.swift; sourceTree = "<group>"; };
+		83B98C4B247C940600D7BF01 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		839F3DEB2475F3F7009C129E /* MultiGame */ = {
 			isa = PBXGroup;
 			children = (
+				83B98C4B247C940600D7BF01 /* LoginViewController.swift */,
 			);
 			path = MultiGame;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B98C4C247C940600D7BF01 /* LoginViewController.swift in Sources */,
 				839F3DD72475F34D009C129E /* GameScene.swift in Sources */,
 				839F3DF82475F7A9009C129E /* PracticeGamePlay.swift in Sources */,
 				839F3DD92475F34D009C129E /* GameViewController.swift in Sources */,
