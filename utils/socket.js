@@ -1,21 +1,28 @@
+const sync = require('./sync')
+
 module.exports = function(io) {
-  const lobbySocket = io.of('/lobby')
-  const roomSocket = io.of('/room')
   const gameSocket = io.of('/game')
-
-  lobbySocket.on('connection', function(socket) {
-
-    socket.on('disconnect', function(socket) {})
-  })
-
-  roomSocket.on('connection', function(socket) {
-
-    roomSocket.on('disconnect', function(socket) {})
-  })
 
   gameSocket.on('connection', function(socket) {
 
+    console.log("Connected to Game Socket")
+
+    socket.on('join', function(room) {
+
+      socket.join(room)
+      console.log("Joined Room")
+
+      io.of('/game').in(room).clients(function(err, clients) {
+          console.log(clients);
+          if (clients.length === 2) {
+            console.log("Two people have joined the game")
+          }
+      })
+
+    })
+
     gameSocket.on('disconnect', function(socket) {})
+
   })
 
   function clearSocketRoom(room, namespace = '/') {}
