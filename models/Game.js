@@ -1,1 +1,0 @@
-//schema for game object to be stored
