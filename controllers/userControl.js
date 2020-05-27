@@ -39,6 +39,7 @@ exports.getAllUsers = function(req, res, next) {
 }
 
 exports.updateUser = function(req, res, next) {
+  if (req.user._id !== req.params.id) return
   const user = {
     handle: req.body.handle,
     email: req.body.email,
@@ -51,6 +52,7 @@ exports.updateUser = function(req, res, next) {
 }
 
 exports.deleteUser = function(req, res, next) {
+  if (req.user._id !== req.params.id) return
   UserSchema.findOneAndDelete({_id: req.params.id}, function(err, user) {
     if (err) res.json({error: err})
     else res.json({message: 'success'})

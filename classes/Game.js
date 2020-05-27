@@ -1,3 +1,5 @@
+const checkSlap = require('./patternChecker')
+
 class Game {
     constructor(playerOne, playerTwo) {
         this.playerOne = playerOne
@@ -7,21 +9,24 @@ class Game {
         this.moves = []
         //resign + winner needed
     }
-    pushStack = function(cards) {
+    pushStack(cards){
         this.cardStack.push(cards)
     }
-    popStack = function() {
+    get popStack() {
         return this.cardStack.pop()
     }
-    resetStack = function() {
+    resetStack() {
         this.cardStack = []
     }
-    peekStack = function(num = 0) {
+    peekStack(num = 0) {
         return this.cardStack[this.length - num - 1]
     }
-    size = function() {
+    get size() {
         return this.cardStack.length
     }
+
+    //Actual Gameplay
+    
 }
 
 module.exports = Game
