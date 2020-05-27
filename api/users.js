@@ -10,7 +10,7 @@ router.post('/logout', auth.checkAuth, control.logoutUser)
 router.get('/', control.getAllUsers)
 router.get('/h/:handle', control.getUserByHandle)
 router.get('/e/:email', control.getUserByEmail)
-router.put('/:id', control.updateUser)
-router.delete('/:id', control.deleteUser)
+router.put('/:id', auth.checkAuth, control.updateUser)
+router.delete('/:id', auth.checkAuth, control.deleteUser)
 
 module.exports = router;

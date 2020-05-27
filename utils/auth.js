@@ -1,8 +1,8 @@
 exports.checkAuth = function(req, res, next) {
     if (!req.isAuthenticated()) {
-        return next()
+        return res.json({message: 'not authenticated'})
     }
-    return res.json({message: 'not authenticated'})
+    return next()
 }
 
 exports.checkNotAuth = function(req, res, next) {

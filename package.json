@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node .",
-    "monitor": "nodemon ."
+    "dev": "nodemon ."
   },
   "author": "",
   "license": "ISC",
