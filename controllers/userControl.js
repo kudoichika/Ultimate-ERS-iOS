@@ -1,36 +1,38 @@
-const User = require('../models/User')
+require('../models/UserSchema')
+const UserSchema = require('mongoose').model('UserSchema')
 const passport = require('passport')
 
 exports.createUser = function(req, res, next) {
-  //generate hash+salt for passwords
+  //generate hash and stuff
+  console.log("ATTEMPT TO CREATE USER")
   console.log(req.body)
   const user = {
     handle: req.body.handle,
     email: req.body.email,
     pass: req.body.pass
   }
-  User(user).save(function(err) {
+  UserSchema(user).save(function(err) {
     if (err) res.json({error: err})
     else res.json({message: 'success'})
   })
 }
 
 exports.getUserByHandle = function(req, res, next) {
-  User.find({handle: req.params.handle}, function(err, user) {
+  UserSchema.find({handle: req.params.handle}, function(err, user) {
     if (err) res.json({error: err})
     else res.json({user: user})
   })
 }
 
 exports.getUserByEmail = function(req, res, next) {
-  User.find({email: req.params.handle}, function(err, user) {
+  UserSchema.find({email: req.params.handle}, function(err, user) {
     if (err) res.json({error: err})
     else res.json({user: user})
   })
 }
 
 exports.getAllUsers = function(req, res, next) {
-  User.find({}, function(err, users) {
+  UserSchema.find({}, function(err, users) {
     if (err) res.json({error: err})
     else res.json({users: users})
   })
@@ -42,14 +44,14 @@ exports.updateUser = function(req, res, next) {
     email: req.body.email,
     pass: req.body.pass
   }
-  User.findOneAndUpdate({_id: req.params.id}, {$set: user}, {new: true},function(err, user) {
+  UserSchema.findOneAndUpdate({_id: req.params.id}, {$set: user}, {new: true},function(err, user) {
     if (err) res.json({error: err})
     else res.json({message: 'success'})
   })
 }
 
 exports.deleteUser = function(req, res, next) {
-  User.findOneAndDelete({_id: req.params.id}, function(err, user) {
+  UserSchema.findOneAndDelete({_id: req.params.id}, function(err, user) {
     if (err) res.json({error: err})
     else res.json({message: 'success'})
   })
@@ -72,12 +74,12 @@ exports.logoutUser = function(req, res, next) {
 exports.authenticate = function(username, password, done) {
   console.log("ATTEMPTING AUTHETENCATION")
   function validateUserPassword(password, pass) {
-    //Replace with hash+salt verification
+    //Replace with hashing 
     return (password === pass)
   }
-  let q = (username.indexOf('@') === -1)?
+  let q = (username.indexOf('@') === -1)? 
     {handle: username} : {email: username}
-  User.findOne(q, function(err, user) {
+  UserSchema.findOne(q, function(err, user) {
     if (err) return done(err)
     if (!user) return done(null, false, {message: 'incorrect userid'})
     if (!validateUserPassword(password, user.pass)) {
@@ -89,5 +91,5 @@ exports.authenticate = function(username, password, done) {
 }
 
 exports.findUserById = function(id, callback) {
-  User.findById(id, callback)
+  UserSchema.findById(id, callback)
 }
