@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
-//const flash = require('flash')
+const MongoStore = require('connect-mongo')(session)
 require('./utils/config')
 
 const SERVER_PORT = process.env.ERS_PORT || 3000
@@ -15,19 +15,36 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 
 require('./utils/database')(mongoose)
-require('./utils/socket')(io)
 require('./utils/passport')(passport)
-
-//app.use(flash())
-app.use(session({
+const sessionware = session({
     secret: process.env.SESS_SECRET,
-    resave: false,
-    saveUninitialized: true
-}))
-
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 7200000
+    },
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    })
+})
+app.use(sessionware)
 app.use(passport.initialize())
 app.use(passport.session())
+
+require('./utils/socket')(io)
+io.use(function(socket, next) {
+    sessionware(socket.request, {}, next)
+})
+
+io.on('connection', function(socket) {
+    //console.log(socket.request.session)
+})
 
 app.use('/api/users', require('./api/users'))
 
 server.listen(SERVER_PORT)
+
+process.on('SIGINT', function() {
+    console.log('Shutting Server...')
+    mongoose.connection.db.dropCollection('sessions')
+})

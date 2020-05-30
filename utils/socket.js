@@ -21,7 +21,7 @@ module.exports = function(io) {
 
     })
 
-    gameSocket.on('disconnect', function(socket) {})
+    socket.on('disconnect', function(socket) {})
 
   })
 
