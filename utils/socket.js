@@ -16,21 +16,20 @@ module.exports = function(io) {
       socket.join(room)
       socket.roomId = room
       if (!roomGame[room]) {
-        logger.log('Initializing game in room:', room)
+        logger.log('New Room Created')
         roomGame[room] = new Game(gameSocket, room, socket)
       } else {
-        logger.log('New player in room:', room)
         roomGame[room].addPlayerAndStart(socket)
       }
     })
 
     socket.on('disconnect', function() {
-      logger.log('Socket Disconnected:', socket.id)
+      logger.log('Socket disconnected:', socket.id)
       if (socket.roomId) {
         logger.log('Player disconnected from Room', socket.roomId)
         gameSocket.in(socket.roomId).clients(function(err, clients) {
           if (clients.length === 0) {
-            logger.log('All clients in room', socket.roomId, 'disconnected. Deleting room')
+            logger.log('All clients disconnected. Deleting room', socket.roomId)
             delete roomGame[socket.roomId]
           }
         })

@@ -1,13 +1,16 @@
 const checkSlap = require('../utils/patternChecker')
-const Player = require('./Player')
+const Logger = require('./Logger')
+const logger = new Logger('GAME')
 
 class Game {
+    //Decide on public/private variables
     constructor(adapter, room, playerOne) {
-        console.log('New game initialized')
+        logger.from = 'GAME ROOM: ' + room
+        logger.log('New Game Initialized')
         this.adapter = adapter
         this.room = room
         this.status = 'waiting'
-        this.playerOne = new Player(playerOne)
+        this.playerOne = playerOne
         this.playerTwo = null
         this.cardStack = []
         this.turn = 0
@@ -15,46 +18,36 @@ class Game {
         //resign + winner needed
     }
 
+    //Actual Gameplay
     addPlayerAndStart(playerTwo) {
-        this.playerTwo = new Player(playerTwo)
+        logger.log('Request to join game from socket:', playerTwo.id)
+        if (playerTwo === this.playerOne) {
+            logger.log('Request denied for socket:', playerTwo.id)
+            return
+        }
+        logger.log('Request approved from socket:', playerTwo.id)
+        this.playerTwo = playerTwo
         this.status = 'playing'
-        console.log('Starting Game')
+        logger.log('Starting Game')
         this.startGame()
     }
 
-    pushStack(cards){
-        this.cardStack.push(cards)
-    }
-    get popStack() {
-        return this.cardStack.pop()
-    }
-    resetStack() {
-        this.cardStack = []
-    }
-    peekStack(num = 0) {
-        return this.cardStack[this.length - num - 1]
-    }
-    get size() {
-        return this.cardStack.length
-    }
-
-    //Actual Gameplay
     startGame() {
         const adapter = this.adapter
         const room = this.room
-        this.playerOne.socket.on('playCard', function(data) {
-            console.log('PlayerOne has played a card')
+        this.playerOne.on('playCard', function(data) {
+            logger.log('Player 1 has played a card')
             adapter.to(room).emit('cardPlayed')
         })
-        this.playerTwo.socket.on('playCard', function(data) {
-            console.log('PlayerTwo has played a card')
+        this.playerTwo.on('playCard', function(data) {
+            logger.log('Player 2 has played a card')
             adapter.to(room).emit('cardPlayed')
         })
-        this.playerOne.socket.on('disconnect', function() {
-            console.log('Player 1 Disconnected')
+        this.playerOne.on('disconnect', function() {
+            logger.log('Player 1 disconnected')
         })
-        this.playerTwo.socket.on('disconnect', function() {
-            console.log('Player 2 Disconnected')
+        this.playerTwo.on('disconnect', function() {
+            logger.log('Player 2 disconnected')
         })
     }
 }

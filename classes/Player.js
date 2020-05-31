@@ -1,6 +1,5 @@
 class Player {
-    constructor(socket) {
-        this.socket = socket
+    constructor() {
         this.cardQueue = []
     }
     appendCards(cards) {
@@ -14,6 +13,9 @@ class Player {
     }
     checkStatus() {
         return (this.deckSize > 0)
+    }
+    getDeck() {
+        return this.cardQueue
     }
 }
 
