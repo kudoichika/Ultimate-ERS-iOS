@@ -9,6 +9,7 @@ module.exports = function(cardStack) {
         checkStaircase()) {
             return true
     }
+    return false
     function checkTopBottom() {
         if (cardStack.length > 2) {
             if (peek() === peek(cardStack.length - 1)) {
@@ -62,9 +63,9 @@ module.exports = function(cardStack) {
     }
     function checkPythagorean() {
         if (cardStack.length > 2) {
-            if ((pow(peek(), 2) + pow(peek(1),2) === pow(peek(2),2)) ||
-                (pow(peek(), 2) + pow(peek(2),2) === pow(peek(1),2)) ||
-                (pow(peek(1), 2) + pow(peek(2),2) === pow(peek(),2))) {
+            if ((Math.pow(peek(), 2) + Math.pow(peek(1),2) === Math.pow(peek(2),2)) ||
+                (Math.pow(peek(), 2) + Math.pow(peek(2),2) === Math.pow(peek(1),2)) ||
+                (Math.pow(peek(1), 2) + Math.pow(peek(2),2) === Math.pow(peek(),2))) {
                     return true
                 }
         }
@@ -81,6 +82,6 @@ module.exports = function(cardStack) {
     }
 
     function peek(num = 0) {
-        return cardStack[this.length - num - 1].val
+        return cardStack[cardStack.length - num - 1].val
     }
 }

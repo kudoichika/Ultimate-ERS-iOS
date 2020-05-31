@@ -1,4 +1,4 @@
-const checkSlap = require('../utils/patternChecker')
+const ERS = require('./ERS')
 const Logger = require('./Logger')
 const logger = new Logger('GAME')
 
@@ -29,20 +29,37 @@ class Game {
         this.playerTwo = playerTwo
         this.status = 'playing'
         logger.log('Starting Game')
-        this.startGame()
+        this.ers = new ERS(2)
+        if (this.ers.readyGame()) {
+            this.startGame()
+            //broadast ready
+        }
     }
 
     startGame() {
+        this.monitorStatus()
         const adapter = this.adapter
         const room = this.room
-        this.playerOne.on('playCard', function(data) {
+        const ers = this.ers
+        this.playerOne.on('playCard', function() {
             logger.log('Player 1 has played a card')
-            adapter.to(room).emit('cardPlayed')
+            adapter.to(room).emit('cardPlayed', {data:ers.playCard(0)})
         })
-        this.playerTwo.on('playCard', function(data) {
+        this.playerTwo.on('playCard', function() {
             logger.log('Player 2 has played a card')
-            adapter.to(room).emit('cardPlayed')
+            adapter.to(room).emit('cardPlayed', {data:ers.playCard(1)})
         })
+        this.playerOne.on('slapStack', function() {
+            logger.log('Player 1 has slapped the stack')
+            adapter.to(room).emit('slapStack', {data:ers.slapStack(0)})
+        })
+        this.playerTwo.on('slapStack', function() {
+            logger.log('Player 2 has slapped the stack')
+            adapter.to(room).emit('slapStack', {data:ers.slapStack(1)})
+        })
+    }
+
+    monitorStatus() {
         this.playerOne.on('disconnect', function() {
             logger.log('Player 1 disconnected')
         })

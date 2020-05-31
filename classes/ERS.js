@@ -10,7 +10,7 @@ class ERS {
         }
         this.stack = []
         this.burnStack = []
-        this.num
+        this.num = numPlayers
     }
     readyGame() {
         this.distributeCards()
@@ -47,27 +47,27 @@ class ERS {
     }
     playCard(player) { //Add support for manual obligation later
         //check status - player might leave after losing
-        let card = this.players[player].popCard
+        let card = this.players[player].popCard()
         this.stack.push(card)
-        console.log('Player', player, 'has played card', card)
+        console.log('Player', player+1, 'has played card', card)
         //check if that was the player's last card
+        this.obligation--
         let val = card.val
         if (val === 1) val = 14
         if (val > 10) {
             this.obligation = val - 10
             this.flag = true
-            claim = this.turn
+            this.claim = this.turn
         }
-        obligation--
         let collect = -1
-        if (obligation === 0) {
-            if (flag) {
-                collect = claim
-                this.players[claim].appendCards(this.stack)
-                this.players[claim].appendCards(this.burnStack)
+        if (this.obligation === 0) {
+            if (this.flag) {
+                collect = this.claim
+                this.players[this.claim].appendCards(this.stack)
+                this.players[this.claim].appendCards(this.burnStack)
                 this.stack = []
                 this.burnStack = []
-                flag = false
+                this.flag = false
             }
             this.obligation = 1
             this.turn = (this.turn + 1) % this.num
@@ -76,7 +76,7 @@ class ERS {
         //check if theres a winner
         return {card: card, turn: this.turn, collect: collect, winner: -1}
     }
-    slap(player) { //check for obligation slap
+    slapStack(player) { //check for obligation slap
         let result = checkSlap(this.stack)
         if (result) {
             this.turn = player

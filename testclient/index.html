@@ -14,6 +14,8 @@
       <br><br><br>
       <button onclick="playCard()">Play A Card</button>
       <br>
+      <button onclick="slapStack()">Slap Stack</button>
+      <br>
       <h2>Create New UserSchema</h2>
       <form action="/api/users/register" method="post">
         <br>Handle: <input type="text" name="handle"/>
@@ -58,9 +60,13 @@
       let socket
       function conn() {
         console.log("connecting")
+        if (socket) return
         socket = io.connect('http://localhost:3000/game', {secure: true},{'sync disconnect on unload':true})
-        socket.on('cardPlayed', function() {
-          console.log('Card has been played')
+        socket.on('cardPlayed', function(data) {
+          console.log('Card has been played', data)
+        })
+        socket.on('slapStack', function(data) {
+          console.log('Stack has been slapped', data)
         })
         socket.on('connect_failed', function() {
           console.log("Connection Failed")
@@ -81,7 +87,10 @@
         socket.emit('join', room)
       }
       function playCard() {
-        socket.emit('playCard', {})
+        socket.emit('playCard')
+      }
+      function slapStack() {
+        socket.emit('slapStack')
       }
       window.onbeforeunload = function(e) {
         socket.disconnect()

@@ -1,7 +1,7 @@
 const sync = require('./sync')
 const auth = require('./auth')
 const Game = require('../classes/Game')
-const Logger = require('../classes/Logger')
+const Logger = require('./Logger')
 
 module.exports = function(io) {
   const gameSocket = io.of('/game')

@@ -1,5 +1,5 @@
 require('./config')
-const Logger = require('../classes/Logger')
+const Logger = require('./Logger')
 
 module.exports = function(mongoose) {
 
