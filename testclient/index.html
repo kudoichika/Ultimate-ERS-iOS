@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>SERVER PAGE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+  </head>
+  <body>
+      <h1>WELCOME</h1>
+      <h2></h2>
+      <button onclick="getName()">GetName</button><br>
+      <br><button onclick="conn()">CONNECTIO</button>
+      <br>Room: <input id="room"/>
+      <button onclick="joinRoom()">Join</button>
+      <br><br><br>
+      <button onclick="playCard()">Play A Card</button>
+      <br>
+      <h2>Create New UserSchema</h2>
+      <form action="/api/users/register" method="post">
+        <br>Handle: <input type="text" name="handle"/>
+        <br>Email: <input type="text" name="email"/>
+        <br>Password: <input type="password" name="pass"/>
+        <br><input type="submit"/>
+      </form>
+      <h2>Login</h2>
+      <form action="/api/users/login" method="post">
+        <br>Handle: <input type="text" name="userid"/>
+        <br>Password: <input type="password" name="password"/>
+        <br><input type="submit"/>
+      </form>
+      <h2>Logout</h2>
+      <form action="/api/users/logout" method="post">
+        <input type="submit"/>
+      </form>
+      <h2>Get UserSchemas</h2>
+      <form action="/api/users" method="get">
+        <br><input type="submit"/>
+      </form>
+      <h2>Get Specific UserSchema</h2>
+      <form action="/api/users" method="get">
+        <br>Email: <input type="text" name="email"/>
+        <br><input type="submit"/>
+      </form>
+    <script>
+      var i = 0
+      function getName() {
+        httpGet('/api/users/handle')
+      }
+      function httpGet(theUrl) {
+          var xmlHttp = new XMLHttpRequest();
+          xmlHttp.open('GET', theUrl, true);
+          xmlHttp.send(null);
+          xmlHttp.onreadystatechange = function() {
+          if (xmlHttp.readyState == XMLHttpRequest.DONE) {
+              document.getElementsByTagName('H2')[0].innerHTML = (xmlHttp.responseText)
+          }
+        }
+      }
+      let socket
+      function conn() {
+        console.log("connecting")
+        socket = io.connect('http://localhost:3000/game', {secure: true},{'sync disconnect on unload':true})
+        socket.on('cardPlayed', function() {
+          console.log('Card has been played')
+        })
+        socket.on('connect_failed', function() {
+          console.log("Connection Failed")
+        })
+
+        socket.on('disconnect', function() {
+          console.log("Connection disconnected")
+        })
+        
+        socket.on('notauth', function() {
+          console.log("Not Authenticated")
+          socket.disconnect()
+        })
+      }
+      function joinRoom() {
+        const room = document.getElementById('room').value
+        console.log('Attempting to join Room', room)
+        socket.emit('join', room)
+      }
+      function playCard() {
+        socket.emit('playCard', {})
+      }
+      window.onbeforeunload = function(e) {
+        socket.disconnect()
+      }
+    </script>
+  </body>
+</html>
