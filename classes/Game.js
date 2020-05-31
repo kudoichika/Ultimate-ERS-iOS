@@ -1,14 +1,27 @@
-const checkSlap = require('./patternChecker')
+const checkSlap = require('../utils/patternChecker')
+const Player = require('./Player')
 
 class Game {
-    constructor(playerOne, playerTwo) {
-        this.playerOne = playerOne
-        this.playerTwo = playerTwo
+    constructor(adapter, room, playerOne) {
+        console.log('New game initialized')
+        this.adapter = adapter
+        this.room = room
+        this.status = 'waiting'
+        this.playerOne = new Player(playerOne)
+        this.playerTwo = null
         this.cardStack = []
         this.turn = 0
         this.moves = []
         //resign + winner needed
     }
+
+    addPlayerAndStart(playerTwo) {
+        this.playerTwo = new Player(playerTwo)
+        this.status = 'playing'
+        console.log('Starting Game')
+        this.startGame()
+    }
+
     pushStack(cards){
         this.cardStack.push(cards)
     }
@@ -26,7 +39,24 @@ class Game {
     }
 
     //Actual Gameplay
-    
+    startGame() {
+        const adapter = this.adapter
+        const room = this.room
+        this.playerOne.socket.on('playCard', function(data) {
+            console.log('PlayerOne has played a card')
+            adapter.to(room).emit('cardPlayed')
+        })
+        this.playerTwo.socket.on('playCard', function(data) {
+            console.log('PlayerTwo has played a card')
+            adapter.to(room).emit('cardPlayed')
+        })
+        this.playerOne.socket.on('disconnect', function() {
+            console.log('Player 1 Disconnected')
+        })
+        this.playerTwo.socket.on('disconnect', function() {
+            console.log('Player 2 Disconnected')
+        })
+    }
 }
 
 module.exports = Game

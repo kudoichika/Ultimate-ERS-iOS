@@ -1,18 +1,18 @@
 class Player {
-    constructor(handle, cardQueue) {
-        this.handle = handle
-        this.cardQueue = cardQueue
+    constructor(socket) {
+        this.socket = socket
+        this.cardQueue = []
     }
-    appendCards = function(cards) {
+    appendCards(cards) {
         this.cardQueue.push(cards)
     }
-    deckSize = function() {
+    deckSize() {
         return this.cardQueue.length
     }
-    popCard = function() {
+    popCard() {
         return this.cardQueue.shift()
     }
-    checkStatus = function() {
+    checkStatus() {
         return (this.deckSize > 0)
     }
 }

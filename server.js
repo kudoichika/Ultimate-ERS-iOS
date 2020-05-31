@@ -21,7 +21,7 @@ const sessionware = session({
     resave: true,
     saveUninitialized: true,
     cookie: {
-        maxAge: 7200000
+        maxAge: process.env.SESS_LIFE
     },
     store: new MongoStore({
         mongooseConnection: mongoose.connection
@@ -43,8 +43,3 @@ io.on('connection', function(socket) {
 app.use('/api/users', require('./api/users'))
 
 server.listen(SERVER_PORT)
-
-process.on('SIGINT', function() {
-    console.log('Shutting Server...')
-    mongoose.connection.db.dropCollection('sessions')
-})
