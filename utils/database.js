@@ -1,27 +1,31 @@
 require('./config')
+const Logger = require('../classes/Logger')
 
 module.exports = function(mongoose) {
 
   const dbName = process.env.DB_NAME
   const dbPort = process.env.DB_PORT
 
+  const logger = new Logger('DATABASE')
+  
   mongoose.connect('mongodb://localhost:'+ dbPort + '/' + dbName)
   .then(function(res) {
-    console.log("Database Connected")
+    logger.log('Database Connected')
   })
   .catch(function(err) {
-    console.log("Database could not be Connected")
+    logger.log('Database could not be Connected')
   })
 
+  //These Functions are not correctly being invoked
   mongoose.connection.on('connected', function() {
-    console.log("Connected to the MongoDB Database")
+    logger.log('Connected to the MongoDB Database')
   })
 
   mongoose.connection.on('error', function(err) {
-    console.log("Mongoose Database Connection Error")
+    logger.log('Mongoose Database Connection Error')
   })
 
   mongoose.connection.on('disconnect', function(err) {
-    console.log("Disconnected from the MongoDB Database")
+    logger.log('Disconnected from the MongoDB Database')
   })
 }

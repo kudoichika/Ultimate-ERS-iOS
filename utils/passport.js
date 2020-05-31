@@ -1,7 +1,9 @@
 const LocalStrategy = require('passport-local').Strategy
 const control = require('../controllers/userControl')
+const Logger = require('../classes/Logger')
 
 module.exports = function(passport) {
+    const logger = new Logger('PASSPORT')
     const custom = {
         usernameField: 'userid',
         passwordField: 'password'
@@ -11,16 +13,14 @@ module.exports = function(passport) {
         control.authenticate
     ))
     passport.serializeUser(function(user, done) {
-        console.log("Serializing User\n", user)
+        logger.log('Serializing user:', user.id)
         done(null, user.id)
     })
     passport.deserializeUser(function(id, done) {
-        console.log("Attempting to Deserialize User")
-        console.log(id)
+        logger.log('Attempting to deserialize user with id:', id)
         control.findUserById(id, function(err, user) {
-            if (err) done(err)
-            console.log("Deserializing User\n", user)
-            done(null, user)
+            logger.log('Deserializing User:', user.id)
+            done(err, user)
         })
     })
 }

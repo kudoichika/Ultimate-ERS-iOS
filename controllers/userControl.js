@@ -1,17 +1,18 @@
 require('../models/UserSchema')
 const UserSchema = require('mongoose').model('UserSchema')
 const passport = require('passport')
+const Logger = require('../classes/Logger')
+const logger = new Logger('USER CONTROL')
 
 exports.createUser = function(req, res, next) {
   //generate hash and stuff
-  console.log("ATTEMPT TO CREATE USER")
-  console.log(req.body)
+  logger.log('Attempting to create User with', req.body)
   const user = {
     handle: req.body.handle,
     email: req.body.email,
     pass: req.body.pass
   }
-  UserSchema(user).save(function(err) {
+  UserSchema(user).save(function(err33) {
     if (err) res.json({error: err})
     else res.json({message: 'success'})
   })
@@ -74,7 +75,6 @@ exports.logoutUser = function(req, res, next) {
 }
 
 exports.authenticate = function(username, password, done) {
-  console.log("ATTEMPTING AUTHETENCATION")
   function validateUserPassword(password, pass) {
     //Replace with hashing 
     return (password === pass)
@@ -87,7 +87,6 @@ exports.authenticate = function(username, password, done) {
     if (!validateUserPassword(password, user.pass)) {
       return done(null, false, 'incorrect password')
     }
-    console.log('AUTH SUCCESS')
     return done(null, user)
   })
 }
