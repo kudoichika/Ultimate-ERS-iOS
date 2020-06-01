@@ -1,5 +1,5 @@
 const ERS = require('./ERS')
-const Logger = require('./Logger')
+const Logger = require('../utils/Logger')
 const logger = new Logger('GAME')
 
 class Game {

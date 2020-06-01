@@ -9,7 +9,7 @@ module.exports = function(io) {
   let roomGame = {}
 
   gameSocket.on('connection', function(socket) {
-    
+
     logger.log('New connection to socket:', socket.id)
     socket.on('join', function(room) {
       logger.log('Request to join room:', room)
