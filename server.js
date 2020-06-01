@@ -21,7 +21,7 @@ const sessionware = session({
     resave: true,
     saveUninitialized: true,
     cookie: {
-        maxAge: process.env.SESS_LIFE
+        //maxAge: process.env.SESS_LIFE
     },
     store: new MongoStore({
         mongooseConnection: mongoose.connection
