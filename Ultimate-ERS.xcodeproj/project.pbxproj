@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		831B163A2485A0CC0066A5FB /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B16392485A0CC0066A5FB /* Connection.swift */; };
+		831B163C2485A0EA0066A5FB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B163B2485A0EA0066A5FB /* RegisterViewController.swift */; };
+		831B163E2485A17F0066A5FB /* MultiGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B163D2485A17F0066A5FB /* MultiGameViewController.swift */; };
+		831B16442485A1DF0066A5FB /* MultiGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B16432485A1DF0066A5FB /* MultiGameScene.swift */; };
+		831B16462485A26B0066A5FB /* MultiLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B16452485A26B0066A5FB /* MultiLobbyViewController.swift */; };
 		839F3DD12475F34D009C129E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DD02475F34D009C129E /* AppDelegate.swift */; };
 		839F3DD32475F34D009C129E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 839F3DD22475F34D009C129E /* GameScene.sks */; };
 		839F3DD52475F34D009C129E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 839F3DD42475F34D009C129E /* Actions.sks */; };
@@ -27,6 +32,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		831B16392485A0CC0066A5FB /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		831B163B2485A0EA0066A5FB /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		831B163D2485A17F0066A5FB /* MultiGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiGameViewController.swift; sourceTree = "<group>"; };
+		831B16432485A1DF0066A5FB /* MultiGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiGameScene.swift; sourceTree = "<group>"; };
+		831B16452485A26B0066A5FB /* MultiLobbyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLobbyViewController.swift; sourceTree = "<group>"; };
 		839F3DCD2475F34D009C129E /* Ultimate ERS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ultimate ERS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		839F3DD02475F34D009C129E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		839F3DD22475F34D009C129E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -127,6 +137,11 @@
 			isa = PBXGroup;
 			children = (
 				83B98C4B247C940600D7BF01 /* LoginViewController.swift */,
+				831B16392485A0CC0066A5FB /* Connection.swift */,
+				831B163B2485A0EA0066A5FB /* RegisterViewController.swift */,
+				831B163D2485A17F0066A5FB /* MultiGameViewController.swift */,
+				831B16432485A1DF0066A5FB /* MultiGameScene.swift */,
+				831B16452485A26B0066A5FB /* MultiLobbyViewController.swift */,
 			);
 			path = MultiGame;
 			sourceTree = "<group>";
@@ -221,7 +236,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831B16462485A26B0066A5FB /* MultiLobbyViewController.swift in Sources */,
+				831B163A2485A0CC0066A5FB /* Connection.swift in Sources */,
 				83B98C4C247C940600D7BF01 /* LoginViewController.swift in Sources */,
+				831B16442485A1DF0066A5FB /* MultiGameScene.swift in Sources */,
 				839F3DD72475F34D009C129E /* GameScene.swift in Sources */,
 				839F3DF82475F7A9009C129E /* PracticeGamePlay.swift in Sources */,
 				839F3DD92475F34D009C129E /* GameViewController.swift in Sources */,
@@ -229,6 +247,8 @@
 				839F3DD12475F34D009C129E /* AppDelegate.swift in Sources */,
 				839F3DF02475F6C7009C129E /* CustomizeViewController.swift in Sources */,
 				839F3DF62475F755009C129E /* UtilityComponents.swift in Sources */,
+				831B163E2485A17F0066A5FB /* MultiGameViewController.swift in Sources */,
+				831B163C2485A0EA0066A5FB /* RegisterViewController.swift in Sources */,
 				839F3DEE2475F543009C129E /* MainViewController.swift in Sources */,
 				839F3DF22475F6EF009C129E /* Customization.swift in Sources */,
 				839F3DF42475F738009C129E /* GameComponents.swift in Sources */,

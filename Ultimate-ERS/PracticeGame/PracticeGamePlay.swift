@@ -9,9 +9,9 @@
 import Foundation
 
 class PracticeGamePlay {
-    
+
     func checkRules(stack : Stack<Card>) -> Bool {
-        
+
         /*if stack.count() > 0 {
             print("\(count) Stack: ", terminator: " ")
             for i in 0...(stack.count()-1) {
@@ -20,7 +20,7 @@ class PracticeGamePlay {
             print()
             count += 1
         }*/
-        
+
         var val : Bool = false
         if topBottomSlap && checkTopBottom(stack : stack) {
             print("Top Bottom Detected")
@@ -46,7 +46,7 @@ class PracticeGamePlay {
             print("Addition Detected")
             val = true
         }
-        if additionSlap && checkPythagorean(stack : stack) {
+        if pythSlap && checkPythagorean(stack : stack) {
             print("Pythagorean Detected")
             val = true
         }
@@ -56,7 +56,7 @@ class PracticeGamePlay {
         }
         return val
     }
-    
+
     func checkTopBottom(stack : Stack<Card>) -> Bool {
         if stack.count() > 2 {
             if stack.peek().val == stack.peek(at : stack.count() - 1).val {
@@ -115,6 +115,7 @@ class PracticeGamePlay {
     }
 
     func checkPythagorean(stack : Stack<Card>) -> Bool {
+        //account for different order
         if stack.count() > 2 {
             if pow(Decimal(stack.peek(at : 2).val), 2) + pow(Decimal(stack.peek(at : 1).val), 2) == pow(Decimal(stack.peek().val), 2) {
                 return true
@@ -132,5 +133,5 @@ class PracticeGamePlay {
         }
         return false
     }
-    
+
 }

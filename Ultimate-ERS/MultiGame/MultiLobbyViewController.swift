@@ -1,24 +1,22 @@
 //
-//  LoginViewController.swift
+//  MultiLobbyViewController.swift
 //  Ultimate-ERS
 //
-//  Created by kudoichika on 5/25/20.
+//  Created by kudoichika on 6/1/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController {
-    
-    @IBOutlet weak var handleTextField: UITextField!
-    @IBOutlet weak var passTextField: UITextField!
-    @IBOutlet weak var submitButton: UIButton!
-    
+class MultiLobbyViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // Do any additional setup after loading the view.
     }
     
+
     /*
     // MARK: - Navigation
 
