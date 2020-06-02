@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		831B163E2485A17F0066A5FB /* MultiGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B163D2485A17F0066A5FB /* MultiGameViewController.swift */; };
 		831B16442485A1DF0066A5FB /* MultiGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B16432485A1DF0066A5FB /* MultiGameScene.swift */; };
 		831B16462485A26B0066A5FB /* MultiLobbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B16452485A26B0066A5FB /* MultiLobbyViewController.swift */; };
+		837079D02486F3890013FF46 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = 837079CF2486F3890013FF46 /* SocketIO */; };
 		839F3DD12475F34D009C129E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DD02475F34D009C129E /* AppDelegate.swift */; };
 		839F3DD32475F34D009C129E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 839F3DD22475F34D009C129E /* GameScene.sks */; };
 		839F3DD52475F34D009C129E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 839F3DD42475F34D009C129E /* Actions.sks */; };
@@ -63,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				837079D02486F3890013FF46 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +181,9 @@
 			dependencies = (
 			);
 			name = "Ultimate-ERS";
+			packageProductDependencies = (
+				837079CF2486F3890013FF46 /* SocketIO */,
+			);
 			productName = "Ultimate-ERS";
 			productReference = 839F3DCD2475F34D009C129E /* Ultimate ERS.app */;
 			productType = "com.apple.product-type.application";
@@ -207,6 +212,9 @@
 				Base,
 			);
 			mainGroup = 839F3DC42475F34D009C129E;
+			packageReferences = (
+				837079CE2486F3890013FF46 /* XCRemoteSwiftPackageReference "socket" */,
+			);
 			productRefGroup = 839F3DCE2475F34D009C129E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -450,6 +458,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		837079CE2486F3890013FF46 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 15.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		837079CF2486F3890013FF46 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 837079CE2486F3890013FF46 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 839F3DC52475F34D009C129E /* Project object */;
 }

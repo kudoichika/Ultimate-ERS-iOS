@@ -7,13 +7,28 @@
 //
 
 import UIKit
+import SpriteKit
 
 class MultiGameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        socket.on("startGame") { data, ack in
+            self.loadGameScene()
+        }
         // Do any additional setup after loading the view.
+    }
+    
+    func loadGameScene() {
+        if let view = self.view as! SKView? {
+            let scene = MultiGameScene(size: view.bounds.size)
+            scene.scaleMode = .aspectFill
+            view.presentScene(scene)
+            view.showsFPS = true
+            view.showsNodeCount = true
+            //view.ignoresSiblingOrder = true
+        }
     }
     
 

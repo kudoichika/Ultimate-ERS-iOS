@@ -11,16 +11,16 @@
         <!--Main View Controller-->
         <scene sceneID="jw2-aT-jzf">
             <objects>
-                <viewController id="Fbp-lw-SFG" customClass="MainViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fbp-lw-SFG" customClass="MainViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wo5-HY-L64">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="qPv-jp-JVl">
-                                <rect key="frame" x="100" y="325" width="214" height="291"/>
+                                <rect key="frame" x="100" y="325" width="214" height="290"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIj-aZ-rve">
-                                        <rect key="frame" x="0.0" y="0.0" width="214" height="50.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="214" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="RRM-3z-Inw"/>
                                         </constraints>
@@ -32,7 +32,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jr0-v5-esN">
-                                        <rect key="frame" x="0.0" y="80.333333333333314" width="214" height="50.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="80" width="214" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="F4Q-TD-4md"/>
                                         </constraints>
@@ -44,7 +44,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wr9-14-3CT">
-                                        <rect key="frame" x="0.0" y="160.66666666666669" width="214" height="50"/>
+                                        <rect key="frame" x="0.0" y="160" width="214" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="ks6-Hy-NJZ"/>
                                         </constraints>
@@ -56,7 +56,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3a-ai-hsl">
-                                        <rect key="frame" x="0.0" y="240.66666666666666" width="214" height="50.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="240" width="214" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="gFf-3o-zcc"/>
                                         </constraints>
@@ -142,7 +142,7 @@
         <!--Customize View Controller-->
         <scene sceneID="V5b-W1-V8i">
             <objects>
-                <viewController id="n6Q-4o-qJH" customClass="CustomizeViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomizeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="n6Q-4o-qJH" customClass="CustomizeViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NoX-uX-ito">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -414,7 +414,7 @@
         <!--Practice View Controller-->
         <scene sceneID="5jR-dl-eL5">
             <objects>
-                <viewController id="JXt-L6-kct" customClass="PracticeViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PracticeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JXt-L6-kct" customClass="PracticeViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tHf-UA-uTn" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -500,9 +500,9 @@
                         <viewLayoutGuide key="safeArea" id="h5z-At-6lV"/>
                     </view>
                     <connections>
-                        <outlet property="handleTextField" destination="e2S-23-nqH" id="Bzf-X7-E9k"/>
-                        <outlet property="passTextField" destination="iWc-I4-g7l" id="vCy-0A-ytX"/>
-                        <outlet property="submitButton" destination="kk6-Rz-rGw" id="9pV-3F-iBE"/>
+                        <outlet property="loginHandleTextField" destination="e2S-23-nqH" id="xaV-2s-VYq"/>
+                        <outlet property="loginPassTextField" destination="iWc-I4-g7l" id="8Wr-wV-3i1"/>
+                        <outlet property="loginSubmitButton" destination="kk6-Rz-rGw" id="oQm-7c-xcC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="djG-V2-7ZX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -512,7 +512,7 @@
         <!--Multi Lobby View Controller-->
         <scene sceneID="bdF-oi-Nk9">
             <objects>
-                <viewController id="4b7-CE-yvh" customClass="MultiLobbyViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MultiLobbyViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4b7-CE-yvh" customClass="MultiLobbyViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XVO-Pg-kBh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -551,16 +551,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pKn-KS-WQi"/>
                     </view>
+                    <connections>
+                        <outlet property="codeSubmitButton" destination="9PK-IF-f7e" id="4fL-pa-FDv"/>
+                        <outlet property="codeTextField" destination="ZeK-IN-yt5" id="kNw-3B-5NW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l2o-Yf-9cR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-284.05797101449275" y="1725.0000000000002"/>
         </scene>
-        <!--Mutli Game View Controller-->
+        <!--Multi Game View Controller-->
         <scene sceneID="xQD-FZ-QEd">
             <objects>
-                <viewController id="4Qc-ro-22t" customClass="MutliGameViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Hc9-Ge-Xh2">
+                <viewController storyboardIdentifier="MultiGameViewController" id="4Qc-ro-22t" customClass="MultiGameViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hc9-Ge-Xh2" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -574,7 +578,7 @@
         <!--Register View Controller-->
         <scene sceneID="4gv-ig-rW5">
             <objects>
-                <viewController id="dEa-Sp-kmm" customClass="RegisterViewController" customModule="GameTest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dEa-Sp-kmm" customClass="RegisterViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aGv-U9-7cR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

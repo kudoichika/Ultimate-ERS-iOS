@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 let server = "http://192.168.1.185:3000"
 
@@ -43,12 +44,14 @@ func postRequest(path : String, body : Dictionary<String, String>, completion: @
     request.setValue("application/json", forHTTPHeaderField: "Content-type")
     request.httpMethod = "POST"
     request.httpBody = json
+    print("Sending Request...")
     URLSession.shared.dataTask(with: request) { data, response, error in
         if let error = error {
             print("Error: \(error)")
             return
         }
         if let data = data, let dataString = String(data: data, encoding: .utf8) {
+            print("Raw Data", dataString)
             if let jsonRes = dataString.data(using: String.Encoding.utf8) {
                 do {
                     let res = try JSONSerialization.jsonObject(with: jsonRes, options: []) as! [String: Any]
@@ -61,3 +64,6 @@ func postRequest(path : String, body : Dictionary<String, String>, completion: @
         }
     }.resume()
 }
+
+
+//write JSON to Dict && Dict to JSON Function

@@ -6,7 +6,6 @@
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import SpriteKit
 
@@ -26,10 +25,10 @@ class MultiGameScene : SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        socket.emit("playCard")
     }
     
     func layoutScene() {
-        
+        self.backgroundColor = UIColor(red: 41.0 / 255, green: 165.0 / 255, blue: 68.0 / 255, alpha: 1)
     }
 }

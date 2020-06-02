@@ -11,14 +11,14 @@ import UIKit
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     let path = "/api/users/register"
-
+    
     @IBOutlet weak var registerHandleTextField: UITextField!
     @IBOutlet weak var registerEmailTextField: UITextField!
     @IBOutlet weak var registerPassTextField: UITextField!
     @IBOutlet weak var registerSubmitButton: UIButton!
     
-    
-    override func viewDidLoad() {
+
+   override func viewDidLoad() {
         super.viewDidLoad()
         self.registerHandleTextField.delegate = self
         self.registerEmailTextField.delegate = self
@@ -37,17 +37,23 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             "email": email,
             "pass": pass
         ]
-        
-        postRequest(path: path, body: body, completion: { response in
+        print(deleteCookies())
+        postRequest(path: "/api/users/register", body: body, completion: { response in
             if let msg = response["message"] {
                 if msg as! String == "success" {
                     print("Success in Registration")
-                    //Record Cookies / Info
-                    let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                    let lobbyVC = storyBoard.instantiateViewController(withIdentifier: "MultiLobbyViewController") as! MultiLobbyViewController
-                    lobbyVC.modalPresentationStyle = .fullScreen
-                    self.present(lobbyVC, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                        let lobbyVC = storyBoard.instantiateViewController(withIdentifier: "MultiLobbyViewController") as! MultiLobbyViewController
+                        lobbyVC.modalPresentationStyle = .fullScreen
+                        self.present(lobbyVC, animated: true, completion: nil)
+                    }
+                } else {
+                    print("Error in Registration 1")
+                    print(readCookies())
                 }
+            } else {
+                print("Error in Registration 2")
             }
         })
     }
