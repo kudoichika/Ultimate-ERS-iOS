@@ -16,7 +16,15 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        submitButton.addTarget(self, action: #selector (self.buttonClicked(_sender:)), for: .touchUpInside)
+    }
+    
+    @objc func buttonClicked(_sender: UIButton) {
+        //attempt login then
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let lobbyVC = storyBoard.instantiateViewController(withIdentifier: "MultiLobbyViewController") as! MultiLobbyViewController
+        lobbyVC.modalPresentationStyle = .fullScreen
+        present(lobbyVC, animated: true, completion: nil)
     }
     
     /*

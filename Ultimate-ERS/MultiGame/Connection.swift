@@ -10,14 +10,38 @@ import Foundation
 
 let server = "http://192.168.1.185:3000"
 
-//Work on Handling Cookies
+var sessionConfig : URLSessionConfiguration!
+var session : URLSession!
+var storage : HTTPCookieStorage!
 
-func request(path : String, body : Dictionary<String, String>, method: String, completion: @escaping (_ answer: [String: Any]) -> ()) {
+func initializeSession() {
+    sessionConfig = URLSessionConfiguration.ephemeral
+    sessionConfig.httpCookieAcceptPolicy = .never
+    session = URLSession(configuration: sessionConfig)
+    storage = HTTPCookieStorage.shared
+}
+
+func storeCookies(_ cookies : [HTTPCookie]) {
+    storage.setCookies(cookies, for: URL(string : server)!, mainDocumentURL: nil)
+}
+
+func readCookies() -> [HTTPCookie] {
+    let cookies = storage.cookies(for: URL(string : server)!) ?? []
+    return cookies
+}
+
+func deleteCookies() {
+    for cookie in readCookies() {
+        storage.deleteCookie(cookie)
+    }
+}
+
+func postRequest(path : String, body : Dictionary<String, String>, completion: @escaping (_ answer: [String : Any]) -> ()) {
     let url : URL! = URL(string: server + path)
     let json = try! JSONSerialization.data(withJSONObject: body, options: [])
     var request = URLRequest(url: url)
     request.setValue("application/json", forHTTPHeaderField: "Content-type")
-    request.httpMethod = method
+    request.httpMethod = "POST"
     request.httpBody = json
     URLSession.shared.dataTask(with: request) { data, response, error in
         if let error = error {
