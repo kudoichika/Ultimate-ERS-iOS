@@ -1,5 +1,5 @@
 const ERS = require('./ERS')
-const Logger = require('../utils/Logger')
+const Logger = require('./Logger')
 const logger = new Logger('GAME')
 
 class Game {
@@ -41,21 +41,24 @@ class Game {
         const adapter = this.adapter
         const room = this.room
         const ers = this.ers
+        adapter.emit('startGame')
+        this.playerOne.emit('id', {id: 0})
+        this.playerTwo.emit('id', {id: 1})
         this.playerOne.on('playCard', function() {
             logger.log('Player 1 has played a card')
-            adapter.to(room).emit('cardPlayed', {data:ers.playCard(0)})
+            adapter.to(room).emit('cardPlayed', ers.playCard(0))
         })
         this.playerTwo.on('playCard', function() {
             logger.log('Player 2 has played a card')
-            adapter.to(room).emit('cardPlayed', {data:ers.playCard(1)})
+            adapter.to(room).emit('cardPlayed', ers.playCard(1))
         })
         this.playerOne.on('slapStack', function() {
             logger.log('Player 1 has slapped the stack')
-            adapter.to(room).emit('slapStack', {data:ers.slapStack(0)})
+            adapter.to(room).emit('stackSlapped', ers.slapStack(0))
         })
         this.playerTwo.on('slapStack', function() {
             logger.log('Player 2 has slapped the stack')
-            adapter.to(room).emit('slapStack', {data:ers.slapStack(1)})
+            adapter.to(room).emit('stackSlapped', ers.slapStack(1))
         })
     }
 

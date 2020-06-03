@@ -63,8 +63,8 @@ class ERS {
         if (this.obligation === 0) {
             if (this.flag) {
                 collect = this.claim
-                this.players[this.claim].appendCards(this.stack)
-                this.players[this.claim].appendCards(this.burnStack)
+                this.players[collect].appendCards(this.stack)
+                this.players[collect].appendCards(this.burnStack)
                 this.stack = []
                 this.burnStack = []
                 this.flag = false
@@ -74,13 +74,19 @@ class ERS {
             //check if the next guys are alive or not
         }
         //check if theres a winner
-        return {card: card, turn: this.turn, collect: collect, winner: -1}
+        return {player: player,
+                card: card.suit + card.val,
+                turn: this.turn,
+                zero: this.players[0].cardQueue.length,
+                one: this.players[1].cardQueue.length,
+                collect: collect,
+                winner: -1}
     }
     slapStack(player) { //check for obligation slap
         let result = checkSlap(this.stack)
         if (result) {
             this.turn = player
-            obligation = 1
+            this.obligation = 1
             this.players[player].appendCards(this.stack)
             this.players[player].appendCards(this.burnStack)
             this.stack = []
@@ -91,11 +97,16 @@ class ERS {
             this.burnStack.push(this.players[player].popCard())
         }
         //check if theres a winner
-        return {outcome: result, turn: this.turn, winner: -1}
+        return {slapper: player,
+                outcome: result,
+                turn: this.turn,
+                zero: this.players[0].cardQueue.length,
+                one: this.players[1].cardQueue.length,
+                winner: -1}
     }
     playerLeft(player) { //mutator method
         //mark players that have left
-        //either, play as computer, distribute cards, 
+        //either, play as computer, distribute cards,
         //or close the game
     }
 }

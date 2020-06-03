@@ -1,7 +1,7 @@
 const sync = require('./sync')
 const auth = require('./auth')
 const Game = require('../classes/Game')
-const Logger = require('./Logger')
+const Logger = require('../classes/Logger')
 
 module.exports = function(io) {
   const gameSocket = io.of('/game')
@@ -9,12 +9,14 @@ module.exports = function(io) {
   let roomGame = {}
 
   gameSocket.on('connection', function(socket) {
-
+    socket.emit('created')
     logger.log('New connection to socket:', socket.id)
-    socket.on('join', function(room) {
+    socket.on('join', function(data) {
+      let room = data.room
       logger.log('Request to join room:', room)
       socket.join(room)
       socket.roomId = room
+      //check Status to see if more can join
       if (!roomGame[room]) {
         logger.log('New Room Created')
         roomGame[room] = new Game(gameSocket, room, socket)
