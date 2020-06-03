@@ -1,7 +1,7 @@
 require('../models/UserSchema')
 const UserSchema = require('mongoose').model('UserSchema')
 const passport = require('passport')
-const Logger = require('../classes/Logger')
+const Logger = require('../utils/Logger')
 const logger = new Logger('USER CONTROL')
 
 exports.createUser = function(req, res, next) {
