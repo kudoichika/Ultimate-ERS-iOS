@@ -1,18 +1,19 @@
 require('../models/UserSchema')
 const UserSchema = require('mongoose').model('UserSchema')
 const passport = require('passport')
-const Logger = require('../utils/Logger')
+const Logger = require('../classes/Logger')
 const logger = new Logger('USER CONTROL')
 
 exports.createUser = function(req, res, next) {
   //generate hash and stuff
-  logger.log('Attempting to create User with', req.body)
+  logger.log('Attempting to create User with')
+  logger.log(req.body)
   const user = {
     handle: req.body.handle,
     email: req.body.email,
     pass: req.body.pass
   }
-  UserSchema(user).save(function(err33) {
+  UserSchema(user).save(function(err) {
     if (err) res.json({error: err})
     else res.json({message: 'success'})
   })
@@ -61,9 +62,12 @@ exports.deleteUser = function(req, res, next) {
 }
 
 exports.loginUser = function(req, res, next) {
-  return passport.authenticate('local', {
-    failureRedirect:'',
-    successRedirect:''
+  logger.log("Logging In User")
+  passport.authenticate('local', function(err, user, info) {
+    req.login(user, function(err) {
+      if (err) { return next(err); }
+      res.json({message: 'success'})
+    })
   })(req, res, next)
 }
 
@@ -75,17 +79,18 @@ exports.logoutUser = function(req, res, next) {
 }
 
 exports.authenticate = function(username, password, done) {
+  console.log("Validating Info")
   function validateUserPassword(password, pass) {
-    //Replace with hashing 
+    //Replace with hashing
     return (password === pass)
   }
-  let q = (username.indexOf('@') === -1)? 
+  let q = (username.indexOf('@') === -1)?
     {handle: username} : {email: username}
   UserSchema.findOne(q, function(err, user) {
     if (err) return done(err)
     if (!user) return done(null, false, {message: 'incorrect userid'})
     if (!validateUserPassword(password, user.pass)) {
-      return done(null, false, 'incorrect password')
+      return done(null, false, {message: 'incorrect userid'})
     }
     return done(null, user)
   })

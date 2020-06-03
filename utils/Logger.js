@@ -5,19 +5,16 @@ class Logger {
         this.from = from
     }
     log() {
-        let msg = this.parseMessage(arguments)
-        console.log('LOG', new Date(), '|', chalk.rgb(244,120,33)(this.from), '|', msg)
+        let structure = 'LOG ' + this.getStructure()
+        console.log.apply(console, [structure].concat(Array.prototype.slice.call(arguments)))
     }
     error() {
-        let msg = this.parseMessage(arguments)
-        console.log('%cERROR', new Date(), '|', chalk.rgb(244,120,33)(this.from), '|', msg)
+        let structure = 'ERROR ' + this.getStructure()
+        console.log.apply(console, [structure].concat(Array.prototype.slice.call(arguments)))
     }
-    parseMessage(args) {
-        let msg = ""
-        for (let i = 0; i < args.length; i++) {
-            msg += args[i] + ' '
-        }
-        return msg
+    getStructure() {
+        let now = (new Date()).toLocaleString()
+        return chalk.rgb(232, 89, 251)(now) + ' | ' + chalk.rgb(244,120,33)(this.from) + ' | '
     }
 }
 

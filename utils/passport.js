@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy
 const control = require('../controllers/userControl')
-const Logger = require('./Logger')
+const Logger = require('../classes/Logger')
 
 module.exports = function(passport) {
     const logger = new Logger('PASSPORT')
