@@ -108,33 +108,31 @@ class MultiGameScene : SKScene {
                 }
                 cardBeingPlayed.size = CGSize(width: self.frame.size.width / 3.5, height: 1.4 * self.frame.size.width / 3.5)
                 self.addChild(cardBeingPlayed)
-                cardBeingPlayed.run(SKAction.wait(forDuration : 1.25), completion : {
-                    cardBeingPlayed.run(SKAction.rotate(byAngle: CGFloat(self.displayRotation), duration: 0.25))
-                    self.displayRotation += 1.5
-                    if (self.displayRotation > Double.pi) {
-                        self.displayRotation -= Double.pi
-                    }
-                    cardBeingPlayed.run(self.moveCardToStack, completion: {
-                        cardBeingPlayed.texture = SKTexture(imageNamed: card)
-                        self.stackDisplay.append(cardBeingPlayed)
-                        self.stats[0].text = "Cards: \(zero)"
-                        self.stats[1].text = "Cards: \(one)"
-                        self.turn = nextTurn
-                        if (collect != -1) {
-                            self.penalty[0].text = ""
-                            self.penalty[1].text = ""
-                            for item in self.stackDisplay {
-                                item.run(self.actions[collect], completion: {
-                                    item.removeFromParent()
-                                    self.stats[0].text = "Cards: \(zero)"
-                                    self.stats[1].text = "Cards: \(one)"
-                                    self.hold = false
-                                })
-                            }
-                        } else {
-                            self.hold = false
+                cardBeingPlayed.run(SKAction.rotate(byAngle: CGFloat(self.displayRotation), duration: 0.25))
+                self.displayRotation += 1.5
+                if (self.displayRotation > Double.pi) {
+                    self.displayRotation -= Double.pi
+                }
+                cardBeingPlayed.run(self.moveCardToStack, completion: {
+                    cardBeingPlayed.texture = SKTexture(imageNamed: card)
+                    self.stackDisplay.append(cardBeingPlayed)
+                    self.stats[0].text = "Cards: \(zero)"
+                    self.stats[1].text = "Cards: \(one)"
+                    self.turn = nextTurn
+                    if (collect != -1) {
+                        self.penalty[0].text = ""
+                        self.penalty[1].text = ""
+                        for item in self.stackDisplay {
+                            item.run(self.actions[collect], completion: {
+                                item.removeFromParent()
+                                self.stats[0].text = "Cards: \(zero)"
+                                self.stats[1].text = "Cards: \(one)"
+                                self.hold = false
+                            })
                         }
-                    })
+                    } else {
+                        self.hold = false
+                    }
                 })
             }
         }

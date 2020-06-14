@@ -29,7 +29,7 @@ class MultiLobbyViewController: UIViewController, UITextFieldDelegate {
     
     func connectSocket() {
         print("Starting to make connection")
-        manager = SocketManager(socketURL: URL(string: "http://192.168.1.185:3000")!, config: [.log(true), .compress])
+        manager = SocketManager(socketURL: URL(string: "http://192.168.1.185:3000")!, config: [.log(true), .compress, .forceWebsockets(true)])
         socket = manager.socket(forNamespace: "/game")
         print("Built Sockets")
         socket.on("created") { data, ack in
