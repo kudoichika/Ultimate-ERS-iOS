@@ -32,6 +32,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 require('./utils/socket')(io)
+io.set('transports', ['websocket']);
 io.use(function(socket, next) {
     sessionware(socket.request, {}, next)
 })
