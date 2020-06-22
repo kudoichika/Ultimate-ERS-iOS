@@ -36,6 +36,9 @@ class Card {
         self.suit = Suit(symbol : suit)
         self.val = val
     }
+    func tostring() -> String {
+        return "\(suit)\(val)"
+    }
 }
 
 class Player {
