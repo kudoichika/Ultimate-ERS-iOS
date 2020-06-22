@@ -40,8 +40,10 @@ class Card {
 
 class Player {
     var cardQueue : Queue<Card>
+    var penalty : Int
     init() {
         cardQueue = Queue<Card>()
+        penalty = 0
     }
     func appendCards(cardIn : Array<Card>) {
         for card in cardIn {
@@ -53,6 +55,14 @@ class Player {
     }
     func pop() -> Card {
         return cardQueue.pop()
+    }
+    func penalize(numCards : Int) -> Array<Card> {
+        var burns : Array<Card> = []
+        for _ in 0...numCards {
+            burns.append(pop())
+        }
+        penalty += numCards
+        return burns
     }
     func checkStatus() -> Bool {
         if cardQueue.count() <= 0 {
