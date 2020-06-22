@@ -37,7 +37,7 @@ class Card {
         self.val = val
     }
     func tostring() -> String {
-        return "\(suit)\(val)"
+        return "\(suit ?? Suit.spades)\(val)"
     }
 }
 

@@ -55,15 +55,8 @@ class ERSGame {
     }
     
     func slap(player : Int) -> Bool {
-        if player == obgCollector() {
-            collectObg()
-            return true
-        }
-        if checkPattern() {
-            players[player].appendCards(cardIn: stack.items)
-            players[player].appendCards(cardIn: penaltyStack.items)
-            stack.reset()
-            penaltyStack.reset()
+        if player == obgCollector() || checkPattern() {
+            collectCards(receiver : player)
             return true
         }
         return false
@@ -71,14 +64,21 @@ class ERSGame {
     
     func obgCollector() -> Int {
         if claim && numleft == 0 {
+            print("Obligation Collecter = \(claimer)")
             return claimer
         }
         return -1
     }
     
-    func collectObg() {
-        players[claimer].appendCards(cardIn: stack.items)
-        players[claimer].appendCards(cardIn: penaltyStack.items)
+    func underObg(player : Int) -> Bool {
+        if claim {print("Under Obligation of \(claimer) numleft = \(numleft)")}
+        return claim && player != claimer
+    }
+    
+    func collectCards(receiver : Int) {
+        print("Collecting All Cards")
+        players[receiver].appendCards(cardIn: stack.items)
+        players[receiver].appendCards(cardIn: penaltyStack.items)
         stack.reset()
         penaltyStack.reset()
         claim = false
@@ -98,12 +98,11 @@ class ERSGame {
         }
         if value > 10 {
             claim = true
-            numleft = value - 10 + 1
+            numleft = value - 10
             claimer = player
+            print("Obligation Activated claimer = \(claimer) numleft = \(numleft)")
         }
-        if obg {
-           collectObg()
-        }
+        print("If Obligation, numleft = \(numleft)")
         return card
     }
     
@@ -197,6 +196,14 @@ class ERSGame {
             }
             return false
         }
+        if checkTopBottom() {print("Top Bottom Slap")}
+        if checkPair() {print("Pair Slap")}
+        if checkSandwich() {print("Sandwich Slap")}
+        if checkMarriage() {print("Marriage Slap")}
+        if checkDivorce() {print("Divorce Slap")}
+        if checkAddition() {print("Addition Slap")}
+        if checkPythagorean() {print("Pyth Slap")}
+        if checkStaircase() {print("Staircase Slap")}
         
         if checkTopBottom() ||
             checkPair() ||
@@ -208,7 +215,7 @@ class ERSGame {
             checkStaircase() {
                 return true
         }
-        //obligation check also
+        
         return  false
     }
     

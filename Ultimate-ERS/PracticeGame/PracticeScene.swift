@@ -9,10 +9,12 @@
 import UIKit
 import SpriteKit
 
+//ClockWise vs CounterClockwise Customization
+
 class PracticeScene : SKScene {
     
     var turn : Int = -1
-    var N : Int = 2 //IDK How to get this (Maybe Customization)
+    var N : Int = 4 //IDK How to get this (Maybe Customization)
     var ERS : ERSGame!
     var obg : Bool!
     
@@ -21,15 +23,19 @@ class PracticeScene : SKScene {
     var deckToStack : SKAction!
     var stackToDeck : Array<SKAction>!
     
-    var rotationFactor : Double!
+    var rotationFactor : Double = 0.0
     var cardRotation : SKAction!
     
-    var stackDisplay : Array<SKSpriteNode>! //Maybe Penalty Display
+    var deckLocations : Array<CGPoint>!
+    
+    var stackDisplay : Array<SKSpriteNode>!//Maybe Penalty Display
     var deckJacket : Array<SKSpriteNode>!
     var hands : Array<SKSpriteNode>!
     var cardStats : Array<SKLabelNode>!
     var penaltyStats : Array<SKLabelNode>!
     var labels : Array<SKLabelNode>!
+    
+    var waitCollect : SKAction!
     
     override var isUserInteractionEnabled: Bool {
         get {
@@ -39,6 +45,16 @@ class PracticeScene : SKScene {
     }
     
     override func didMove(to view: SKView) {
+        print("Loaded View")
+        deckLocations = []
+        stackToDeck = []
+        stackDisplay = []
+        deckJacket = []
+        hands = []
+        cardStats = []
+        penaltyStats = []
+        labels = []
+        
         obg = manualObligation
         ERS = ERSGame(difficulty : computerDifficulty,
                               numPlayers : N, manObg : manualObligation)
@@ -51,6 +67,8 @@ class PracticeScene : SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if locked { return }
+        print("User Has Interacted")
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
@@ -69,37 +87,42 @@ class PracticeScene : SKScene {
     func layoutScene() {
         //change background to image
         self.backgroundColor = UIColor(red: 41.0 / 255, green: 165.0 / 255, blue: 68.0 / 255, alpha: 1)
+        
         for i in 0..<N {
             deckJacket.append(SKSpriteNode(imageNamed : "Jacket"))
-            deckJacket[i].position = CGPoint(x: frame.midX, y: 0)
             deckJacket[i].size = CGSize(width: frame.size.width / 3.5,
                                         height: 1.4 * frame.size.width / 3.5)
-            hands.append(SKSpriteNode(imageNamed : "Hand")) //orientation matters
+            deckJacket[i].zRotation = CGFloat(Double(i) * (Double.pi / 2))
+            hands.append(SKSpriteNode(imageNamed : "Hand"))
             hands[i].position = CGPoint(x: frame.midX, y: frame.midY)
             hands[i].zPosition = 50
             hands[i].size = CGSize(width: frame.size.width / 2,
                                    height: frame.size.height / 3.25)
+            hands[i].zRotation = CGFloat(Double(i) * (Double.pi / 2))
             cardStats.append(SKLabelNode()) //label # cards
             penaltyStats.append(SKLabelNode()) //label # penalty
             labels.append(SKLabelNode()) //label => Computer #
         }
+        
         deckJacket[0].name = "human"
         deckJacket[0].zPosition = 100
         deckToStack = SKAction.move(to : CGPoint(x : frame.midX, y : frame.midY), duration : 0.25)
+        
+        deckLocations.append(CGPoint(x : frame.midX, y : 0))
         if N > 2 {
-            //positioning of stats / decks //rotate maybe?
-            stackToDeck.append(SKAction.move(to : CGPoint(x : frame.midX, y : 0), duration : 0.75))
-            stackToDeck.append(SKAction.move(to : CGPoint(x : frame.midX, y : frame.size.height), duration : 0.75))
-            stackToDeck.append(SKAction.move(to : CGPoint(x : 0, y : frame.midY), duration : 0.75))
-            if N > 3 {
-                //positioning of stats / decks //rotate maybe?
-                stackToDeck.append(SKAction.move(to : CGPoint(x : frame.size.width, y : frame.midY), duration : 0.75))
-            }
+            deckLocations.append(CGPoint(x : frame.size.width, y : frame.midY))
+            deckLocations.append(CGPoint(x : frame.midX, y : frame.size.height))
         } else {
-            //positioning of stats / decks
-            stackToDeck.append(SKAction.move(to : CGPoint(x : frame.midX, y : 0), duration : 0.75))
-            stackToDeck.append(SKAction.move(to : CGPoint(x : frame.midX, y : frame.size.height), duration : 0.75))
+            deckLocations.append(CGPoint(x : frame.midX, y : frame.size.height))
+            deckLocations.append(CGPoint(x : frame.size.width, y : frame.midY))
         }
+        deckLocations.append(CGPoint(x : 0, y : frame.midY))
+        
+        for i in 0..<N {
+            deckJacket[i].position = deckLocations[i]
+            stackToDeck.append(SKAction.move(to : deckLocations[i], duration : 0.75))
+        }
+        waitCollect = SKAction.wait(forDuration : 0.75)
         print("Scene has been Layed Out")
     }
     
@@ -108,7 +131,11 @@ class PracticeScene : SKScene {
         //Move Decks (Thick Stacks) to each player
         var attach = false
         for i in 0..<52 {
-            let tempCard = SKSpriteNode()
+            let tempCard = SKSpriteNode(imageNamed : "Jacket")
+            tempCard.position = CGPoint(x: frame.midX, y: frame.midY)
+            tempCard.size = CGSize(width: frame.size.width / 3.5,
+                                   height: 1.4 * frame.size.width / 3.5)
+            addChild(tempCard)
             tempCard.run(stackToDeck[i % N], completion : {
                 if !attach {
                     for j in self.deckJacket {
@@ -119,7 +146,11 @@ class PracticeScene : SKScene {
                 tempCard.removeFromParent()
             })
         }
-        let tempCard = SKSpriteNode()
+        let tempCard = SKSpriteNode(imageNamed : "Jacket")
+        tempCard.position = CGPoint(x: frame.midX, y: frame.midY)
+        tempCard.size = CGSize(width: frame.size.width / 3.5,
+                               height: 1.4 * frame.size.width / 3.5)
+        addChild(tempCard)
         tempCard.run(stackToDeck[(52-1) % N], completion : {
             tempCard.removeFromParent()
             print("Cards have been distributed. Starting Game...")
@@ -135,18 +166,26 @@ class PracticeScene : SKScene {
     }
     
     func turnRouter() {
+        if locked { return }
+        print("--------------------------")
         if turn != 0 {
+            print("Routing to player", turn, "after delay")
             self.run(SKAction.wait(forDuration : 1.25), completion: {
+                if self.locked { return }
                 self.playTurn()
             })
         }
     }
     
     func playTurn() {
+        if locked { return }
         print("Player", turn, "is playing a card")
         locked = true
         let card = ERS.playCard(player : turn)
         let cardSprite = SKSpriteNode(imageNamed : "Jacket")
+        cardSprite.position = deckLocations[turn]
+        cardSprite.size = CGSize(width: frame.size.width / 3.5,
+                               height: 1.4 * frame.size.width / 3.5)
         addChild(cardSprite)
         //Position
         cardSprite.run(SKAction.rotate(byAngle : CGFloat(rotationFactor), duration: 0.25))
@@ -156,20 +195,30 @@ class PracticeScene : SKScene {
         }
         cardSprite.run(deckToStack, completion: {
             cardSprite.texture = SKTexture(imageNamed: card.tostring())
+            print("Card Played is", card.tostring())
             self.stackDisplay.append(cardSprite)
             self.locked = false
-            self.turn = (self.turn + 1) % self.N
+            if !self.ERS.underObg(player : self.turn) {
+                self.turn = (self.turn + 1) % self.N
+            } else {
+                print("Under Obligation. Repeat Turn")
+            }
             let collector = self.ERS.obgCollector()
             if self.obg && collector != -1 {
-                self.collectAction(player : self.ERS.obgCollector())
+                print("Automatic Obligation Collection")
+                self.collectAction(player : collector)
             }
-            self.run(SKAction.wait(forDuration : 0.5), completion : { //Customize
+            self.run(SKAction.wait(forDuration : 0.75), completion : { //Customize
+                print("Additional Wait Time Completed")
                 if !self.obg && collector != -1 {
+                    print("Automatic Obligation Collection")
                     self.collectAction(player : collector)
                 } else if self.ERS.checkPattern() {
+                    print("Slap Detected, Computer Slap Sequence")
                     let rand = Int.random(in : 1..<self.N)
                     self.slapAction(player : rand)
                 } else {
+                    print("Nothing Detected. Proceeding to Routing")
                     self.checkWin()
                     self.turnRouter()
                 }
@@ -178,22 +227,32 @@ class PracticeScene : SKScene {
     }
     
     func slapAction(player : Int) {
+        if locked { return }
         print("Player", player, "has slapped the stack")
         locked = true
-        addChild(hands[0])
+        addChild(hands[player])
         self.run(SKAction.wait(forDuration : 0.5), completion : {
-            hands[0].removeFromParent()
-            if ERS.slap(player : player) {
+            self.hands[player].removeFromParent()
+            if self.ERS.slap(player : player) {
+                print("Slap is Valid. Collecting Cards")
                 //update stats
                 for item in self.stackDisplay {
                     item.run(self.stackToDeck[player], completion : {
                         //update cards
                         item.removeFromParent()
-                        self.locked = false
                     })
                 }
-                self.turn = player
+                self.stackDisplay = []
+                self.run(self.waitCollect, completion : {
+                    print("Collection Completed. Proceeding with Routing")
+                    self.turn = player
+                    self.checkWin()
+                    self.locked = false
+                    self.turnRouter()
+                    print("Slap Action Problem After Turn Router")
+                })
             } else {
+                print("Slap is Invalid. Penalty Issued")
                 //Penalize player
                 self.checkWin()
                 self.locked = false
@@ -202,17 +261,23 @@ class PracticeScene : SKScene {
     }
     
     func collectAction(player : Int) {
-        print("Player", player, "is collected obligation")
+        if locked { return }
+        print("Player", player, "is collecting obligation")
         locked = true
-        ERS.collectObg()
+        ERS.collectCards(receiver : player)
         for item in stackDisplay {
             item.run(stackToDeck[player], completion : {
                 item.removeFromParent()
-                self.turn = player
-                self.checkWin()
-                self.locked = false
             })
         }
+        self.stackDisplay = []
+        self.run(waitCollect, completion : {
+            print("Obligation Collected. Proceeding with Routing")
+            self.turn = player
+            self.checkWin()
+            self.locked = false
+            self.turnRouter()
+        })
     }
     
     func checkWin() {
