@@ -44,7 +44,6 @@ class PracticeScene : SKScene {
                               numPlayers : N, manObg : manualObligation)
         layoutScene()
         distributeCards()
-        randTurn() // after completion  of distribute cards
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -82,14 +81,18 @@ class PracticeScene : SKScene {
     
     func distributeCards() {
         //Animate Cards to both ends (Customizable)
-        //Remove Cards Except one
         //Move Decks (Thick Stacks) to each player
         for i in 0..<52-1 {
             let tempCard = SKSpriteNode()
             tempCard.run(stackToDeck[i % N], completion : {
-                //remove from parent
+                tempCard.removeFromParent()
             })
         }
+        let tempCard = SKSpriteNode()
+        tempCard.run(stackToDeck[(52-1) % N], completion : {
+            tempCard.removeFromParent()
+            self.randTurn()
+        })
     }
     
     func randTurn() {
@@ -100,7 +103,6 @@ class PracticeScene : SKScene {
     
     func turnRouter() {
         if turn != 0 {
-            //Wait for a while before playing (more natural) [can be customized]
             self.run(SKAction.wait(forDuration : 1.25), completion: {
                 self.playTurn()
             })
