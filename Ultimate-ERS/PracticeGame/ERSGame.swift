@@ -205,14 +205,14 @@ class ERSGame {
         if checkPythagorean() {print("Pyth Slap")}
         if checkStaircase() {print("Staircase Slap")}
         
-        if checkTopBottom() ||
-            checkPair() ||
-            checkSandwich() ||
-            checkMarriage() ||
-            checkDivorce() ||
-            checkAddition() ||
-            checkPythagorean() ||
-            checkStaircase() {
+        if (topBottomSlap && checkTopBottom()) ||
+            (pairSlap && checkPair()) ||
+            (sandwichSlap && checkSandwich()) ||
+            (marriageSlap && checkMarriage()) ||
+            (divorceSlap && checkDivorce()) ||
+            (additionSlap && checkAddition()) ||
+            (pythSlap && checkPythagorean()) ||
+            (stairSlap && checkStaircase()) {
                 return true
         }
         

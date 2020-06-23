@@ -37,6 +37,8 @@ class PracticeScene : SKScene {
     
     var waitCollect : SKAction!
     
+    var thread : UInt64!
+    
     override var isUserInteractionEnabled: Bool {
         get {
             return !locked
@@ -76,12 +78,16 @@ class PracticeScene : SKScene {
             if touchedNodes[0].name == "pause" {
                 //pause stuff
                 print("User has paused the Game")
-            } else if touchedNodes[0].name == "human" {
-                playTurn()
+            } else if touchedNodes[0].name == "human" && turn == 0 {
+                print("User has tapped Jacket")
+                thread += 1
+                print("New Thread \(thread)")
+                playTurn(curr : thread)
                 return
             }
         }
-        slapAction(player : 0)
+        print("User has slapped")
+        slapAction(player : 0, curr : thread)
     }
     
     func layoutScene() {
@@ -162,23 +168,27 @@ class PracticeScene : SKScene {
         turn = Int.random(in: 0..<N)
         print("First player is: ", turn)
         locked = false
-        turnRouter()
+        thread = 0
+        turnRouter(curr : thread)
     }
     
-    func turnRouter() {
+    func turnRouter(curr : UInt64) {
         if locked { return }
+        if curr != self.thread { print("Thread Mismatch 1"); return }
         print("--------------------------")
         if turn != 0 {
             print("Routing to player", turn, "after delay")
             self.run(SKAction.wait(forDuration : 1.25), completion: {
-                if self.locked { return }
-                self.playTurn()
+                //if self.locked { return }
+                if curr != self.thread { print("Thread Mismatch 2"); return }
+                self.playTurn(curr : curr)
             })
         }
     }
     
-    func playTurn() {
+    func playTurn(curr : UInt64) {
         if locked { return }
+        if curr != self.thread { print("Thread Mismatch 3"); return }
         print("Player", turn, "is playing a card")
         locked = true
         let card = ERS.playCard(player : turn)
@@ -194,6 +204,7 @@ class PracticeScene : SKScene {
             rotationFactor -= Double.pi
         }
         cardSprite.run(deckToStack, completion: {
+            if curr != self.thread { print("Thread Mismatch 4"); return }
             cardSprite.texture = SKTexture(imageNamed: card.tostring())
             print("Card Played is", card.tostring())
             self.stackDisplay.append(cardSprite)
@@ -206,32 +217,37 @@ class PracticeScene : SKScene {
             let collector = self.ERS.obgCollector()
             if self.obg && collector != -1 {
                 print("Automatic Obligation Collection")
-                self.collectAction(player : collector)
+                self.collectAction(player : collector, curr : curr)
             }
             self.run(SKAction.wait(forDuration : 0.75), completion : { //Customize
+                if curr != self.thread { print("Thread Mismatch 5"); return }
                 print("Additional Wait Time Completed")
                 if !self.obg && collector != -1 {
                     print("Automatic Obligation Collection")
-                    self.collectAction(player : collector)
+                    self.collectAction(player : collector, curr : curr)
                 } else if self.ERS.checkPattern() {
                     print("Slap Detected, Computer Slap Sequence")
                     let rand = Int.random(in : 1..<self.N)
-                    self.slapAction(player : rand)
+                    self.slapAction(player : rand, curr : curr)
                 } else {
                     print("Nothing Detected. Proceeding to Routing")
                     self.checkWin()
-                    self.turnRouter()
+                    self.thread += 1
+                    print("New Thread \(self.thread)")
+                    self.turnRouter(curr : self.thread)
                 }
             })
         })
     }
     
-    func slapAction(player : Int) {
+    func slapAction(player : Int, curr : UInt64) {
         if locked { return }
+        if curr != self.thread { print("Thread Mismatch 6"); return }
         print("Player", player, "has slapped the stack")
         locked = true
         addChild(hands[player])
         self.run(SKAction.wait(forDuration : 0.5), completion : {
+            if curr != self.thread { print("Thread Mismatch 7"); return }
             self.hands[player].removeFromParent()
             if self.ERS.slap(player : player) {
                 print("Slap is Valid. Collecting Cards")
@@ -244,11 +260,14 @@ class PracticeScene : SKScene {
                 }
                 self.stackDisplay = []
                 self.run(self.waitCollect, completion : {
+                    if curr != self.thread { print("Thread Mismatch 8"); return }
                     print("Collection Completed. Proceeding with Routing")
                     self.turn = player
                     self.checkWin()
                     self.locked = false
-                    self.turnRouter()
+                    self.thread += 1
+                    print("New Thread \(self.thread)")
+                    self.turnRouter(curr : self.thread)
                     print("Slap Action Problem After Turn Router")
                 })
             } else {
@@ -260,8 +279,9 @@ class PracticeScene : SKScene {
         })
     }
     
-    func collectAction(player : Int) {
+    func collectAction(player : Int, curr : UInt64) {
         if locked { return }
+        if curr != self.thread { print("Thread Mismatch 9"); return }
         print("Player", player, "is collecting obligation")
         locked = true
         ERS.collectCards(receiver : player)
@@ -273,10 +293,13 @@ class PracticeScene : SKScene {
         self.stackDisplay = []
         self.run(waitCollect, completion : {
             print("Obligation Collected. Proceeding with Routing")
+            if curr != self.thread { print("Thread Mismatch 10"); return }
             self.turn = player
             self.checkWin()
             self.locked = false
-            self.turnRouter()
+            self.thread += 1
+            print("New Thread \(self.thread)")
+            self.turnRouter(curr : self.thread)
         })
     }
     
