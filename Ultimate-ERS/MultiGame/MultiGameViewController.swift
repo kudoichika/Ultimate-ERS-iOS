@@ -31,6 +31,10 @@ class MultiGameViewController: UIViewController {
         }
     }
     
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
 
     /*
     // MARK: - Navigation

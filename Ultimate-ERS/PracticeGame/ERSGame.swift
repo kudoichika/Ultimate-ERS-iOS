@@ -216,7 +216,7 @@ class ERSGame {
                 return true
         }
         
-        return  false
+        return false
     }
     
 }

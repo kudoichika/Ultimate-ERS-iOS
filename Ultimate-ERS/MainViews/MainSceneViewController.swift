@@ -1,32 +1,30 @@
 //
-//  PracticeViewController.swift
+//  MainSceneViewController.swift
 //  Ultimate-ERS
 //
-//  Created by kudoichika on 5/20/20.
+//  Created by Kudo on 6/24/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
 
-class PracticeViewController: UIViewController {
-    
-    //This Needs a Back Button
+class MainSceneViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // Do any additional setup after loading the view.
         if let view = self.view as! SKView? {
-            let scene = PracticeScene(size: view.bounds.size)
+            let scene = MainScene(size: view.bounds.size)
             scene.scaleMode = .aspectFill
+            scene.viewController = self
             view.presentScene(scene)
             view.showsFPS = true
             view.showsNodeCount = true
             //view.ignoresSiblingOrder = true
             
         }
-
-        // Do any additional setup after loading the view.
     }
     
     override var shouldAutorotate: Bool {

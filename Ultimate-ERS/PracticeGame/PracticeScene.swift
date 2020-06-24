@@ -15,6 +15,8 @@ import SpriteKit
 
 class PracticeScene : SKScene {
     
+    let backgroundImage : SKSpriteNode = SKSpriteNode(imageNamed : "Bg")
+    
     var turn : Int = -1
     var N : Int = 4 //IDK How to get this (Maybe Customization)
     var ERS : ERSGame!
@@ -105,7 +107,7 @@ class PracticeScene : SKScene {
         //Default 0.75s
         cardToDeckTime = 0.75
         turnBufferTime = 0.75
-        computerActionTime = 2.0
+        computerActionTime = 0.75
         //Default 0.25s
         cardToStackTime = 0.25
         handVisibleTime = 0.25
@@ -113,7 +115,10 @@ class PracticeScene : SKScene {
     
     func layoutScene() {
         //change background to image
-        self.backgroundColor = UIColor(red: 41.0 / 255, green: 165.0 / 255, blue: 68.0 / 255, alpha: 1)
+        //self.backgroundColor = UIColor(red: 41.0 / 255, green: 165.0 / 255, blue: 68.0 / 255, alpha: 1)
+        backgroundImage.position = CGPoint(x: frame.midX, y: frame.midY)
+        backgroundImage.size = CGSize(width : frame.size.width, height : frame.size.height)
+        addChild(backgroundImage)
         
         for i in 0..<N {
             deckJacket.append(SKSpriteNode(imageNamed : "Game/Jacket"))
