@@ -116,11 +116,11 @@ class PracticeScene : SKScene {
         self.backgroundColor = UIColor(red: 41.0 / 255, green: 165.0 / 255, blue: 68.0 / 255, alpha: 1)
         
         for i in 0..<N {
-            deckJacket.append(SKSpriteNode(imageNamed : "Jacket"))
+            deckJacket.append(SKSpriteNode(imageNamed : "Game/Jacket"))
             deckJacket[i].size = CGSize(width: frame.size.width / 3.5,
                                         height: 1.4 * frame.size.width / 3.5)
             deckJacket[i].zRotation = CGFloat(Double(i) * (Double.pi / 2))
-            hands.append(SKSpriteNode(imageNamed : "Hand"))
+            hands.append(SKSpriteNode(imageNamed : "Game/Hand"))
             hands[i].position = CGPoint(x: frame.midX, y: frame.midY)
             hands[i].zPosition = 50
             hands[i].size = CGSize(width: frame.size.width / 2,
@@ -158,7 +158,7 @@ class PracticeScene : SKScene {
         //Move Decks (Thick Stacks) to each player
         var attach = false
         for i in 0..<52 {
-            let tempCard = SKSpriteNode(imageNamed : "Jacket")
+            let tempCard = SKSpriteNode(imageNamed : "Game/Jacket")
             tempCard.position = CGPoint(x: frame.midX, y: frame.midY)
             tempCard.size = CGSize(width: frame.size.width / 3.5,
                                    height: 1.4 * frame.size.width / 3.5)
@@ -173,7 +173,7 @@ class PracticeScene : SKScene {
                 tempCard.removeFromParent()
             })
         }
-        let tempCard = SKSpriteNode(imageNamed : "Jacket")
+        let tempCard = SKSpriteNode(imageNamed : "Game/Jacket")
         tempCard.position = CGPoint(x: frame.midX, y: frame.midY)
         tempCard.size = CGSize(width: frame.size.width / 3.5,
                                height: 1.4 * frame.size.width / 3.5)
@@ -237,7 +237,7 @@ class PracticeScene : SKScene {
         locked = true
         print("Player", turn, "is playing a card")
         let card = ERS.playCard(player : turn)
-        let cardSprite = SKSpriteNode(imageNamed : "Jacket")
+        let cardSprite = SKSpriteNode(imageNamed : "Game/Jacket")
         cardSprite.position = deckLocations[turn]
         cardSprite.size = CGSize(width: frame.size.width / 3.5,
                                height: 1.4 * frame.size.width / 3.5)
@@ -249,7 +249,7 @@ class PracticeScene : SKScene {
             rotationFactor -= Double.pi
         }
         cardSprite.run(deckToStack, completion: {
-            cardSprite.texture = SKTexture(imageNamed: card.tostring())
+            cardSprite.texture = SKTexture(imageNamed: "Cards/" + card.tostring())
             print("Card Played is", card.tostring())
             self.stackDisplay.append(cardSprite)
             if !self.ERS.underObg(player : self.turn) {
