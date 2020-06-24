@@ -27,6 +27,7 @@ class MainScene: SKScene {
     var growAction : SKAction!
     
     var current : String!
+    var labelAnimTime : Double!
 
     override var isUserInteractionEnabled: Bool {
         get {
@@ -82,8 +83,10 @@ class MainScene: SKScene {
             i += 1
         }
         
-        shrinkAction = SKAction.resize(toWidth: frame.size.width / 2.1, height : frame.size.width / CGFloat(3.7 * 16.0 / 9.0), duration: 0.2)
-        growAction = SKAction.resize(toWidth : labelSize.width, height : labelSize.height, duration: 0.2)
+        labelAnimTime = 0.1
+        
+        shrinkAction = SKAction.resize(toWidth: frame.size.width / 2.1, height : frame.size.width / CGFloat(3.7 * 16.0 / 9.0), duration: labelAnimTime)
+        growAction = SKAction.resize(toWidth : labelSize.width, height : labelSize.height, duration: labelAnimTime)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -103,17 +106,18 @@ class MainScene: SKScene {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
+        for label in labels {
+            label.run(growAction)
+        }
         let location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
         if touchedNodes.count > 0 {
             if touchedNodes[0].name == current {
-                switchScreens(dest : current!)
+                self.run(SKAction.wait(forDuration : labelAnimTime), completion : {
+                    self.switchScreens(dest : self.current!)
+                })
             }
         }
-        for label in labels {
-            label.run(growAction)
-        }
-        
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -131,8 +135,7 @@ class MainScene: SKScene {
         default: vcdest = ""
         }
         if vcdest == "" { return }
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextVC = storyBoard.instantiateViewController(withIdentifier: vcdest)
+        let nextVC = storyboard.instantiateViewController(withIdentifier: vcdest)
         nextVC.modalPresentationStyle = .fullScreen
         viewController?.present(nextVC, animated: true, completion: nil)
     }

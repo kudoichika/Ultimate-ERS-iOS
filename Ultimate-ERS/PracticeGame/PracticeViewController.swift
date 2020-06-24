@@ -18,6 +18,7 @@ class PracticeViewController: UIViewController {
         
         if let view = self.view as! SKView? {
             let scene = PracticeScene(size: view.bounds.size)
+            scene.viewController = self
             scene.scaleMode = .aspectFill
             view.presentScene(scene)
             view.showsFPS = true

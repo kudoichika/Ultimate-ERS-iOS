@@ -15,7 +15,7 @@ import SpriteKit
 
 class PracticeScene : SKScene {
     
-    let backgroundImage : SKSpriteNode = SKSpriteNode(imageNamed : "Bg")
+    var backgroundImage : SKSpriteNode!
     
     var turn : Int = -1
     var N : Int = 4 //IDK How to get this (Maybe Customization)
@@ -33,6 +33,8 @@ class PracticeScene : SKScene {
     
     var deckLocations : Array<CGPoint>!
     
+    var pauseButton : SKSpriteNode!
+    
     var stackDisplay : Array<SKSpriteNode>!//Maybe Penalty Display
     var deckJacket : Array<SKSpriteNode>!
     var hands : Array<SKSpriteNode>!
@@ -47,6 +49,12 @@ class PracticeScene : SKScene {
     var turnBufferTime : Double!
     var computerActionTime : Double!
     var handVisibleTime : Double!
+    
+    var gameScreen : SKNode!
+    var pauseScreen : PauseScreen!
+    var endScreen : EndScreen!
+    
+    weak var viewController : UIViewController?
     
     override var isUserInteractionEnabled: Bool {
         get {
@@ -87,19 +95,30 @@ class PracticeScene : SKScene {
         let location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
         if touchedNodes.count > 0 {
-            if touchedNodes[0].name == "pause" {
-                //pause stuff
-                print("User has paused the Game")
-            } else if touchedNodes[0].name == "human" && turn == 0 {
-                print("User has tapped Jacket")
-                thread += 1
-                playTurn(curr : thread)
-                return
+            if self.isPaused {
+                if touchedNodes[0].name == "resume" {
+                    print("User has resumed the game")
+                    closePauseScreen()
+                } else if touchedNodes[0].name == "leave" {
+                    print("User has left the game")
+                    goToMain()
+                }
+            } else {
+                if touchedNodes[0].name == "pause" {
+                    openPauseScreen()
+                    print("User has paused the Game")
+                    return
+                } else if touchedNodes[0].name == "human" && turn == 0 {
+                    print("User has tapped Jacket")
+                    thread += 1
+                    playTurn(curr : thread)
+                    return
+                } else {
+                    print("User has slapped")
+                    slapAction(player : 0, curr : thread)
+                }
             }
         }
-        print("User has slapped")
-        //thread += 1
-        slapAction(player : 0, curr : thread)
     }
     
     func configureSettings() {
@@ -116,9 +135,20 @@ class PracticeScene : SKScene {
     func layoutScene() {
         //change background to image
         //self.backgroundColor = UIColor(red: 41.0 / 255, green: 165.0 / 255, blue: 68.0 / 255, alpha: 1)
+        gameScreen = SKNode()
+        
+        backgroundImage = SKSpriteNode(imageNamed : "Bg")
         backgroundImage.position = CGPoint(x: frame.midX, y: frame.midY)
         backgroundImage.size = CGSize(width : frame.size.width, height : frame.size.height)
-        addChild(backgroundImage)
+        gameScreen.addChild(backgroundImage)
+        addChild(gameScreen)
+        //addChild(backgroundImage)
+        
+        pauseButton = SKSpriteNode(imageNamed : "Game/Pause")
+        pauseButton.position = CGPoint(x : 0.9 * frame.size.width, y : 0.9 * frame.size.height)
+        pauseButton.size = CGSize(width : 0.125 * frame.size.width, height : 0.125 * frame.size.width)
+        pauseButton.name = "pause"
+        addChild(pauseButton)
         
         for i in 0..<N {
             deckJacket.append(SKSpriteNode(imageNamed : "Game/Jacket"))
@@ -340,17 +370,35 @@ class PracticeScene : SKScene {
     }
     
     func checkWin() {
+        /**
+       IF WIN -> {
+           ANIMATE: => WAIT
+               LAUNCH END SCREEN
+           WAIT FOR INPUT TO LEAVE
+       }
+        */
+        if false { showEndScreen() }
+    }
+    
+    func openPauseScreen() {
+        self.isPaused = true
+        pauseScreen = PauseScreen(frameSize : frame.size)
+        pauseScreen.addComponents(self)
+    }
+    
+    func closePauseScreen() {
+        pauseScreen.removeComponents()
+        self.isPaused = false
+    }
+    
+    func showEndScreen() {
         
     }
     
-    /**
-     CHECK WIN {
-        IF WIN -> {
-            ANIMATE: => WAIT
-                LAUNCH END SCREEN
-            WAIT FOR INPUT TO LEAVE
-        }
-     }
-     */
-    
+    func goToMain() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let nextVC = storyboard.instantiateViewController(withIdentifier: "MainSceneViewController")
+        nextVC.modalPresentationStyle = .fullScreen
+        viewController?.present(nextVC, animated: true, completion: nil)
+    }
 }
