@@ -95,8 +95,12 @@ class MainScene: SKScene {
         let touchedNodes = nodes(at: location)
         if touchedNodes.count > 0 {
             let node = touchedNodes[0]
-            node.run(shrinkAction)
-            current = node.name
+            for label in labels {
+                if label.name == node.name {
+                    node.run(shrinkAction)
+                    current = node.name
+                }
+            }
         }
     }
     
@@ -112,10 +116,13 @@ class MainScene: SKScene {
         let location = touch.location(in: self)
         let touchedNodes = nodes(at: location)
         if touchedNodes.count > 0 {
-            if touchedNodes[0].name == current {
-                self.run(SKAction.wait(forDuration : labelAnimTime), completion : {
-                    self.switchScreens(dest : self.current!)
-                })
+            let node = touchedNodes[0]
+            for label in labels {
+                if label.name == node.name && node.name == current {
+                    self.run(SKAction.wait(forDuration : labelAnimTime), completion : {
+                        self.switchScreens(dest : self.current!)
+                    })
+                }
             }
         }
     }

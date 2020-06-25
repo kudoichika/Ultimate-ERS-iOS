@@ -13,6 +13,7 @@ class ERS {
     let difficulty : Int
     let N : Int
     let obg : Bool
+    let burns : Int
     var stack : Stack<Card>
     var penaltyStack : Stack<Card>
     var players : Array<Player>
@@ -23,10 +24,11 @@ class ERS {
     
     //obligation
     
-    init(difficulty : Int = 5, numPlayers : Int = 2, manObg : Bool = true) {
+    init(difficulty : Int = 5, numPlayers : Int = 2, manObg : Bool = true, penalty : Int = 2) {
         self.difficulty = difficulty
         N = numPlayers
         obg = manObg
+        burn = penalty
         stack = Stack<Card>()
         penaltyStack = Stack<Card>()
         players = []
@@ -59,6 +61,10 @@ class ERS {
             collectCards(receiver : player)
             return true
         }
+        
+        //penalize
+        let burnOne = players[player].pop()
+        let burnTwo = players[player].pop()
         return false
     }
     
