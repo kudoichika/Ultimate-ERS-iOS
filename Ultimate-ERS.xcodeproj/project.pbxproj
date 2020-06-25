@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8302C65924A13FBB00A2404D /* ERSGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302C65824A13FBB00A2404D /* ERSGame.swift */; };
+		8302C65924A13FBB00A2404D /* ERS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302C65824A13FBB00A2404D /* ERS.swift */; };
 		831B163A2485A0CC0066A5FB /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B16392485A0CC0066A5FB /* Connection.swift */; };
 		831B163C2485A0EA0066A5FB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B163B2485A0EA0066A5FB /* RegisterViewController.swift */; };
 		831B163E2485A17F0066A5FB /* MultiGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B163D2485A17F0066A5FB /* MultiGameViewController.swift */; };
@@ -30,13 +30,14 @@
 		839F3DFA2475F7D0009C129E /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF92475F7D0009C129E /* PracticeViewController.swift */; };
 		839F3DFC2475F80C009C129E /* PracticeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DFB2475F80C009C129E /* PracticeScene.swift */; };
 		83B6192424A3DE4C00A2D31E /* PopScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B6192324A3DE4C00A2D31E /* PopScreens.swift */; };
+		83B6192624A4F7A800A2D31E /* PracticeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B6192524A4F7A800A2D31E /* PracticeGame.swift */; };
 		83B98C4C247C940600D7BF01 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B98C4B247C940600D7BF01 /* LoginViewController.swift */; };
 		83F19E7C24A38C83009168D4 /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F19E7B24A38C82009168D4 /* MainSceneViewController.swift */; };
 		83F19E7E24A38CAD009168D4 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F19E7D24A38CAD009168D4 /* MainScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8302C65824A13FBB00A2404D /* ERSGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERSGame.swift; sourceTree = "<group>"; };
+		8302C65824A13FBB00A2404D /* ERS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERS.swift; sourceTree = "<group>"; };
 		831B16392485A0CC0066A5FB /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		831B163B2485A0EA0066A5FB /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		831B163D2485A17F0066A5FB /* MultiGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiGameViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		839F3DF92475F7D0009C129E /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
 		839F3DFB2475F80C009C129E /* PracticeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeScene.swift; sourceTree = "<group>"; };
 		83B6192324A3DE4C00A2D31E /* PopScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopScreens.swift; sourceTree = "<group>"; };
+		83B6192524A4F7A800A2D31E /* PracticeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGame.swift; sourceTree = "<group>"; };
 		83B98C4B247C940600D7BF01 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		83F19E7B24A38C82009168D4 /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
 		83F19E7D24A38CAD009168D4 /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
@@ -156,10 +158,11 @@
 		839F3DEC2475F406009C129E /* PracticeGame */ = {
 			isa = PBXGroup;
 			children = (
-				8302C65824A13FBB00A2404D /* ERSGame.swift */,
+				8302C65824A13FBB00A2404D /* ERS.swift */,
 				839F3DF92475F7D0009C129E /* PracticeViewController.swift */,
 				839F3DFB2475F80C009C129E /* PracticeScene.swift */,
 				83B6192324A3DE4C00A2D31E /* PopScreens.swift */,
+				83B6192524A4F7A800A2D31E /* PracticeGame.swift */,
 			);
 			path = PracticeGame;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B6192624A4F7A800A2D31E /* PracticeGame.swift in Sources */,
 				83B6192424A3DE4C00A2D31E /* PopScreens.swift in Sources */,
 				831B16462485A26B0066A5FB /* MultiLobbyViewController.swift in Sources */,
 				831B163A2485A0CC0066A5FB /* Connection.swift in Sources */,
@@ -262,7 +266,7 @@
 				839F3DD72475F34D009C129E /* GameScene.swift in Sources */,
 				839F3DD92475F34D009C129E /* GameViewController.swift in Sources */,
 				839F3DFA2475F7D0009C129E /* PracticeViewController.swift in Sources */,
-				8302C65924A13FBB00A2404D /* ERSGame.swift in Sources */,
+				8302C65924A13FBB00A2404D /* ERS.swift in Sources */,
 				839F3DD12475F34D009C129E /* AppDelegate.swift in Sources */,
 				839F3DF02475F6C7009C129E /* CustomizeViewController.swift in Sources */,
 				839F3DF62475F755009C129E /* UtilityComponents.swift in Sources */,

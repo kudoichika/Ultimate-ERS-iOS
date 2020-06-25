@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ERSGame {
+class ERS {
     
     let difficulty : Int
     let N : Int
