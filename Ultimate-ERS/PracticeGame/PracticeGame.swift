@@ -126,6 +126,7 @@ class PracticeGame {
             deckJacket[i].size = CGSize(width: frameSize.width / 3.5,
                                         height: 1.4 * frameSize.width / 3.5)
             deckJacket[i].zRotation = CGFloat(Double(i) * (Double.pi / 2))
+            deckJacket[i].zPosition = 75
             hands.append(SKSpriteNode(imageNamed : "Game/Hand"))
             hands[i].position = CGPoint(x: frameMidX, y: frameMidY)
             hands[i].zPosition = 50
@@ -138,7 +139,6 @@ class PracticeGame {
         }
         
         deckJacket[0].name = "human"
-        deckJacket[0].zPosition = 100
         deckToStack = SKAction.move(to : CGPoint(x : frameMidX, y : frameMidY), duration : cardToStackTime)
         
         deckLocations.append(CGPoint(x : frameMidX, y : 0))
@@ -249,6 +249,7 @@ class PracticeGame {
         cardSprite.position = deckLocations[turn]
         cardSprite.size = CGSize(width: frameSize.width / 3.5,
                                height: 1.4 * frameSize.width / 3.5)
+        cardSprite.zPosition = 30
         gameNode.addChild(cardSprite)
         //Position
         cardSprite.run(SKAction.rotate(byAngle : CGFloat(rotationFactor), duration: cardToStackTime))

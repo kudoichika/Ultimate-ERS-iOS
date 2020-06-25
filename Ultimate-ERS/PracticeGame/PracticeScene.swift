@@ -22,6 +22,11 @@ class PracticeScene : SKScene {
     var pauseScreen : PauseScreen!
     var endScreen : EndScreen!
     
+    var state : String!
+    var labelAnimTime : Double!
+    
+    var current : String!
+    
     weak var viewController : UIViewController?
     
     override var isUserInteractionEnabled: Bool {
@@ -49,21 +54,37 @@ class PracticeScene : SKScene {
         if touchedNodes.count > 0 {
             let node = touchedNodes[0]
             if game.isPaused() {
-                //Handle Pause/End Screens Here
-                if node.name == "resume" {
-                    print("User has resumed the game")
-                    closePauseScreen()
-                } else if node.name == "leave" {
-                    print("User has left the game")
-                    goToMain()
-                }
+                //or end screen
+                pauseScreen.shrinkComponent(name : node.name!, time : labelAnimTime)
             } else {
                 if node.name == "pause" {
-                    game.setPause(true)
-                    openPauseScreen()
+                    //rescale
+                    current = "pause"
                     return
                 }
                 game.userTouched(node : node)
+            }
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        let touchedNodes = nodes(at: location)
+        if touchedNodes.count > 0 {
+            if state == "paused" {
+                print("Ended Pause")
+                closePauseScreen(choice : touchedNodes[0])
+            } else if state == "ended" {
+                
+            } else {
+                //grow pause
+                if touchedNodes[0].name == "pause" && current == "pause" {
+                    //rescale
+                    state = "paused"
+                    game.setPause(true)
+                    openPauseScreen()
+                }
             }
         }
     }
@@ -80,20 +101,32 @@ class PracticeScene : SKScene {
         pauseButton.name = "pause"
         addChild(pauseButton)
         
+        labelAnimTime = 0.1
+        
+        state = "playing"
         game = PracticeGame(frame : frame.size, numPlayers: 4)
         game.addComponents(self)
     }
     
     func openPauseScreen() {
-        self.isPaused = true
+        //overlay with dim node
         pauseScreen = PauseScreen(frameSize : frame.size)
         pauseScreen.addComponents(self)
     }
     
-    func closePauseScreen() {
-        //overlay with dim node
-        pauseScreen.removeComponents()
-        self.isPaused = false
+    func closePauseScreen(choice : SKNode) {
+        pauseScreen.growComponents(time : labelAnimTime)
+        let name = choice.name
+        if name == "" { return }
+        self.run(SKAction.wait(forDuration : labelAnimTime), completion : {
+            if name == "resume" {
+                self.pauseScreen.removeComponents()
+                self.game.setPause(false)
+                self.state = "playing"
+            } else if name == "leave" {
+                self.goToMain()
+            }
+        })
     }
     
     func showEndScreen() {
