@@ -32,13 +32,15 @@ class PracticeGame {
     var cardRotation : SKAction!
     
     var deckLocations : Array<CGPoint>!
+    var statLocations : Array<CGPoint>!
     
     var pauseButton : SKSpriteNode!
     
-    var stackDisplay : Array<SKSpriteNode>!//Maybe Penalty Display
+    var stackDisplay : Array<SKSpriteNode>!
     var deckJacket : Array<SKSpriteNode>!
     var hands : Array<SKSpriteNode>!
     var cardStats : Array<SKLabelNode>!
+    //Replace with penalty number
     var penaltyStats : Array<SKLabelNode>!
     var labels : Array<SKLabelNode>!
     
@@ -93,6 +95,7 @@ class PracticeGame {
     
     func create() {
         deckLocations = []
+        statLocations = []
         stackToDeck = []
         stackDisplay = []
         deckJacket = []
@@ -119,44 +122,60 @@ class PracticeGame {
     }
     
     func layoutScene() {
+        
         gameNode = SKNode()
+        
+        deckLocations.append(CGPoint(x : frameMidX, y : 0))
+        statLocations.append(CGPoint(x : 0.7 * frameSize.width, y : 0.075 * frameSize.height))
+        if N > 2 {
+            deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
+            deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
+            statLocations.append(CGPoint(x : 0.9 * frameSize.width, y : 0.6 * frameSize.height))
+            statLocations.append(CGPoint(x : 0.3 * frameSize.width, y : 0.9 * frameSize.height))
+        } else {
+            deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
+            deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
+        }
+        deckLocations.append(CGPoint(x : 0, y : frameMidY))
+        statLocations.append(CGPoint(x : 0.1 * frameSize.width, y : 0.35 * frameSize.height))
         
         for i in 0..<N {
             deckJacket.append(SKSpriteNode(imageNamed : "Game/Jacket"))
             deckJacket[i].size = CGSize(width: frameSize.width / 3.5,
                                         height: 1.4 * frameSize.width / 3.5)
+            deckJacket[i].position = deckLocations[i]
             deckJacket[i].zRotation = CGFloat(Double(i) * (Double.pi / 2))
             deckJacket[i].zPosition = 75
+            
             hands.append(SKSpriteNode(imageNamed : "Game/Hand"))
             hands[i].position = CGPoint(x: frameMidX, y: frameMidY)
             hands[i].zPosition = 50
             hands[i].size = CGSize(width: frameSize.width / 2,
                                    height: frameSize.height / 3.25)
             hands[i].zRotation = CGFloat(Double(i) * (Double.pi / 2))
-            cardStats.append(SKLabelNode()) //label # cards
+            
+            cardStats.append(SKLabelNode())
+            cardStats[i].fontName = "AvenirNext-Bold"
+            cardStats[i].position = statLocations[i]
+            
             penaltyStats.append(SKLabelNode()) //label # penalty
             labels.append(SKLabelNode()) //label => Computer #
+            
+            stackToDeck.append(SKAction.move(to : deckLocations[i], duration : cardToDeckTime))
         }
         
         deckJacket[0].name = "human"
         deckToStack = SKAction.move(to : CGPoint(x : frameMidX, y : frameMidY), duration : cardToStackTime)
         
-        deckLocations.append(CGPoint(x : frameMidX, y : 0))
-        if N > 2 {
-            deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
-            deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
-        } else {
-            deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
-            deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
-        }
-        deckLocations.append(CGPoint(x : 0, y : frameMidY))
-        
-        for i in 0..<N {
-            deckJacket[i].position = deckLocations[i]
-            stackToDeck.append(SKAction.move(to : deckLocations[i], duration : cardToDeckTime))
-        }
         waitCollect = SKAction.wait(forDuration : cardToDeckTime)
         print("Scene has been Layed Out")
+    }
+    
+    func updateStats() {
+        let numCards = self.ers.getNumCards()
+        for i in 0..<self.N {
+            self.cardStats[i].text = String(numCards[i])
+        }
     }
     
     func distributeCards() {
@@ -184,6 +203,10 @@ class PracticeGame {
         gameNode.addChild(tempCard)
         tempCard.run(stackToDeck[(52-1) % N], completion : {
             tempCard.removeFromParent()
+            self.updateStats()
+            for stat in self.cardStats {
+                self.gameNode.addChild(stat)
+            }
             print("Cards have been distributed. Starting Game...")
             self.randTurn()
         })
@@ -252,6 +275,7 @@ class PracticeGame {
         cardSprite.zPosition = 30
         gameNode.addChild(cardSprite)
         //Position
+        updateStats()
         cardSprite.run(SKAction.rotate(byAngle : CGFloat(rotationFactor), duration: cardToStackTime))
         rotationFactor += 1.5
         if rotationFactor > Double.pi {
@@ -286,16 +310,15 @@ class PracticeGame {
             self.hands[player].removeFromParent()
             if self.ers.slap(player : player) {
                 print("Slap is Valid. Collecting Cards")
-                //update stats
                 for item in self.stackDisplay {
                    item.run(self.stackToDeck[player], completion : {
-                       //update cards
                        item.removeFromParent()
                    })
                 }
                 self.stackDisplay = []
                 self.gameNode.run(self.waitCollect, completion : {
                     print("Collection Completed. Proceeding with Routing")
+                    self.updateStats()
                     self.turn = player
                     self.checkWin()
                     self.locked = false
@@ -305,6 +328,7 @@ class PracticeGame {
             } else {
                 print("Slap is Invalid. Penalty Issued")
                 //Penalize player
+                self.updateStats()
                 self.checkWin()
                 self.locked = false
                 self.thread += 1
@@ -333,6 +357,7 @@ class PracticeGame {
         self.stackDisplay = []
         gameNode.run(waitCollect, completion : {
             print("Obligation Collected. Proceeding with Routing")
+            self.updateStats()
             self.turn = player
             self.checkWin()
             self.locked = false
