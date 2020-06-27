@@ -17,7 +17,6 @@ class ERS {
     var stack : Stack<Card>
     var penaltyStack : Stack<Card>
     var players : Array<Player>
-    var penalties : Array<Int>
     
     var claim : Bool!
     var claimer : Int!
@@ -25,15 +24,14 @@ class ERS {
     
     //obligation
     
-    init(difficulty : Int = 5, numPlayers : Int = 2, manObg : Bool = true, penalty : Int = 2) {
+    init(difficulty : Int = 5, numPlayers : Int = 2, manObg : Bool = true, numBurn : Int = 2) {
         self.difficulty = difficulty
         N = numPlayers
         obg = manObg
-        burns = penalty
+        burns = numBurn
         stack = Stack<Card>()
         penaltyStack = Stack<Card>()
         players = []
-        penalties = []
         
         claim = false
         claimer = -1
@@ -65,13 +63,13 @@ class ERS {
             collectCards(receiver : player)
             return true
         }
-        /*for i in 1...burn {
-            if getStatus(players[player]) {
-                penaltyStack.push(players[player].pop())
+        for _ in 1...burns {
+            if getStatus(player: player) {
+                penaltyStack.push(item: players[player].pop())
             } else {
                 //player retired
             }
-        }*/
+        }
         return false
     }
     
@@ -123,8 +121,8 @@ class ERS {
         return players[player].checkStatus()
     }
     
-    func getPenalities() -> [Int] {
-        return penalties
+    func getPenalities() -> Int {
+        return penaltyStack.count()
     }
     
     func getNumCards() -> [Int] {

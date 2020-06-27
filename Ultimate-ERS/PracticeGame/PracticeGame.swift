@@ -41,7 +41,7 @@ class PracticeGame {
     var hands : Array<SKSpriteNode>!
     var cardStats : Array<SKLabelNode>!
     //Replace with penalty number
-    var penaltyStats : Array<SKLabelNode>!
+    var penaltyStat : SKLabelNode!
     var labels : Array<SKLabelNode>!
     
     var thread : UInt64!
@@ -101,7 +101,6 @@ class PracticeGame {
         deckJacket = []
         hands = []
         cardStats = []
-        penaltyStats = []
         labels = []
         ers = ERS(difficulty : computerDifficulty,
                               numPlayers : N, manObg : manualObligation)
@@ -126,12 +125,12 @@ class PracticeGame {
         gameNode = SKNode()
         
         deckLocations.append(CGPoint(x : frameMidX, y : 0))
-        statLocations.append(CGPoint(x : 0.7 * frameSize.width, y : 0.075 * frameSize.height))
+        statLocations.append(CGPoint(x : 0.75 * frameSize.width, y : 0.075 * frameSize.height))
         if N > 2 {
             deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
             deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
             statLocations.append(CGPoint(x : 0.9 * frameSize.width, y : 0.6 * frameSize.height))
-            statLocations.append(CGPoint(x : 0.3 * frameSize.width, y : 0.9 * frameSize.height))
+            statLocations.append(CGPoint(x : 0.25 * frameSize.width, y : 0.9 * frameSize.height))
         } else {
             deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
             deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
@@ -158,7 +157,6 @@ class PracticeGame {
             cardStats[i].fontName = "AvenirNext-Bold"
             cardStats[i].position = statLocations[i]
             
-            penaltyStats.append(SKLabelNode()) //label # penalty
             labels.append(SKLabelNode()) //label => Computer #
             
             stackToDeck.append(SKAction.move(to : deckLocations[i], duration : cardToDeckTime))
@@ -166,6 +164,12 @@ class PracticeGame {
         
         deckJacket[0].name = "human"
         deckToStack = SKAction.move(to : CGPoint(x : frameMidX, y : frameMidY), duration : cardToStackTime)
+        penaltyStat = SKLabelNode()
+        penaltyStat.position = CGPoint(x : frameMidX, y : 0.65 * frameSize.height)
+        penaltyStat.fontColor = UIColor.red
+        penaltyStat.text = ""
+        penaltyStat.fontName = "AvenirNext-Bold"
+        gameNode.addChild(penaltyStat)
         
         waitCollect = SKAction.wait(forDuration : cardToDeckTime)
         print("Scene has been Layed Out")
@@ -175,6 +179,15 @@ class PracticeGame {
         let numCards = self.ers.getNumCards()
         for i in 0..<self.N {
             self.cardStats[i].text = String(numCards[i])
+        }
+    }
+    
+    func updatePenalty() {
+        let penalty = self.ers.getPenalities()
+        if penalty == 0 {
+            self.penaltyStat.text = ""
+        } else {
+            self.penaltyStat.text = "+" + String(penalty)
         }
     }
     
@@ -319,6 +332,7 @@ class PracticeGame {
                 self.gameNode.run(self.waitCollect, completion : {
                     print("Collection Completed. Proceeding with Routing")
                     self.updateStats()
+                    self.updatePenalty()
                     self.turn = player
                     self.checkWin()
                     self.locked = false
@@ -329,6 +343,7 @@ class PracticeGame {
                 print("Slap is Invalid. Penalty Issued")
                 //Penalize player
                 self.updateStats()
+                self.updatePenalty()
                 self.checkWin()
                 self.locked = false
                 self.thread += 1
@@ -358,6 +373,7 @@ class PracticeGame {
         gameNode.run(waitCollect, completion : {
             print("Obligation Collected. Proceeding with Routing")
             self.updateStats()
+            self.updatePenalty()
             self.turn = player
             self.checkWin()
             self.locked = false
