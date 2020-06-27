@@ -55,7 +55,11 @@ class PracticeScene : SKScene {
             let node = touchedNodes[0]
             if game.isPaused() {
                 //or end screen
-                pauseScreen.shrinkComponent(name : node.name!, time : labelAnimTime)
+                if state == "paused" {
+                    pauseScreen.shrinkComponent(name : node.name!, time : labelAnimTime)
+                } else if state == "ended" {
+                    endScreen.shrinkComponent(name: node.name!, time: labelAnimTime)
+                }
             } else {
                 if node.name == "pause" {
                     //rescale
@@ -76,7 +80,8 @@ class PracticeScene : SKScene {
                 print("Ended Pause")
                 closePauseScreen(choice : touchedNodes[0])
             } else if state == "ended" {
-                
+                print("Ended EndScreen")
+                closeEndScreen(choice : touchedNodes[0])
             } else {
                 //grow pause
                 if touchedNodes[0].name == "pause" && current == "pause" {
@@ -105,6 +110,7 @@ class PracticeScene : SKScene {
         
         state = "playing"
         game = PracticeGame(frame : frame.size, numPlayers: 4)
+        game.parent = self
         game.addComponents(self)
     }
     
@@ -129,8 +135,22 @@ class PracticeScene : SKScene {
         })
     }
     
-    func showEndScreen() {
-        
+    func showEndScreen(verdict : Int) {
+        game.setPause(true)
+        state = "ended"
+        endScreen = EndScreen(frameSize : frame.size, verdict : verdict)
+        endScreen.addComponents(self)
+    }
+    
+    func closeEndScreen(choice : SKNode) {
+        endScreen.growComponents(time: labelAnimTime)
+        let name = choice.name
+        if name == "" { return }
+        self.run(SKAction.wait(forDuration: labelAnimTime), completion : {
+            if name == "leave" {
+                self.goToMain()
+            }
+        })
     }
     
     func goToMain() {

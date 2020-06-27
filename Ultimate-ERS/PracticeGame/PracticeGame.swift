@@ -52,6 +52,11 @@ class PracticeGame {
     var computerActionTime : Double!
     var handVisibleTime : Double!
     
+    var pass : Int!
+    var playersLeft : Int!
+    var placement : Array<Int>!
+    weak var parent : PracticeScene!
+    
     init(frame : CGSize, numPlayers : Int) {
         frameSize = frame
         frameMidX = frameSize.width / 2
@@ -74,10 +79,12 @@ class PracticeGame {
             openPauseScreen()
             return
         } else*/
-        if node.name == "human" && turn == 0 {
-            print("User has tapped Jacket")
-            thread += 1
-            playTurn(curr : thread)
+        if node.name == "human" {
+            if turn == 0 && ers.getStatus(player : 0) {
+                print("User has tapped Jacket")
+                thread += 1
+                playTurn(curr : thread)
+            }
             return
         } else {
             print("User has slapped")
@@ -104,6 +111,13 @@ class PracticeGame {
         labels = []
         ers = ERS(difficulty : computerDifficulty,
                               numPlayers : N, manObg : manualObligation)
+        pass = 0
+        playersLeft = N
+        placement = []
+        for _ in 0..<N {
+            placement.append(-1)
+        }
+        
         configureSettings()
         layoutScene()
         distributeCards()
@@ -240,10 +254,22 @@ class PracticeGame {
     
     func turnRouter(curr : UInt64) {
         print("--------------------------")
+        if locked { return }
+        if wrongThread(curr) { return }
+        if !ers.getStatus(player: turn) {
+            updateRankings(player : turn)
+            turn = (turn + 1) % N
+            pass += 1
+            if pass == N - 1 {
+                gameOver()
+            } else {
+                turnRouter(curr: curr)
+            }
+            return
+        }
+        pass = 0
         if turn != 0 {
             print("Routing to player", turn, "after delay")
-            if locked { return }
-            if wrongThread(curr) { return }
             gameNode.run(SKAction.wait(forDuration :  turnBufferTime), completion: {
                 if self.locked { return }
                 if self.wrongThread(curr) { return }
@@ -269,7 +295,6 @@ class PracticeGame {
                 self.slapAction(player : rand, curr : curr)
             } else {
                 print("Nothing Detected. Proceeding to Routing")
-                self.checkWin()
                 self.turnRouter(curr : curr)
             }
         })
@@ -334,7 +359,6 @@ class PracticeGame {
                     self.updateStats()
                     self.updatePenalty()
                     self.turn = player
-                    self.checkWin()
                     self.locked = false
                     self.thread += 1
                     self.turnRouter(curr : self.thread)
@@ -344,7 +368,6 @@ class PracticeGame {
                 //Penalize player
                 self.updateStats()
                 self.updatePenalty()
-                self.checkWin()
                 self.locked = false
                 self.thread += 1
                 self.endTurn(curr : self.thread)
@@ -375,21 +398,26 @@ class PracticeGame {
             self.updateStats()
             self.updatePenalty()
             self.turn = player
-            self.checkWin()
             self.locked = false
             self.thread += 1
             self.turnRouter(curr : self.thread)
         })
     }
     
-    func checkWin() {
-        /**
-       IF WIN -> {
-           ANIMATE: => WAIT
-               LAUNCH END SCREEN
-           WAIT FOR INPUT TO LEAVE
-       }
-        */
-        //if false { showEndScreen() }
+    func updateRankings(player : Int) {
+        //place X over losers
+        //print("Player \(player) has placed #\(playersLeft)")
+        if placement[player] == -1 {
+            ers.deactivatePlayer(player : player)
+            placement[player] = playersLeft
+            playersLeft -= 1
+        }
+        if player == 0 {
+            gameOver()
+        }
+    }
+    
+    func gameOver() {
+        parent?.showEndScreen(verdict : placement[0])
     }
 }

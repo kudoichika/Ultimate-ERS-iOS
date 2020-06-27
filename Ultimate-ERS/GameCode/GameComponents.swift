@@ -44,9 +44,11 @@ class Card {
 class Player {
     var cardQueue : Queue<Card>
     var penalty : Int
+    var active : Bool
     init() {
         cardQueue = Queue<Card>()
         penalty = 0
+        active = true
     }
     func appendCards(cardIn : Array<Card>) {
         for card in cardIn {
@@ -68,9 +70,12 @@ class Player {
         return burns
     }
     func checkStatus() -> Bool {
-        if cardQueue.count() <= 0 {
+        if !active || cardQueue.count() <= 0 {
             return false
         }
         return true
+    }
+    func deactivate() {
+        active = false
     }
 }

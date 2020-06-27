@@ -104,17 +104,59 @@ class PauseScreen : PopScreen {
 
 class EndScreen : PopScreen {
     
-    override init(frameSize : CGSize) {
+    var label : SKLabelNode!
+    var leave : SKSpriteNode!
+    
+    var finalSize : CGSize!
+    var allComponents : Array<SKNode>!
+    
+    init(frameSize : CGSize, verdict : Int) {
         super.init(frameSize : frameSize)
-        //Make stuff here
+        if verdict == 1 {
+            label = SKLabelNode(text : "You Win!!")
+        } else {
+            label = SKLabelNode(text : "You ranked #\(verdict)!")
+        }
+        label.position = CGPoint(x : 0.5 * frameSize.width, y : 0.675 * frameSize.height)
+        
+        
+        leave = SKSpriteNode(imageNamed : "Menu/Leave")
+        leave.position = CGPoint(x : 0.5 * frameSize.width, y : 0.575 * frameSize.height)
+        leave.size = super.zeroSize
+        leave.name = "leave"
+        
+        finalSize = CGSize(width : 0.8 * (frameSize.width / 1.9), height : 0.8 * (frameSize.width / CGFloat(3.5 * 16.0 / 9.0)))
+        allComponents = [label, leave]
+        for component in allComponents {
+            component.zPosition = 100
+        }
     }
     
     override func addComponents(_ mainNode : SKNode) {
         super.addComponents(mainNode)
+        for component in allComponents {
+            mainNode.addChild(component)
+            component.run(SKAction.resize(toWidth : finalSize.width, height : finalSize.height, duration : popDuration))
+        }
     }
     
     override func removeComponents() {
         super.removeComponents()
+        for component in allComponents {
+            component.removeFromParent()
+        }
+    }
+    
+    func shrinkComponent(name : String, time : Double) {
+        let shrinkAction = SKAction.resize(toWidth: 0.9 * finalSize.width, height : 0.9 * finalSize.height, duration: time)
+        if name == "leave" {
+            leave.run(shrinkAction)
+        }
+    }
+    
+    func growComponents(time : Double) {
+        let growAction = SKAction.resize(toWidth : finalSize.width, height : finalSize.height, duration: time)
+        leave.run(growAction)
     }
     
 }

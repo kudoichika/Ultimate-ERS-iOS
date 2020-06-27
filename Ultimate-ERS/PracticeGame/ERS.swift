@@ -21,6 +21,7 @@ class ERS {
     var claim : Bool!
     var claimer : Int!
     var numleft : Int!
+    var chances : Array<Int>!
     
     //obligation
     
@@ -53,12 +54,13 @@ class ERS {
             }
         }
         cards.shuffle()
-        for i in 0..<cards.count {
+        for i in 0..<10 { //cards.count
             players[i % N].appendCards(cardIn : [cards[i]])
         }
     }
     
     func slap(player : Int) -> Bool {
+        
         if player == obgCollector() || checkPattern() {
             collectCards(receiver : player)
             return true
@@ -66,8 +68,6 @@ class ERS {
         for _ in 1...burns {
             if getStatus(player: player) {
                 penaltyStack.push(item: players[player].pop())
-            } else {
-                //player retired
             }
         }
         return false
@@ -133,22 +133,9 @@ class ERS {
         return numCards
     }
     
-    /*func checkWin() -> Int {
-        //Implementation Matters on Random Gen
-        var count = 0
-        var player : Int
-        for p in players {
-            if checkStatus() {
-                count += 1
-            } else {
-                player = p
-            }
-        }
-        if count == N - 1 {
-            return true
-        }
-        return false
-    }*/
+    func deactivatePlayer(player : Int) {
+        players[player].deactivate()
+    }
     
     func checkPattern() -> Bool {
         
