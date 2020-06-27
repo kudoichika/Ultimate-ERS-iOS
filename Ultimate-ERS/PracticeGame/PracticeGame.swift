@@ -58,6 +58,7 @@ class PracticeGame {
     var placement : Array<Int>!
     weak var parent : PracticeScene!
     var start : Bool!
+    var decklocked : Bool!
     
     init(frame : CGSize, numPlayers : Int) {
         frameSize = frame
@@ -84,7 +85,8 @@ class PracticeGame {
             return
         } else*/
         if node.name == "human" {
-            if turn == 0 && ers.getStatus(player : 0) {
+            if turn == 0 && ers.getStatus(player : 0) && !decklocked {
+                decklocked = true
                 print("User has tapped Jacket")
                 thread += 1
                 playTurn(curr : thread)
@@ -278,6 +280,7 @@ class PracticeGame {
         turn = Int.random(in: 0..<N)
         print("First player is: ", turn)
         print("Rand Locked")
+        decklocked = false
         locked = false
         start = true
         thread = 0
@@ -298,8 +301,8 @@ class PracticeGame {
             turnRouter(curr: curr)
             return
         }
-
         gameNode.addChild(arrows[turn])
+        decklocked = false
         if turn != 0 {
             print("Routing to player", turn, "after delay")
             gameNode.run(SKAction.wait(forDuration :  turnBufferTime), completion: {
@@ -324,6 +327,7 @@ class PracticeGame {
     func endTurn(curr : UInt64) {
         if locked { return }
         if wrongThread(curr) { return }
+        decklocked = true
         gameNode.run(SKAction.wait(forDuration : computerActionTime), completion : {
             if self.locked { return }
             if self.wrongThread(curr) { return }
