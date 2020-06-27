@@ -54,7 +54,7 @@ class PracticeScene : SKScene {
         if touchedNodes.count > 0 {
             let node = touchedNodes[0]
             if game.isPaused() {
-                //or end screen
+                if node.name == nil { return }
                 if state == "paused" {
                     pauseScreen.shrinkComponent(name : node.name!, time : labelAnimTime)
                 } else if state == "ended" {
@@ -136,6 +136,7 @@ class PracticeScene : SKScene {
     }
     
     func showEndScreen(verdict : Int) {
+        print("Game Ended")
         game.setPause(true)
         state = "ended"
         endScreen = EndScreen(frameSize : frame.size, verdict : verdict)

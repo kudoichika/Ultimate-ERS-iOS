@@ -60,7 +60,6 @@ class ERS {
     }
     
     func slap(player : Int) -> Bool {
-        
         if player == obgCollector() || checkPattern() {
             collectCards(receiver : player)
             return true

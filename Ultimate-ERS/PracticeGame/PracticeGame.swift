@@ -33,14 +33,16 @@ class PracticeGame {
     
     var deckLocations : Array<CGPoint>!
     var statLocations : Array<CGPoint>!
+    var arrowLocations : Array<CGPoint>!
+    var crossLocations : Array<CGPoint>!
     
     var pauseButton : SKSpriteNode!
     
     var stackDisplay : Array<SKSpriteNode>!
     var deckJacket : Array<SKSpriteNode>!
     var hands : Array<SKSpriteNode>!
+    var arrows : Array<SKSpriteNode>!
     var cardStats : Array<SKLabelNode>!
-    //Replace with penalty number
     var penaltyStat : SKLabelNode!
     var labels : Array<SKLabelNode>!
     
@@ -52,7 +54,6 @@ class PracticeGame {
     var computerActionTime : Double!
     var handVisibleTime : Double!
     
-    var pass : Int!
     var playersLeft : Int!
     var placement : Array<Int>!
     weak var parent : PracticeScene!
@@ -103,15 +104,17 @@ class PracticeGame {
     func create() {
         deckLocations = []
         statLocations = []
+        arrowLocations = []
+        crossLocations = []
         stackToDeck = []
         stackDisplay = []
         deckJacket = []
+        arrows = []
         hands = []
         cardStats = []
         labels = []
         ers = ERS(difficulty : computerDifficulty,
                               numPlayers : N, manObg : manualObligation)
-        pass = 0
         playersLeft = N
         placement = []
         for _ in 0..<N {
@@ -140,17 +143,25 @@ class PracticeGame {
         
         deckLocations.append(CGPoint(x : frameMidX, y : 0))
         statLocations.append(CGPoint(x : 0.75 * frameSize.width, y : 0.075 * frameSize.height))
+        crossLocations.append(CGPoint(x : frameMidX, y : 0.1 * frameSize.height))
+        arrowLocations.append(CGPoint(x : frameMidX, y : 0.2 * frameSize.height))
         if N > 2 {
             deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
             deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
             statLocations.append(CGPoint(x : 0.9 * frameSize.width, y : 0.6 * frameSize.height))
             statLocations.append(CGPoint(x : 0.25 * frameSize.width, y : 0.9 * frameSize.height))
+            crossLocations.append(CGPoint(x : 0.9 * frameSize.width, y : frameMidY))
+            crossLocations.append(CGPoint(x : frameMidX, y : 0.95 * frameSize.height))
+            arrowLocations.append(CGPoint(x : 0.9 * frameSize.width, y : 0.375 * frameSize.height))
+            arrowLocations.append(CGPoint(x : frameMidX, y : 0.85 * frameSize.height))
         } else {
             deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
             deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
         }
         deckLocations.append(CGPoint(x : 0, y : frameMidY))
-        statLocations.append(CGPoint(x : 0.1 * frameSize.width, y : 0.35 * frameSize.height))
+        statLocations.append(CGPoint(x : 0.1 * frameSize.width, y : 0.375 * frameSize.height))
+        crossLocations.append(CGPoint(x : 0.05 * frameSize.width, y : frameMidY))
+        arrowLocations.append(CGPoint(x : 0.1 * frameSize.width, y : 0.675 * frameSize.height))
         
         for i in 0..<N {
             deckJacket.append(SKSpriteNode(imageNamed : "Game/Jacket"))
@@ -173,7 +184,19 @@ class PracticeGame {
             
             labels.append(SKLabelNode()) //label => Computer #
             
+            arrows.append(SKSpriteNode(imageNamed : "Game/Arrow"))
+            arrows[i].position = arrowLocations[i]
+            arrows[i].size = CGSize(width : 0.1 * frameSize.width, height : 0.1 * frameSize.width)
+            let arrowDown = SKAction.move(by: CGVector(dx : 0, dy : -0.05 * frameSize.height), duration: 0.5)
+            let arrowUp = SKAction.move(by : CGVector(dx : 0, dy : 0.05 * frameSize.height), duration : 0.5)
+            arrows[i].run(SKAction.repeatForever(SKAction.sequence([arrowDown, arrowUp])))
+            
             stackToDeck.append(SKAction.move(to : deckLocations[i], duration : cardToDeckTime))
+        }
+        
+        if N > 2 {
+            arrows[1].zRotation = CGFloat(Double.pi)
+            arrows[2].zRotation = CGFloat(Double.pi)
         }
         
         deckJacket[0].name = "human"
@@ -249,6 +272,7 @@ class PracticeGame {
         print("Rand Locked")
         locked = false
         thread = 0
+        gameNode.addChild(arrows[turn])
         turnRouter(curr : thread)
     }
     
@@ -256,18 +280,16 @@ class PracticeGame {
         print("--------------------------")
         if locked { return }
         if wrongThread(curr) { return }
+        for arrow in arrows {
+            arrow.removeFromParent()
+        }
         if !ers.getStatus(player: turn) {
-            updateRankings(player : turn)
             turn = (turn + 1) % N
-            pass += 1
-            if pass == N - 1 {
-                gameOver()
-            } else {
-                turnRouter(curr: curr)
-            }
+            turnRouter(curr: curr)
             return
         }
-        pass = 0
+
+        gameNode.addChild(arrows[turn])
         if turn != 0 {
             print("Routing to player", turn, "after delay")
             gameNode.run(SKAction.wait(forDuration :  turnBufferTime), completion: {
@@ -276,6 +298,17 @@ class PracticeGame {
                 self.playTurn(curr : curr)
             })
         }
+    }
+    
+    func randomSlap(curr : UInt64) {
+        var rand = Int.random(in : 1..<self.N)
+        while !ers.getStatus(player : rand) {
+            rand = (rand + 1) % N
+            if rand == 0 {
+                rand = 1
+            }
+        }
+        self.slapAction(player : rand, curr : curr)
     }
     
     func endTurn(curr : UInt64) {
@@ -291,8 +324,7 @@ class PracticeGame {
                 self.collectAction(player : collector, curr : curr)
             } else if self.ers.checkPattern() {
                 print("Slap Detected, Computer Slap Sequence")
-                let rand = Int.random(in : 1..<self.N)
-                self.slapAction(player : rand, curr : curr)
+                self.randomSlap(curr : curr)
             } else {
                 print("Nothing Detected. Proceeding to Routing")
                 self.turnRouter(curr : curr)
@@ -341,6 +373,7 @@ class PracticeGame {
     func slapAction(player : Int, curr : UInt64) {
         if locked { return }
         if wrongThread(curr) { return }
+        if ers.stack.count() <= 0 { return }
         locked = true
         print("Player", player, "has slapped the stack")
         gameNode.addChild(hands[player])
@@ -358,6 +391,7 @@ class PracticeGame {
                     print("Collection Completed. Proceeding with Routing")
                     self.updateStats()
                     self.updatePenalty()
+                    self.updateRankings()
                     self.turn = player
                     self.locked = false
                     self.thread += 1
@@ -397,6 +431,7 @@ class PracticeGame {
             print("Obligation Collected. Proceeding with Routing")
             self.updateStats()
             self.updatePenalty()
+            self.updateRankings()
             self.turn = player
             self.locked = false
             self.thread += 1
@@ -404,15 +439,32 @@ class PracticeGame {
         })
     }
     
-    func updateRankings(player : Int) {
+    func updateRankings() {
         //place X over losers
         //print("Player \(player) has placed #\(playersLeft)")
-        if placement[player] == -1 {
-            ers.deactivatePlayer(player : player)
-            placement[player] = playersLeft
-            playersLeft -= 1
+        var inactive : Int = 0
+        for i in 0..<N {
+            if !ers.getStatus(player: i) {
+                if placement[i] == -1 {
+                    let tempCross = SKSpriteNode(imageNamed : "Game/Cross")
+                    tempCross.position = crossLocations[i]
+                    tempCross.size = CGSize(width : frameSize.width / 3.5, height : frameSize.width / 3.5)
+                    tempCross.zPosition = 100
+                    gameNode.addChild(tempCross)
+                    ers.deactivatePlayer(player : i)
+                    print("Player \(i) has been deactivated")
+                    placement[i] = playersLeft
+                    playersLeft -= 1
+                } else {
+                    inactive += 1
+                }
+                if i == 0 {
+                    gameOver()
+                }
+            }
         }
-        if player == 0 {
+        if inactive == N - 1 {
+            placement[0] = 1
             gameOver()
         }
     }

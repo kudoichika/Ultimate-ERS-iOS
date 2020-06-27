@@ -70,12 +70,13 @@ class Player {
         return burns
     }
     func checkStatus() -> Bool {
-        if !active || cardQueue.count() <= 0 {
-            return false
+        if active && cardQueue.count() > 0 {
+            return true
         }
-        return true
+        return false
     }
     func deactivate() {
         active = false
+        print("Player Deactivated")
     }
 }
