@@ -57,12 +57,14 @@ class PracticeGame {
     var playersLeft : Int!
     var placement : Array<Int>!
     weak var parent : PracticeScene!
+    var start : Bool!
     
     init(frame : CGSize, numPlayers : Int) {
         frameSize = frame
         frameMidX = frameSize.width / 2
         frameMidY = frameSize.height / 2
         N = numPlayers
+        start = false
         create()
     }
     
@@ -76,6 +78,7 @@ class PracticeGame {
     }
     
     func userTouched(node : SKNode) {
+        if !start { return }
         /*if touchedNodes[0].name == "pause" {
             openPauseScreen()
             return
@@ -148,7 +151,7 @@ class PracticeGame {
         if N > 2 {
             deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
             deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
-            statLocations.append(CGPoint(x : 0.9 * frameSize.width, y : 0.6 * frameSize.height))
+            statLocations.append(CGPoint(x : 0.9 * frameSize.width, y : 0.65 * frameSize.height))
             statLocations.append(CGPoint(x : 0.25 * frameSize.width, y : 0.9 * frameSize.height))
             crossLocations.append(CGPoint(x : 0.9 * frameSize.width, y : frameMidY))
             crossLocations.append(CGPoint(x : frameMidX, y : 0.95 * frameSize.height))
@@ -159,7 +162,7 @@ class PracticeGame {
             deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
         }
         deckLocations.append(CGPoint(x : 0, y : frameMidY))
-        statLocations.append(CGPoint(x : 0.1 * frameSize.width, y : 0.375 * frameSize.height))
+        statLocations.append(CGPoint(x : 0.1 * frameSize.width, y : 0.325 * frameSize.height))
         crossLocations.append(CGPoint(x : 0.05 * frameSize.width, y : frameMidY))
         arrowLocations.append(CGPoint(x : 0.1 * frameSize.width, y : 0.675 * frameSize.height))
         
@@ -199,10 +202,15 @@ class PracticeGame {
             arrows[2].zRotation = CGFloat(Double.pi)
         }
         
+        labels[0].text = "You"
+        labels[0].fontName = "AvenirNext-Bold"
+        labels[0].fontColor = UIColor.yellow
+        labels[0].position = CGPoint(x : 0.225 * frameSize.width, y: 0.05 * frameSize.height)
+        
         deckJacket[0].name = "human"
         deckToStack = SKAction.move(to : CGPoint(x : frameMidX, y : frameMidY), duration : cardToStackTime)
         penaltyStat = SKLabelNode()
-        penaltyStat.position = CGPoint(x : frameMidX, y : 0.65 * frameSize.height)
+        penaltyStat.position = CGPoint(x : frameMidX, y : 0.7 * frameSize.height)
         penaltyStat.fontColor = UIColor.red
         penaltyStat.text = ""
         penaltyStat.fontName = "AvenirNext-Bold"
@@ -271,8 +279,10 @@ class PracticeGame {
         print("First player is: ", turn)
         print("Rand Locked")
         locked = false
+        start = true
         thread = 0
         gameNode.addChild(arrows[turn])
+        gameNode.addChild(labels[0])
         turnRouter(curr : thread)
     }
     
@@ -440,8 +450,6 @@ class PracticeGame {
     }
     
     func updateRankings() {
-        //place X over losers
-        //print("Player \(player) has placed #\(playersLeft)")
         var inactive : Int = 0
         for i in 0..<N {
             if !ers.getStatus(player: i) {

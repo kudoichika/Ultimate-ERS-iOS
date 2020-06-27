@@ -54,7 +54,7 @@ class ERS {
             }
         }
         cards.shuffle()
-        for i in 0..<10 { //cards.count
+        for i in 0..<52 { //cards.count
             players[i % N].appendCards(cardIn : [cards[i]])
         }
     }

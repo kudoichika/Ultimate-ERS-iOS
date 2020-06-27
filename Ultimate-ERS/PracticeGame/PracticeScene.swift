@@ -11,7 +11,7 @@ import SpriteKit
 
 //ClockWise vs CounterClockwise Customization
 //Computer Automatic Obligation Too Fast Honestly
-//Random Chance that computer does ot get the slap
+//Random Chance that computer does not get the slap
 
 class PracticeScene : SKScene {
     
@@ -31,22 +31,18 @@ class PracticeScene : SKScene {
     
     override var isUserInteractionEnabled: Bool {
         get {
-            return true//!locked
+            return true
         }
         set {  }
     }
     
     override func didMove(to view: SKView) {
+        //Create A Screen to Start Game
         print("Loaded View")
         layoutScene()
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        //CHECK END #PROBABLY DONT NEED TO
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //if locked { print("User Interaction Prohibited"); return }
         print("User Has Interacted")
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
@@ -62,7 +58,6 @@ class PracticeScene : SKScene {
                 }
             } else {
                 if node.name == "pause" {
-                    //rescale
                     current = "pause"
                     return
                 }
@@ -83,9 +78,7 @@ class PracticeScene : SKScene {
                 print("Ended EndScreen")
                 closeEndScreen(choice : touchedNodes[0])
             } else {
-                //grow pause
                 if touchedNodes[0].name == "pause" && current == "pause" {
-                    //rescale
                     state = "paused"
                     game.setPause(true)
                     openPauseScreen()
@@ -104,7 +97,6 @@ class PracticeScene : SKScene {
         pauseButton.position = CGPoint(x : 0.9 * frame.size.width, y : 0.9 * frame.size.height)
         pauseButton.size = CGSize(width : 0.125 * frame.size.width, height : 0.125 * frame.size.width)
         pauseButton.name = "pause"
-        addChild(pauseButton)
         
         labelAnimTime = 0.1
         
@@ -112,6 +104,10 @@ class PracticeScene : SKScene {
         game = PracticeGame(frame : frame.size, numPlayers: 4)
         game.parent = self
         game.addComponents(self)
+        
+        self.run(SKAction.wait(forDuration : 0.3), completion : {
+            self.addChild(self.pauseButton)
+        })
     }
     
     func openPauseScreen() {
