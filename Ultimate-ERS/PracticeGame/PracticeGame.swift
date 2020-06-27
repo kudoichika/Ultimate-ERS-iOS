@@ -162,6 +162,12 @@ class PracticeGame {
         } else {
             deckLocations.append(CGPoint(x : frameMidX, y : frameSize.height))
             deckLocations.append(CGPoint(x : frameSize.width, y : frameMidY))
+            statLocations.append(CGPoint(x : 0.25 * frameSize.width, y : 0.9 * frameSize.height))
+            statLocations.append(CGPoint(x : 0.9 * frameSize.width, y : 0.65 * frameSize.height))
+            crossLocations.append(CGPoint(x : frameMidX, y : 0.95 * frameSize.height))
+            crossLocations.append(CGPoint(x : 0.9 * frameSize.width, y : frameMidY))
+            arrowLocations.append(CGPoint(x : frameMidX, y : 0.85 * frameSize.height))
+            arrowLocations.append(CGPoint(x : 0.9 * frameSize.width, y : 0.375 * frameSize.height))
         }
         deckLocations.append(CGPoint(x : 0, y : frameMidY))
         statLocations.append(CGPoint(x : 0.1 * frameSize.width, y : 0.325 * frameSize.height))
@@ -173,7 +179,6 @@ class PracticeGame {
             deckJacket[i].size = CGSize(width: frameSize.width / 3.5,
                                         height: 1.4 * frameSize.width / 3.5)
             deckJacket[i].position = deckLocations[i]
-            deckJacket[i].zRotation = CGFloat(Double(i) * (Double.pi / 2))
             deckJacket[i].zPosition = 75
             
             hands.append(SKSpriteNode(imageNamed : "Game/Hand"))
@@ -199,8 +204,11 @@ class PracticeGame {
             stackToDeck.append(SKAction.move(to : deckLocations[i], duration : cardToDeckTime))
         }
         
+        arrows[1].zRotation = CGFloat(Double.pi)
+        
         if N > 2 {
-            arrows[1].zRotation = CGFloat(Double.pi)
+            deckJacket[1].zRotation = CGFloat(Double.pi / 2)
+            deckJacket[3].zRotation = CGFloat(Double.pi / 2)
             arrows[2].zRotation = CGFloat(Double.pi)
         }
         
@@ -264,8 +272,8 @@ class PracticeGame {
         tempCard.run(stackToDeck[(52-1) % N], completion : {
             tempCard.removeFromParent()
             self.updateStats()
-            for stat in self.cardStats {
-                self.gameNode.addChild(stat)
+            for i in 0..<self.N {
+                self.gameNode.addChild(self.cardStats[i])
             }
             print("Cards have been distributed. Starting Game...")
             self.randTurn()

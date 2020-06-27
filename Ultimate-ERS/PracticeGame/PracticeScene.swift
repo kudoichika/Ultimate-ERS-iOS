@@ -101,7 +101,7 @@ class PracticeScene : SKScene {
         labelAnimTime = 0.1
         
         state = "playing"
-        game = PracticeGame(frame : frame.size, numPlayers: 4)
+        game = PracticeGame(frame : frame.size, numPlayers: 2)
         game.parent = self
         game.addComponents(self)
         
