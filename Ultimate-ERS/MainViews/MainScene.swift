@@ -83,7 +83,7 @@ class MainScene: SKScene {
             i += 1
         }
         
-        labelAnimTime = 0.1
+        labelAnimTime = 0.075
         
         shrinkAction = SKAction.resize(toWidth: frame.size.width / 2.1, height : frame.size.width / CGFloat(3.7 * 16.0 / 9.0), duration: labelAnimTime)
         growAction = SKAction.resize(toWidth : labelSize.width, height : labelSize.height, duration: labelAnimTime)
@@ -138,7 +138,7 @@ class MainScene: SKScene {
         case "practice": vcdest = "PracticeViewController"
         case "multiplay": vcdest = "LoginViewController"
         case "customize": vcdest = "CustomizeViewController"
-        case "other": vcdest = ""
+        case "other": vcdest = "TestViewController"
         default: vcdest = ""
         }
         if vcdest == "" { return }

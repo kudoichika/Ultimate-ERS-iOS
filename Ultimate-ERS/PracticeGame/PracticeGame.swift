@@ -2,7 +2,7 @@
 //  PracticeGame.swift
 //  Ultimate-ERS
 //
-//  Created by Kudo on 6/25/20.
+//  Created by kudoichika on 6/25/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
@@ -60,12 +60,12 @@ class PracticeGame {
     var start : Bool!
     var decklocked : Bool!
     
-    init(frame : CGSize, numPlayers : Int) {
+    init(frame : CGSize) {
         frameSize = frame
         frameMidX = frameSize.width / 2
         frameMidY = frameSize.height / 2
-        N = numPlayers
         start = false
+        configureSettings()
         create()
     }
     
@@ -106,6 +106,18 @@ class PracticeGame {
         gameNode.removeFromParent()
     }
     
+    func configureSettings() {
+        N = numPlayers
+        obg = manualObligation
+        //Default 0.75s => Customize using Difficulty
+        cardToDeckTime = 0.75
+        turnBufferTime = 0.75
+        computerActionTime = 0.75
+        //Default 0.25s => Customize using Difficulty
+        cardToStackTime = 0.25
+        handVisibleTime = 0.25
+    }
+    
     func create() {
         deckLocations = []
         statLocations = []
@@ -125,21 +137,8 @@ class PracticeGame {
         for _ in 0..<N {
             placement.append(-1)
         }
-        
-        configureSettings()
         layoutScene()
         distributeCards()
-    }
-    
-    func configureSettings() {
-        obg = manualObligation
-        //Default 0.75s
-        cardToDeckTime = 0.75
-        turnBufferTime = 0.75
-        computerActionTime = 0.75
-        //Default 0.25s
-        cardToStackTime = 0.25
-        handVisibleTime = 0.25
     }
     
     func layoutScene() {
@@ -205,11 +204,15 @@ class PracticeGame {
         }
         
         arrows[1].zRotation = CGFloat(Double.pi)
+        hands[1].zRotation = CGFloat(Double.pi)
         
         if N > 2 {
             deckJacket[1].zRotation = CGFloat(Double.pi / 2)
             deckJacket[3].zRotation = CGFloat(Double.pi / 2)
             arrows[2].zRotation = CGFloat(Double.pi)
+            hands[1].zRotation = CGFloat(Double.pi / 2)
+            hands[2].zRotation = CGFloat(Double.pi)
+            hands[3].zRotation = CGFloat(3 * Double.pi / 2)
         }
         
         labels[0].text = "You"
@@ -292,7 +295,7 @@ class PracticeGame {
         locked = false
         start = true
         thread = 0
-        gameNode.addChild(arrows[turn])
+        //gameNode.addChild(arrows[turn])
         gameNode.addChild(labels[0])
         turnRouter(curr : thread)
     }
@@ -301,15 +304,15 @@ class PracticeGame {
         print("--------------------------")
         if locked { return }
         if wrongThread(curr) { return }
-        for arrow in arrows {
+        /*for arrow in arrows {
             arrow.removeFromParent()
-        }
+        }*/
         if !ers.getStatus(player: turn) {
             turn = (turn + 1) % N
             turnRouter(curr: curr)
             return
         }
-        gameNode.addChild(arrows[turn])
+        //gameNode.addChild(arrows[turn])
         decklocked = false
         if turn != 0 {
             print("Routing to player", turn, "after delay")
@@ -318,6 +321,8 @@ class PracticeGame {
                 if self.wrongThread(curr) { return }
                 self.playTurn(curr : curr)
             })
+        } else {
+            gameNode.addChild(arrows[turn])
         }
     }
     
@@ -374,6 +379,9 @@ class PracticeGame {
             rotationFactor -= Double.pi
         }
         cardSprite.run(deckToStack, completion: {
+            for arrow in self.arrows {
+                arrow.removeFromParent()
+            }
             cardSprite.texture = SKTexture(imageNamed: "Cards/" + card.tostring())
             print("Card Played is", card.tostring())
             self.stackDisplay.append(cardSprite)

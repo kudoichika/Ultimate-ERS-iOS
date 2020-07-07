@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8302C65924A13FBB00A2404D /* ERS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8302C65824A13FBB00A2404D /* ERS.swift */; };
+		830F293424A90C7F00A0385A /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830F293324A90C7F00A0385A /* TestViewController.swift */; };
 		831B163A2485A0CC0066A5FB /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B16392485A0CC0066A5FB /* Connection.swift */; };
 		831B163C2485A0EA0066A5FB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B163B2485A0EA0066A5FB /* RegisterViewController.swift */; };
 		831B163E2485A17F0066A5FB /* MultiGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831B163D2485A17F0066A5FB /* MultiGameViewController.swift */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		8302C65824A13FBB00A2404D /* ERS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ERS.swift; sourceTree = "<group>"; };
+		830F293324A90C7F00A0385A /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		831B16392485A0CC0066A5FB /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		831B163B2485A0EA0066A5FB /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		831B163D2485A17F0066A5FB /* MultiGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiGameViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				839F3DD22475F34D009C129E /* GameScene.sks */,
 				839F3DD42475F34D009C129E /* Actions.sks */,
 				839F3DD62475F34D009C129E /* GameScene.swift */,
+				830F293324A90C7F00A0385A /* TestViewController.swift */,
 			);
 			path = References;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			files = (
 				83B6192624A4F7A800A2D31E /* PracticeGame.swift in Sources */,
 				83B6192424A3DE4C00A2D31E /* PopScreens.swift in Sources */,
+				830F293424A90C7F00A0385A /* TestViewController.swift in Sources */,
 				831B16462485A26B0066A5FB /* MultiLobbyViewController.swift in Sources */,
 				831B163A2485A0CC0066A5FB /* Connection.swift in Sources */,
 				83F19E7C24A38C83009168D4 /* MainSceneViewController.swift in Sources */,

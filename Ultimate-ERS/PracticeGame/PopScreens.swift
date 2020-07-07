@@ -2,7 +2,7 @@
 //  MenuScreens.swift
 //  Ultimate-ERS
 //
-//  Created by Kudo on 6/24/20.
+//  Created by kudoichika on 6/24/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
