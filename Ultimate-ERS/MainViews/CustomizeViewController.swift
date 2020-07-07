@@ -11,15 +11,13 @@ import UIKit
 class CustomizeViewController: UIViewController {
 
     @IBOutlet weak var gameLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
     
     @IBOutlet weak var diffcultyLabel: UILabel!
     @IBOutlet weak var difficultyStepper: UIStepper!
-    
-    @IBOutlet weak var topBottomSwitch: UISwitch!
     @IBOutlet weak var pairSwitch: UISwitch!
+    @IBOutlet weak var topBottomSwitch: UISwitch!
     @IBOutlet weak var sandwichSwitch: UISwitch!
     @IBOutlet weak var marriageSwitch: UISwitch!
     @IBOutlet weak var divorceSwitch: UISwitch!
@@ -37,16 +35,33 @@ class CustomizeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "Bg")!)
         gameLabel.layer.masksToBounds = true
         gameLabel.layer.cornerRadius = 20
         gameLabel.textColor = UIColor.white
         
-        let Buttons = [backButton, saveButton]
-        for button in Buttons {
-            button!.layer.borderWidth = 2
-            button!.layer.borderColor = UIColor(red: 38.0 / 255, green: 41.0 / 255, blue: 157.0 / 255, alpha: 1).cgColor
-            button!.layer.cornerRadius = 10
+        saveButton!.layer.borderWidth = 2
+        saveButton!.layer.borderColor = UIColor.white.cgColor
+        saveButton!.layer.cornerRadius = 10
+
+        let switches = [
+            pairSwitch,
+            topBottomSwitch,
+            sandwichSwitch,
+            marriageSwitch,
+            divorceSwitch,
+            additionSwitch,
+            staircaseSwitch,
+            pythSwitch,
+            obligationSwitch
+        ]
+        
+        for sw in switches {
+            sw?.onTintColor = UIColor.brown
+            //sw?.backgroundColor = UIColor.brown
+            //sw?.layer.cornerRadius = 16.0;
         }
+            
         difficultyStepper.wraps = false
         difficultyStepper.autorepeat = false
         difficultyStepper.minimumValue = 1
