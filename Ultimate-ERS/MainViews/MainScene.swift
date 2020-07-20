@@ -138,7 +138,7 @@ class MainScene: SKScene {
         case "practice": vcdest = "PracticeViewController"
         case "multiplay": vcdest = "LoginViewController"
         case "customize": vcdest = "CustomizeViewController"
-        case "other": vcdest = "TestViewController"
+        case "other": vcdest = ""
         default: vcdest = ""
         }
         if vcdest == "" { return }
