@@ -21,6 +21,7 @@ var stairSlap : Bool = true
 var computerDifficulty : Int = 5
 var manualObligation : Bool = true
 var numPlayers : Int = 2
+var labels : Bool = true
 
 func createUserDefaults() {
     if (UserDefaults.standard.object(forKey : "TBSlap") == nil) {
@@ -56,6 +57,9 @@ func createUserDefaults() {
     if (UserDefaults.standard.object(forKey : "NumComp") == nil) {
         UserDefaults.standard.set(2, forKey: "NumComp")
     }
+    if (UserDefaults.standard.object(forKey : "Label") == nil) {
+        UserDefaults.standard.set(true, forKey: "Label")
+    }
 }
 
 func initUserDefaults() {
@@ -70,6 +74,7 @@ func initUserDefaults() {
     computerDifficulty = UserDefaults.standard.integer(forKey: "CompDiff")
     manualObligation = UserDefaults.standard.bool(forKey: "ManObg")
     numPlayers = UserDefaults.standard.integer(forKey : "NumComp")
+    labels = UserDefaults.standard.bool(forKey : "Label")
 }
 
 func saveUserDefaults() {
@@ -84,5 +89,6 @@ func saveUserDefaults() {
     UserDefaults.standard.set(computerDifficulty, forKey: "CompDiff")
     UserDefaults.standard.set(manualObligation, forKey: "ManObg")
     UserDefaults.standard.set(numPlayers, forKey : "NumComp")
+    UserDefaults.standard.set(labels, forKey: "Label")
 }
 

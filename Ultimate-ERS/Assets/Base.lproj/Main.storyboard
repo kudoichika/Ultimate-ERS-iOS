@@ -22,138 +22,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZ2-uz-Qee" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-577"/>
-        </scene>
-        <!--Main View Controller-->
-        <scene sceneID="jw2-aT-jzf">
-            <objects>
-                <viewController storyboardIdentifier="MainViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Fbp-lw-SFG" customClass="MainViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="wo5-HY-L64">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="qPv-jp-JVl">
-                                <rect key="frame" x="100" y="325" width="175" height="222"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIj-aZ-rve">
-                                        <rect key="frame" x="0.0" y="0.0" width="175" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="RRM-3z-Inw"/>
-                                        </constraints>
-                                        <state key="normal" title="Practice">
-                                            <color key="titleColor" red="0.15091664590000001" green="0.15961779700000001" blue="0.61602392669999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="JXt-L6-kct" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="bjn-DG-ChB"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jr0-v5-esN">
-                                        <rect key="frame" x="0.0" y="63" width="175" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="F4Q-TD-4md"/>
-                                        </constraints>
-                                        <state key="normal" title="MultiPlayer (Coming Soon)">
-                                            <color key="titleColor" red="0.15091664590000001" green="0.15961779700000001" blue="0.61602392669999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="AXl-rR-dUA" kind="presentation" modalPresentationStyle="fullScreen" id="qGH-Rp-a71"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wr9-14-3CT">
-                                        <rect key="frame" x="0.0" y="126" width="175" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="ks6-Hy-NJZ"/>
-                                        </constraints>
-                                        <state key="normal" title="Customize">
-                                            <color key="titleColor" red="0.15091664590000001" green="0.15961779700000001" blue="0.61602392669999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="n6Q-4o-qJH" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="BxB-TC-oRQ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3a-ai-hsl">
-                                        <rect key="frame" x="0.0" y="189" width="175" height="33"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="gFf-3o-zcc"/>
-                                        </constraints>
-                                        <state key="normal" title="Other (NA)">
-                                            <color key="titleColor" red="0.15091664590000001" green="0.15961779700000001" blue="0.61602392669999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="LK7-ou-xbT" kind="presentation" modalPresentationStyle="fullScreen" id="2Tq-SL-ECv"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxc-sd-B6p">
-                                <rect key="frame" x="60" y="80" width="255" height="140"/>
-                                <color key="backgroundColor" red="0.16161612819999999" green="0.64819895350000001" blue="0.26724568500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="pBQ-w0-hpv"/>
-                                </constraints>
-                                <attributedString key="attributedText">
-                                    <fragment content="E">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                            <font key="NSFont" metaFont="system" size="50"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" ">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                            <font key="NSFont" size="50" name="AlBayan"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="R">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                            <font key="NSFont" metaFont="system" size="50"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" ">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                            <font key="NSFont" size="50" name="AlBayan"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="S">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                            <font key="NSFont" metaFont="system" size="50"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="Oxc-sd-B6p" firstAttribute="leading" secondItem="eEc-wv-gfy" secondAttribute="leading" constant="60" id="7r3-nX-e82"/>
-                            <constraint firstItem="qPv-jp-JVl" firstAttribute="top" secondItem="Oxc-sd-B6p" secondAttribute="bottom" constant="105" id="GoL-6T-7lt"/>
-                            <constraint firstItem="eEc-wv-gfy" firstAttribute="trailing" secondItem="qPv-jp-JVl" secondAttribute="trailing" constant="100" id="J4X-m5-276"/>
-                            <constraint firstItem="eEc-wv-gfy" firstAttribute="bottom" secondItem="qPv-jp-JVl" secondAttribute="bottom" constant="120" id="ZCj-2i-gJ4"/>
-                            <constraint firstItem="qPv-jp-JVl" firstAttribute="leading" secondItem="eEc-wv-gfy" secondAttribute="leading" constant="100" id="hpR-VB-uHr"/>
-                            <constraint firstItem="Oxc-sd-B6p" firstAttribute="top" secondItem="eEc-wv-gfy" secondAttribute="top" constant="80" id="jeb-QU-lOE"/>
-                            <constraint firstItem="eEc-wv-gfy" firstAttribute="trailing" secondItem="Oxc-sd-B6p" secondAttribute="trailing" constant="60" id="vDp-z3-FcD"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="eEc-wv-gfy"/>
-                    </view>
-                    <connections>
-                        <outlet property="customizeButton" destination="Wr9-14-3CT" id="mfs-lM-usS"/>
-                        <outlet property="gameLabel" destination="Oxc-sd-B6p" id="9px-p1-4FZ"/>
-                        <outlet property="multiButton" destination="Jr0-v5-esN" id="7q5-1L-swO"/>
-                        <outlet property="otherButton" destination="q3a-ai-hsl" id="2DV-86-nkY"/>
-                        <outlet property="singleButton" destination="dIj-aZ-rve" id="9t8-mX-zHT"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UPl-3u-qHb" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="132" y="139"/>
+            <point key="canvasLocation" x="214" y="126"/>
         </scene>
         <!--Customize View Controller-->
         <scene sceneID="V5b-W1-V8i">
@@ -192,7 +61,7 @@
                                             <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Fbp-lw-SFG" kind="presentation" identifier="saveSegue" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="AtV-Kn-FES"/>
+                                            <segue destination="LK7-ou-xbT" kind="presentation" identifier="saveSegue" modalPresentationStyle="fullScreen" id="aVH-WB-70f"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -678,7 +547,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AtV-Kn-FES"/>
-        <segue reference="qGH-Rp-a71"/>
+        <segue reference="BpY-jV-KrZ"/>
     </inferredMetricsTieBreakers>
 </document>

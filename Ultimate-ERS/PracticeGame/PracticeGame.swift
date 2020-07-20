@@ -109,10 +109,11 @@ class PracticeGame {
     func configureSettings() {
         N = numPlayers
         obg = manualObligation
+        let cd = computerDifficulty
         //Default 0.75s => Customize using Difficulty
         cardToDeckTime = 0.75
-        turnBufferTime = 0.75
-        computerActionTime = 0.75
+        turnBufferTime = 0.75 + 0.1 * Double((5 - cd))
+        computerActionTime = 0.75 + 0.1 * Double((5 - cd))
         //Default 0.25s => Customize using Difficulty
         cardToStackTime = 0.25
         handVisibleTime = 0.25
@@ -350,8 +351,20 @@ class PracticeGame {
                 print("Manual Obligation Collection")
                 self.collectAction(player : collector, curr : curr)
             } else if self.ers.checkPattern() {
-                print("Slap Detected, Computer Slap Sequence")
-                self.randomSlap(curr : curr)
+                let cd = computerDifficulty
+                let rand = Int.random(in : 1...5)
+                if cd > 3 {
+                    print("Slap Detected, Computer Slap Sequence")
+                    self.randomSlap(curr : curr)
+                } else if cd < 4 {
+                    if rand > (cd + 1) {
+                        print("Slap Detected, Computer Slap Sequence")
+                        self.randomSlap(curr : curr)
+                    } else {
+                        print("Nothing Detected. Proceeding to Routing")
+                        self.turnRouter(curr : curr)
+                    }
+                }
             } else {
                 print("Nothing Detected. Proceeding to Routing")
                 self.turnRouter(curr : curr)

@@ -51,6 +51,7 @@ class PauseScreen : PopScreen {
     override init(frameSize : CGSize) {
         super.init(frameSize : frameSize)
         label = SKLabelNode(text : "Paused")
+        label.fontName = "AvenirNext-Bold"
         label.position = CGPoint(x : 0.5 * frameSize.width, y : 0.675 * frameSize.height)
         
         resume = SKSpriteNode(imageNamed : "Menu/Resume")
@@ -117,6 +118,7 @@ class EndScreen : PopScreen {
         } else {
             label = SKLabelNode(text : "You ranked #\(verdict)!")
         }
+        label.fontName = "AvenirNext-Bold"
         label.position = CGPoint(x : 0.5 * frameSize.width, y : 0.675 * frameSize.height)
         
         
