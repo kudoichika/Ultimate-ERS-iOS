@@ -16,6 +16,8 @@ class CustomizeViewController: UIViewController {
     
     @IBOutlet weak var diffcultyLabel: UILabel!
     @IBOutlet weak var difficultyStepper: UIStepper!
+    @IBOutlet weak var playersLabel: UILabel!
+    @IBOutlet weak var playersStepper: UIStepper!
     @IBOutlet weak var pairSwitch: UISwitch!
     @IBOutlet weak var topBottomSwitch: UISwitch!
     @IBOutlet weak var sandwichSwitch: UISwitch!
@@ -25,12 +27,18 @@ class CustomizeViewController: UIViewController {
     @IBOutlet weak var staircaseSwitch: UISwitch!
     @IBOutlet weak var pythSwitch: UISwitch!
     @IBOutlet weak var obligationSwitch: UISwitch!
-
+    @IBOutlet weak var labelSwitch: UISwitch!
+    
     var setup : Bool = false
     
-    @objc func stepperValue(sender : UIStepper) {
+    @objc func difStepperValue(sender : UIStepper) {
         if !setup { return }
         diffcultyLabel.text = "Computer Difficulty: \(Int(sender.value))"
+    }
+    
+    @objc func playStepperValue(sender : UIStepper) {
+        if !setup { return }
+        playersLabel.text = "Number of Players: \(Int(sender.value))"
     }
     
     override func viewDidLoad() {
@@ -53,7 +61,8 @@ class CustomizeViewController: UIViewController {
             additionSwitch,
             staircaseSwitch,
             pythSwitch,
-            obligationSwitch
+            obligationSwitch,
+            labelSwitch
         ]
         
         for sw in switches {
@@ -67,9 +76,16 @@ class CustomizeViewController: UIViewController {
         difficultyStepper.minimumValue = 1
         difficultyStepper.maximumValue = 5
         difficultyStepper.stepValue = 1
+        playersStepper.wraps = false
+        playersStepper.autorepeat = false
+        playersStepper.minimumValue = 2
+        playersStepper.maximumValue = 4
+        playersStepper.stepValue = 1
         initDefaults();
         
-        difficultyStepper.addTarget(self, action: #selector(stepperValue), for: .valueChanged)
+        difficultyStepper.addTarget(self, action: #selector(difStepperValue), for: .valueChanged)
+        playersStepper.addTarget(self, action: #selector(playStepperValue), for : .valueChanged)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -85,6 +101,8 @@ class CustomizeViewController: UIViewController {
             stairSlap = staircaseSwitch.isOn
             manualObligation = obligationSwitch.isOn
             computerDifficulty = Int(difficultyStepper.value)
+            numPlayers = Int(playersStepper.value)
+            labelHint = labelSwitch.isOn
             saveUserDefaults()
         }
     }
@@ -101,6 +119,8 @@ class CustomizeViewController: UIViewController {
         obligationSwitch.setOn(manualObligation, animated: false)
         difficultyStepper.value = Double(computerDifficulty)
         diffcultyLabel.text = "Computer Difficulty: \(Int(difficultyStepper.value))"
+        playersLabel.text = "Number of Players: \(Int(playersStepper.value))"
+        labelSwitch.setOn(labelHint, animated: false)
         setup = true
     }
     

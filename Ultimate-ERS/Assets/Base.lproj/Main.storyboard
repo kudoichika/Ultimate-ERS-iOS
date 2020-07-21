@@ -70,7 +70,7 @@
                                 <rect key="frame" x="20" y="140" width="335" height="417"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="wBX-zP-5Nr">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="692"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="759"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Rd9-2r-LIl">
                                                 <rect key="frame" x="30" y="0.0" width="275" height="32"/>
@@ -86,8 +86,22 @@
                                                     </stepper>
                                                 </subviews>
                                             </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3nm-zD-nv2">
+                                                <rect key="frame" x="30" y="67" width="275" height="32"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Players: 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z1F-1r-bej">
+                                                        <rect key="frame" x="0.0" y="0.0" width="173" height="32"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xkS-Il-Gnv">
+                                                        <rect key="frame" x="181" y="0.0" width="94" height="32"/>
+                                                    </stepper>
+                                                </subviews>
+                                            </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MxG-Ft-ouU">
-                                                <rect key="frame" x="30" y="67" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="134" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manual Obligations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7T1-Jg-PMU">
                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="31"/>
@@ -101,7 +115,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pd2-m6-vvn">
-                                                <rect key="frame" x="30" y="133" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="200" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slap Labels" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BKM-sy-yt1">
                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="31"/>
@@ -115,7 +129,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="PEj-ca-3FI">
-                                                <rect key="frame" x="30" y="199" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="266" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Bottoms" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fN-Wm-ayf">
                                                         <rect key="frame" x="0.0" y="0.0" width="218" height="31"/>
@@ -129,7 +143,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="QSI-0Q-WII">
-                                                <rect key="frame" x="30" y="265" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="332" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pairs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cca-Fg-nOk">
                                                         <rect key="frame" x="0.0" y="0.0" width="218" height="31"/>
@@ -143,7 +157,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xz1-F1-M5z">
-                                                <rect key="frame" x="30" y="331" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="398" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sandwiches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F9X-nW-hvK">
                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="31"/>
@@ -157,7 +171,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MKa-am-bwU">
-                                                <rect key="frame" x="30" y="397" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="464" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marriages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcm-T3-umC">
                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="31"/>
@@ -171,7 +185,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywU-i2-mnm">
-                                                <rect key="frame" x="30" y="463" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="530" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Divorces" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XtN-jl-RTr">
                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="31"/>
@@ -185,7 +199,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSC-ph-2WI">
-                                                <rect key="frame" x="30" y="529" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="596" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Additions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="25E-ZC-Bw6">
                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="31"/>
@@ -199,7 +213,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xQE-qf-YbL">
-                                                <rect key="frame" x="30" y="595" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="662" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staircases" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwN-Ce-ETb">
                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="31"/>
@@ -213,7 +227,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XKo-cT-20c">
-                                                <rect key="frame" x="30" y="661" width="275" height="31"/>
+                                                <rect key="frame" x="30" y="728" width="275" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pythagoreans" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m38-RE-jUd">
                                                         <rect key="frame" x="0.0" y="0.0" width="226" height="31"/>
@@ -230,9 +244,11 @@
                                         <constraints>
                                             <constraint firstItem="BSC-ph-2WI" firstAttribute="leading" secondItem="wBX-zP-5Nr" secondAttribute="leading" constant="30" id="0k5-vB-Hlp"/>
                                             <constraint firstAttribute="trailing" secondItem="Rd9-2r-LIl" secondAttribute="trailing" constant="30" id="5sg-Jt-L4c"/>
+                                            <constraint firstItem="3nm-zD-nv2" firstAttribute="leading" secondItem="wBX-zP-5Nr" secondAttribute="leading" constant="30" id="6MF-zY-tMc"/>
                                             <constraint firstItem="XKo-cT-20c" firstAttribute="leading" secondItem="wBX-zP-5Nr" secondAttribute="leading" constant="30" id="AMK-x5-sNm"/>
                                             <constraint firstItem="Rd9-2r-LIl" firstAttribute="leading" secondItem="wBX-zP-5Nr" secondAttribute="leading" constant="30" id="Ddj-jJ-Eub"/>
                                             <constraint firstItem="Pd2-m6-vvn" firstAttribute="leading" secondItem="wBX-zP-5Nr" secondAttribute="leading" constant="30" id="F3h-52-bKb"/>
+                                            <constraint firstAttribute="trailing" secondItem="3nm-zD-nv2" secondAttribute="trailing" constant="30" id="HBL-cC-6NS"/>
                                             <constraint firstItem="xQE-qf-YbL" firstAttribute="leading" secondItem="wBX-zP-5Nr" secondAttribute="leading" constant="30" id="MHS-Jh-Aea"/>
                                             <constraint firstItem="Xz1-F1-M5z" firstAttribute="leading" secondItem="wBX-zP-5Nr" secondAttribute="leading" constant="30" id="OTX-4T-lqw"/>
                                             <constraint firstAttribute="trailing" secondItem="BSC-ph-2WI" secondAttribute="trailing" constant="30" id="OfD-m6-t6a"/>
@@ -283,9 +299,12 @@
                         <outlet property="difficultyStepper" destination="a5x-cP-iZW" id="nPs-jn-qo4"/>
                         <outlet property="divorceSwitch" destination="dwa-O1-0Cy" id="nzd-lF-xhU"/>
                         <outlet property="gameLabel" destination="Tbc-tL-82f" id="RUk-bn-eYB"/>
+                        <outlet property="labelSwitch" destination="I2p-J0-oyk" id="D2q-p9-Rd8"/>
                         <outlet property="marriageSwitch" destination="CiP-xp-ldK" id="AdK-P9-sta"/>
                         <outlet property="obligationSwitch" destination="E3E-ms-aG5" id="Cul-sv-rAf"/>
                         <outlet property="pairSwitch" destination="bn4-8q-ohj" id="Xj4-mD-Mcd"/>
+                        <outlet property="playersLabel" destination="z1F-1r-bej" id="EdF-eW-Ubz"/>
+                        <outlet property="playersStepper" destination="xkS-Il-Gnv" id="8pv-MM-Iwi"/>
                         <outlet property="pythSwitch" destination="JSn-5i-arN" id="SbG-F7-xJH"/>
                         <outlet property="sandwichSwitch" destination="SWj-QI-8n9" id="DbE-M5-k9u"/>
                         <outlet property="saveButton" destination="h6a-Du-Ygh" id="Rn3-Tb-uUD"/>
