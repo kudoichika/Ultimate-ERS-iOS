@@ -111,9 +111,9 @@ class PracticeGame {
         obg = manualObligation
         let cd = computerDifficulty
         //Default 0.75s => Customize using Difficulty
-        cardToDeckTime = 0.75
-        turnBufferTime = 0.75 + 0.1 * Double((5 - cd))
-        computerActionTime = 0.75 + 0.1 * Double((5 - cd))
+        cardToDeckTime = 0.75 + 0.1 * Double((4 - cd))
+        turnBufferTime = 0.75 + 0.1 * Double((4 - cd))
+        computerActionTime = 0.75 + 0.1 * Double((4 - cd))
         //Default 0.25s => Customize using Difficulty
         cardToStackTime = 0.25
         handVisibleTime = 0.25
@@ -305,9 +305,9 @@ class PracticeGame {
         print("--------------------------")
         if locked { return }
         if wrongThread(curr) { return }
-        /*for arrow in arrows {
+        for arrow in arrows {
             arrow.removeFromParent()
-        }*/
+        }
         if !ers.getStatus(player: turn) {
             turn = (turn + 1) % N
             turnRouter(curr: curr)
