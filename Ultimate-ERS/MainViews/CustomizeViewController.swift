@@ -119,6 +119,7 @@ class CustomizeViewController: UIViewController {
         obligationSwitch.setOn(manualObligation, animated: false)
         difficultyStepper.value = Double(computerDifficulty)
         diffcultyLabel.text = "Computer Difficulty: \(Int(difficultyStepper.value))"
+        playersStepper.value = Double(numPlayers)
         playersLabel.text = "Number of Players: \(Int(playersStepper.value))"
         labelSwitch.setOn(labelHint, animated: false)
         setup = true

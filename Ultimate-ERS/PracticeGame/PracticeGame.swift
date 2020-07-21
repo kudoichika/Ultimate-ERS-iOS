@@ -209,11 +209,13 @@ class PracticeGame {
         
         if N > 2 {
             deckJacket[1].zRotation = CGFloat(Double.pi / 2)
-            deckJacket[3].zRotation = CGFloat(Double.pi / 2)
+            if N > 3 {
+                deckJacket[3].zRotation = CGFloat(Double.pi / 2)
+                hands[3].zRotation = CGFloat(3 * Double.pi / 2)
+            }
             arrows[2].zRotation = CGFloat(Double.pi)
             hands[1].zRotation = CGFloat(Double.pi / 2)
             hands[2].zRotation = CGFloat(Double.pi)
-            hands[3].zRotation = CGFloat(3 * Double.pi / 2)
         }
         
         labels[0].text = "You"
