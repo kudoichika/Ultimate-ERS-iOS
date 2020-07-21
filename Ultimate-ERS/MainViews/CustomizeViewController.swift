@@ -103,6 +103,10 @@ class CustomizeViewController: UIViewController {
         diffcultyLabel.text = "Computer Difficulty: \(Int(difficultyStepper.value))"
         setup = true
     }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
 
     /*
     // MARK: - Navigation

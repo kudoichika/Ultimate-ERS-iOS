@@ -23,6 +23,8 @@ class ERS {
     var numleft : Int!
     var chances : Array<Int>!
     
+    var lastPattern : String!
+    
     //obligation
     
     init(difficulty : Int = 5, numPlayers : Int = 2, manObg : Bool = true, numBurn : Int = 2) {
@@ -136,7 +138,7 @@ class ERS {
         players[player].deactivate()
     }
     
-    func checkPattern() -> Bool {
+    func getPattern() -> String {
         
         func compare(first : Int, second : Int) -> Bool{
             return stack.peek(at : first).val == stack.peek(at : second).val
@@ -205,27 +207,49 @@ class ERS {
             }
             return false
         }
-        if checkTopBottom() {print("Top Bottom Slap")}
-        if checkPair() {print("Pair Slap")}
-        if checkSandwich() {print("Sandwich Slap")}
-        if checkMarriage() {print("Marriage Slap")}
-        if checkDivorce() {print("Divorce Slap")}
-        if checkAddition() {print("Addition Slap")}
-        if checkPythagorean() {print("Pyth Slap")}
-        if checkStaircase() {print("Staircase Slap")}
-        
-        if (topBottomSlap && checkTopBottom()) ||
-            (pairSlap && checkPair()) ||
-            (sandwichSlap && checkSandwich()) ||
-            (marriageSlap && checkMarriage()) ||
-            (divorceSlap && checkDivorce()) ||
-            (additionSlap && checkAddition()) ||
-            (pythSlap && checkPythagorean()) ||
-            (stairSlap && checkStaircase()) {
-                return true
+        if checkTopBottom() {
+            print("Top Bottom Slap")
+            return "Top Bottom"
+        }
+        if checkPair() {
+            print("Pair Slap")
+            return "Pair"
+        }
+        if checkSandwich() {
+            print("Sandwich Slap")
+            return "Sandwich"
+        }
+        if checkMarriage() {
+            print("Marriage Slap")
+            return "Marriage"
+        }
+        if checkDivorce() {
+            print("Divorce Slap")
+            return "Divorce"
+        }
+        if checkAddition() {
+            print("Addition Slap")
+            return "Addition"
+        }
+        if checkPythagorean() {
+            print("Pyth Slap")
+            return "Pythagorean"
+        }
+        if checkStaircase() {
+            print("Staircase Slap")
+            return "Staircase"
         }
         
-        return false
+        return ""
+    }
+    
+    func checkPattern() -> Bool {
+        lastPattern = getPattern()
+        return lastPattern != ""
+    }
+    
+    func getLastPattern() -> String {
+        return lastPattern
     }
     
 }

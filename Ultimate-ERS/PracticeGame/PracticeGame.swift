@@ -424,6 +424,9 @@ class PracticeGame {
             self.hands[player].removeFromParent()
             if self.ers.slap(player : player) {
                 print("Slap is Valid. Collecting Cards")
+                if labelHint {
+                    self.popUpLabel()
+                }
                 for item in self.stackDisplay {
                    item.run(self.stackToDeck[player], completion : {
                        item.removeFromParent()
@@ -512,5 +515,11 @@ class PracticeGame {
     
     func gameOver() {
         parent?.showEndScreen(verdict : placement[0])
+    }
+    
+    func popUpLabel() {
+        print("Calling Pop Up")
+        let pattern = ers.getLastPattern()
+        generateLabel(frameSize: frameSize, slapText: pattern, mainNode: gameNode)
     }
 }

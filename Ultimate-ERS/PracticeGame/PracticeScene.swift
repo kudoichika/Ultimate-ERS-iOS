@@ -104,7 +104,6 @@ class PracticeScene : SKScene {
         game = PracticeGame(frame : frame.size)
         game.parent = self
         game.addComponents(self)
-        
         self.run(SKAction.wait(forDuration : 0.3), completion : {
             self.addChild(self.pauseButton)
         })

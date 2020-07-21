@@ -162,3 +162,19 @@ class EndScreen : PopScreen {
     }
     
 }
+
+func generateLabel(frameSize : CGSize, slapText : String, mainNode : SKNode) {
+    let label : SKLabelNode!
+    label = SKLabelNode(text : "\(slapText) Slap!")
+    label.fontName = "AvenirNext-Bold"
+    label.position = CGPoint(x : 0.5 * frameSize.width, y : 0.325 * frameSize.height)
+    label.zPosition = 100
+    label.fontColor = UIColor.yellow
+    mainNode.addChild(label)
+    let finalSize = CGSize(width : 0.8 * (frameSize.width / 1.9), height : 0.8 * (frameSize.width / CGFloat(3.5 * 16.0 / 9.0)))
+    let popDuration = 0.6
+    label.run(SKAction.resize(toWidth : finalSize.width, height : finalSize.height, duration : popDuration), completion : {
+        label.removeFromParent()
+    })
+    
+}
