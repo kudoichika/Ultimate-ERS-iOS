@@ -2,14 +2,14 @@
 //  MainScene.swift
 //  Ultimate-ERS
 //
-//  Created by kudoichika on 6/24/20.
+//  Created by kudoichika on 9/6/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
 import SpriteKit
 import GameplayKit
 
-class MainScene: SKScene {
+class RegisterScene: SKScene {
     
     weak var viewController: UIViewController?
     
@@ -136,7 +136,7 @@ class MainScene: SKScene {
         let vcdest : String
         switch (dest) {
         case "practice": vcdest = "PracticeViewController"
-        case "multiplay": vcdest = ""
+        case "multiplay": vcdest = "LoginViewController"
         case "customize": vcdest = "CustomizeViewController"
         case "other": vcdest = "RulesViewController"
         default: vcdest = ""

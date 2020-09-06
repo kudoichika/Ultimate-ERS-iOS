@@ -28,11 +28,17 @@
 		839F3DF62475F755009C129E /* UtilityComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF52475F755009C129E /* UtilityComponents.swift */; };
 		839F3DFA2475F7D0009C129E /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DF92475F7D0009C129E /* PracticeViewController.swift */; };
 		839F3DFC2475F80C009C129E /* PracticeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839F3DFB2475F80C009C129E /* PracticeScene.swift */; };
+		83A5849D24C773990012C0D1 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A5849C24C773990012C0D1 /* RulesViewController.swift */; };
 		83B6192424A3DE4C00A2D31E /* PopScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B6192324A3DE4C00A2D31E /* PopScreens.swift */; };
 		83B6192624A4F7A800A2D31E /* PracticeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B6192524A4F7A800A2D31E /* PracticeGame.swift */; };
 		83B98C4C247C940600D7BF01 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B98C4B247C940600D7BF01 /* LoginViewController.swift */; };
 		83F19E7C24A38C83009168D4 /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F19E7B24A38C82009168D4 /* MainSceneViewController.swift */; };
 		83F19E7E24A38CAD009168D4 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F19E7D24A38CAD009168D4 /* MainScene.swift */; };
+		83FA5F02250557F200C500E6 /* LoginSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5F01250557F200C500E6 /* LoginSceneViewController.swift */; };
+		83FA5F042505580300C500E6 /* LoginScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5F032505580300C500E6 /* LoginScene.swift */; };
+		83FA5F0625055D2E00C500E6 /* RegisterSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5F0525055D2E00C500E6 /* RegisterSceneViewController.swift */; };
+		83FA5F0825055D3E00C500E6 /* RegisterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5F0725055D3E00C500E6 /* RegisterScene.swift */; };
+		83FA5F0A25055E8900C500E6 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83FA5F0925055E8900C500E6 /* StatsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,11 +64,17 @@
 		839F3DF52475F755009C129E /* UtilityComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityComponents.swift; sourceTree = "<group>"; };
 		839F3DF92475F7D0009C129E /* PracticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
 		839F3DFB2475F80C009C129E /* PracticeScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeScene.swift; sourceTree = "<group>"; };
+		83A5849C24C773990012C0D1 /* RulesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		83B6192324A3DE4C00A2D31E /* PopScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopScreens.swift; sourceTree = "<group>"; };
 		83B6192524A4F7A800A2D31E /* PracticeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeGame.swift; sourceTree = "<group>"; };
 		83B98C4B247C940600D7BF01 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		83F19E7B24A38C82009168D4 /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
 		83F19E7D24A38CAD009168D4 /* MainScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
+		83FA5F01250557F200C500E6 /* LoginSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSceneViewController.swift; sourceTree = "<group>"; };
+		83FA5F032505580300C500E6 /* LoginScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScene.swift; sourceTree = "<group>"; };
+		83FA5F0525055D2E00C500E6 /* RegisterSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSceneViewController.swift; sourceTree = "<group>"; };
+		83FA5F0725055D3E00C500E6 /* RegisterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScene.swift; sourceTree = "<group>"; };
+		83FA5F0925055E8900C500E6 /* StatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +137,8 @@
 				839F3DEF2475F6C7009C129E /* CustomizeViewController.swift */,
 				83F19E7B24A38C82009168D4 /* MainSceneViewController.swift */,
 				83F19E7D24A38CAD009168D4 /* MainScene.swift */,
+				83A5849C24C773990012C0D1 /* RulesViewController.swift */,
+				83FA5F0925055E8900C500E6 /* StatsViewController.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -148,6 +162,10 @@
 				831B163D2485A17F0066A5FB /* MultiGameViewController.swift */,
 				831B16432485A1DF0066A5FB /* MultiGameScene.swift */,
 				831B16452485A26B0066A5FB /* MultiLobbyViewController.swift */,
+				83FA5F01250557F200C500E6 /* LoginSceneViewController.swift */,
+				83FA5F032505580300C500E6 /* LoginScene.swift */,
+				83FA5F0525055D2E00C500E6 /* RegisterSceneViewController.swift */,
+				83FA5F0725055D3E00C500E6 /* RegisterScene.swift */,
 			);
 			path = MultiGame;
 			sourceTree = "<group>";
@@ -259,7 +277,12 @@
 				831B163A2485A0CC0066A5FB /* Connection.swift in Sources */,
 				83F19E7C24A38C83009168D4 /* MainSceneViewController.swift in Sources */,
 				83B98C4C247C940600D7BF01 /* LoginViewController.swift in Sources */,
+				83FA5F042505580300C500E6 /* LoginScene.swift in Sources */,
 				831B16442485A1DF0066A5FB /* MultiGameScene.swift in Sources */,
+				83FA5F0A25055E8900C500E6 /* StatsViewController.swift in Sources */,
+				83FA5F0825055D3E00C500E6 /* RegisterScene.swift in Sources */,
+				83FA5F02250557F200C500E6 /* LoginSceneViewController.swift in Sources */,
+				83A5849D24C773990012C0D1 /* RulesViewController.swift in Sources */,
 				839F3DD72475F34D009C129E /* GameScene.swift in Sources */,
 				839F3DD92475F34D009C129E /* GameViewController.swift in Sources */,
 				839F3DFA2475F7D0009C129E /* PracticeViewController.swift in Sources */,
@@ -268,6 +291,7 @@
 				839F3DF02475F6C7009C129E /* CustomizeViewController.swift in Sources */,
 				839F3DF62475F755009C129E /* UtilityComponents.swift in Sources */,
 				831B163E2485A17F0066A5FB /* MultiGameViewController.swift in Sources */,
+				83FA5F0625055D2E00C500E6 /* RegisterSceneViewController.swift in Sources */,
 				831B163C2485A0EA0066A5FB /* RegisterViewController.swift in Sources */,
 				839F3DF22475F6EF009C129E /* Customization.swift in Sources */,
 				83F19E7E24A38CAD009168D4 /* MainScene.swift in Sources */,

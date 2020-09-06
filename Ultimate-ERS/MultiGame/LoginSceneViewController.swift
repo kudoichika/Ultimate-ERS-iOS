@@ -1,22 +1,22 @@
 //
-//  MainSceneViewController.swift
+//  LoginSceneViewController.swift
 //  Ultimate-ERS
 //
-//  Created by kudoichika on 6/24/20.
+//  Created by kudoichika on 9/6/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
 
-class MainSceneViewController: UIViewController {
+class LoginSceneViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         if let view = self.view as! SKView? {
-            let scene = MainScene(size: view.bounds.size)
+            let scene = LoginScene(size: view.bounds.size)
             scene.scaleMode = .aspectFill
             scene.viewController = self
             view.presentScene(scene)

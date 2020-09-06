@@ -9,6 +9,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Rules View Controller-->
+        <scene sceneID="fJ0-3r-XeF">
+            <objects>
+                <viewController storyboardIdentifier="RulesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qjw-RO-e6V" customClass="RulesViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rvd-rr-jDb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="XA9-KT-CS7"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GtA-ea-rfk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="142" y="-703"/>
+        </scene>
         <!--Main Scene View Controller-->
         <scene sceneID="4Pe-i1-CS5">
             <objects>
@@ -22,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZ2-uz-Qee" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="214" y="126"/>
+            <point key="canvasLocation" x="143" y="139"/>
         </scene>
         <!--Customize View Controller-->
         <scene sceneID="V5b-W1-V8i">
@@ -564,21 +579,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIN-8U-aq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-314" y="929"/>
-        </scene>
-        <!--Test View Controller-->
-        <scene sceneID="zQ6-Fz-bVz">
-            <objects>
-                <viewController storyboardIdentifier="TestViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Yht-lH-rer" customClass="TestViewController" customModule="Ultimate_ERS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5jZ-f9-qp0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="pw2-Sb-D0O"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tac-Au-5O0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2010" y="399"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

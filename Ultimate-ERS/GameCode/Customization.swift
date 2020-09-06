@@ -23,6 +23,11 @@ var manualObligation : Bool = true
 var numPlayers : Int = 2
 var labelHint : Bool = true
 
+var numGames : Int = 0
+var win2 : Int = 0
+var win3 : Int = 0
+var win4 : Int = 0
+
 func createUserDefaults() {
     if (UserDefaults.standard.object(forKey : "TBSlap") == nil) {
         UserDefaults.standard.set(true, forKey: "TBSlap")
@@ -60,6 +65,18 @@ func createUserDefaults() {
     if (UserDefaults.standard.object(forKey : "LabHint") == nil) {
         UserDefaults.standard.set(true, forKey: "LabHint")
     }
+    if(UserDefaults.standard.object(forKey : "NumGames") == nil) {
+        UserDefaults.standard.set(0, forKey: "NumGames")
+    }
+    if(UserDefaults.standard.object(forKey : "Win2") == nil) {
+        UserDefaults.standard.set(0, forKey: "Win2")
+    }
+    if(UserDefaults.standard.object(forKey : "Win3") == nil) {
+        UserDefaults.standard.set(0, forKey: "Win3")
+    }
+    if(UserDefaults.standard.object(forKey : "Win4") == nil) {
+        UserDefaults.standard.set(0, forKey: "Win4")
+    }
 }
 
 func initUserDefaults() {
@@ -75,6 +92,10 @@ func initUserDefaults() {
     manualObligation = UserDefaults.standard.bool(forKey: "ManObg")
     numPlayers = UserDefaults.standard.integer(forKey : "NumComp")
     labelHint = UserDefaults.standard.bool(forKey : "LabHint")
+    numGames = UserDefaults.standard.integer(forKey : "NumGames")
+    win2 = UserDefaults.standard.integer(forKey : "Win2")
+    win3 = UserDefaults.standard.integer(forKey : "Win3")
+    win4 = UserDefaults.standard.integer(forKey: "Win4")
 }
 
 func saveUserDefaults() {
@@ -90,5 +111,12 @@ func saveUserDefaults() {
     UserDefaults.standard.set(manualObligation, forKey: "ManObg")
     UserDefaults.standard.set(numPlayers, forKey : "NumComp")
     UserDefaults.standard.set(labelHint, forKey: "LabHint")
+}
+
+func saveStats() {
+    UserDefaults.standard.set(numGames, forKey : "NumGames")
+    UserDefaults.standard.set(win2, forKey : "Win2")
+    UserDefaults.standard.set(win3, forKey : "Win3")
+    UserDefaults.standard.set(win4, forKey : "Win4")
 }
 

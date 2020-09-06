@@ -1,30 +1,26 @@
 //
-//  MainSceneViewController.swift
+//  StatsViewController.swift
 //  Ultimate-ERS
 //
-//  Created by kudoichika on 6/24/20.
+//  Created by Kudo on 9/6/20.
 //  Copyright © 2020 kudoichika. All rights reserved.
 //
 
 import UIKit
-import SpriteKit
 
-class MainSceneViewController: UIViewController {
+class StatsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "Bg")!)
+        
+        
+        /*
+         Add a scroll view with rules/images Here
+         */
+        
+        
         // Do any additional setup after loading the view.
-        if let view = self.view as! SKView? {
-            let scene = MainScene(size: view.bounds.size)
-            scene.scaleMode = .aspectFill
-            scene.viewController = self
-            view.presentScene(scene)
-            view.showsFPS = true
-            view.showsNodeCount = true
-            //view.ignoresSiblingOrder = true
-            
-        }
     }
     
     override var shouldAutorotate: Bool {
