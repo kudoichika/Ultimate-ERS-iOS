@@ -1,7 +1,7 @@
 # Ultimate ERS · [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 A realtime iOS game of ERS!
 
-ERS stands for Egpytian Rat Slap (or Rat Screw/other names) and is a pretty fun and challenging card game (if you have really tough opponents, like I did in high school). I built this game as a way to play over quarantine and as a way to hone my skills so they don't grow numb.
+ERS stands for Egpytian Rat Slap (or Rat Screw/other names) and is a pretty fun and challenging card game (if you have really tough opponents, like I did in high school). I built this game as a way to play with friends over quarantine and as a way to hone my skills so they don't grow numb.
 
 The supported multiplayer server is located in the [Ultimate-ERS-Server](https://github.com/kudoichika/Ultimate-ERS-Server) repo.
 
@@ -13,7 +13,10 @@ The supported multiplayer server is located in the [Ultimate-ERS-Server](https:/
 ### GamePlay
 - Demo will here soon
 
-
+### Technical
+- Uses Swift and Apple SpriteKit & UIKit to control gameplay/graphics
+- Uses Socket.IO-Swift to communicate with the multiplayer server backend
+- Requests to perform basic CRUD and retrieve game history
 
 ### License
 This project is copyrighted under the [Apache 2.0 License](https://github.com/kudoichika/Ultimate-ERS-iOS/blob/master/LICENSE).
