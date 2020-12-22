@@ -12,6 +12,7 @@ This repo contains the code to the multiplayer server of the [Ultimate-ERS](http
 - Uses Socket.IO (with websockets/no pooling) to maintain realtime connection and updates
 - Passport.js to simplify authentication
 - Other libraries for cookie storage and MongoDB interfacing
+- Chalk for some cool colored game/server logs
 
 ### License
 This project is copyrighted under the [Apache 2.0 License](https://github.com/kudoichika/Ultimate-ERS-Server/blob/master/LICENSE).
