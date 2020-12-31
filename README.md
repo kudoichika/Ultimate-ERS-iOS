@@ -11,7 +11,7 @@ The supported multiplayer server is located in the [Ultimate-ERS-Server](https:/
 - Customizable with 13 different kinds of slap pattern rules (Adding some popular home rules)
 
 ### GamePlay
-![ERS Demo](https://github.com/kudoichika/Ultimate-ERS/blob/master/ers-demo.gif?raw=true)
+<img align="center" width="30%" src="https://github.com/kudoichika/Ultimate-ERS/blob/master/ers-demo.gif?raw=true" alt="ERS Demo">
 
 ### Technical
 - Uses Swift and Apple SpriteKit & UIKit to control gameplay/graphics
