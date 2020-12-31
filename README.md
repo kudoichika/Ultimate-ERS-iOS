@@ -12,7 +12,7 @@ The supported multiplayer server is located in the [Ultimate-ERS-Server](https:/
 
 ### GamePlay
 <div align="center">
-	<img width="30%" src="https://github.com/kudoichika/Ultimate-ERS/blob/master/ers-demo.gif?raw=true" alt="ERS Demo">
+	<video width="30%" src="https://github.com/kudoichika/Ultimate-ERS/blob/master/ers-demo.mov?raw=true" alt="ERS Demo" autoplay>
 </div>
 
 ### Technical
