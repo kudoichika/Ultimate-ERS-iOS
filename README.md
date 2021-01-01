@@ -11,6 +11,7 @@ The supported multiplayer server is located in the [Ultimate-ERS-Server](https:/
 - Customizable with 13 different kinds of slap pattern rules (Adding some popular home rules)
 
 ### GamePlay
+- Demo vid in the repo. Will be converted to gif and put here later.
 <div align="center">
 	<video width="30%" src="https://github.com/kudoichika/Ultimate-ERS/blob/master/ers-demo.mov?raw=true" alt="ERS Demo" autoplay>
 </div>
