@@ -1,0 +1,1 @@
+//routes to directly store/retrieve game from database
