@@ -11,6 +11,16 @@ The supported multiplayer server is located in the [server](https://github.com/u
 - Customizable with 13 different kinds of slap pattern rules (Added some of the popular home rules)
 
 ### Highlights
+<p align="center">
+	<img width="20%" src="https://github.com/usjpin/ultimate-ers/blob/master/Demo/customize.gif?raw=true" alt="Main Screen">
+  &nbsp; &nbsp;
+	<img width="20%" src="https://github.com/usjpin/ultimate-ers/blob/master/Demo/2-player-obg.gif?raw=true" alt="Basic Play">
+  &nbsp; &nbsp;
+	<img width="20%" src="https://github.com/usjpin/ultimate-ers/blob/master/Demo/2-player-slap.gif?raw=true" alt="Successful Slap">
+  &nbsp; &nbsp;
+  <img width="20%" src="https://github.com/usjpin/ultimate-ers/blob/master/Demo/error-pause-screen.gif?raw=true" alt="Penalty & Pause">
+  &nbsp; &nbsp;
+</p>
 
 ### Server Features
 - Support CRUD of user accounts and stores their game history
