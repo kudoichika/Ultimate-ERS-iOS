@@ -3,18 +3,14 @@ A realtime iOS multiplayer game/server for ERS!
 
 ERS stands for Egpytian Rat Slap (or Rat Screw/other names) and is a pretty fun and challenging card game (if you have really tough opponents, like I did in high school). I built this game as a way to play with friends over quarantine and as a way to hone my skills so they don't grow numb.
 
-The supported multiplayer server is located in the [server](https://github.com/usjpin/Ultimate-ERS/tree/master/server) folder.
+The supported multiplayer server is located in the [server](https://github.com/usjpin/ultimate-ers/tree/master/Multiplayer-Server) folder.
 
 ### Game Features
 - Single player game with 2-4 "AI" opponents that can have a chosen difficulty ranging from 1-5
 - Multiplayer 2-player game with realtime competition support using the custom built game server
 - Customizable with 13 different kinds of slap pattern rules (Added some of the popular home rules)
 
-### GamePlay
-- Demo vid in the repo. Will be converted to gif and put here later.
-<div align="center">
-	<video width="30%" src="https://github.com/usjpin/Ultimate-ERS/blob/master/ers-demo.mov?raw=true" alt="ERS Demo" autoplay>
-</div>
+### Highlights
 
 ### Server Features
 - Support CRUD of user accounts and stores their game history
@@ -34,4 +30,4 @@ The supported multiplayer server is located in the [server](https://github.com/u
 - Chalk for some cool colored game/server logs
 
 ### License
-This project is copyrighted under the [Apache 2.0 License](https://github.com/usjpin/Ultimate-ERS/blob/master/LICENSE).
+This project is copyrighted under the [Apache 2.0 License](https://github.com/usjpin/ultimate-ers/blob/master/LICENSE).
